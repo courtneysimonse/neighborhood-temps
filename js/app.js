@@ -1,9 +1,9 @@
 
-// US map options
+// Philly map options
 var options = {
   zoomSnap: .5,
-  center: [39, -97],
-  zoom: 5,
+  center: [40, -75.1],
+  zoom: 11.5,
   minZoom: 2,
   zoomControl: false,
   // attributionControl: false
@@ -103,6 +103,16 @@ function processData() {
 
 // DRAW MAP FUNCTION
 function drawMap() {
+
+  var neighborhoodsLayer = L.geoJSON(neighborhoods, {
+  style: function (feature) {
+    return {
+      weight: .5,
+      color: '#888',
+      fillOpacity: .5,
+    }
+  }
+}).addTo(map);
 
 }   //end drawMap()
 
