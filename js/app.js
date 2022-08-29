@@ -41,46 +41,37 @@ L.control.zoom({
 }).addTo(map);
 
 // setup slider
-var dateSlider = document.getElementById('slider');
+var slider = document.getElementById('slider');
 
-function timestamp(str) {
-    return new Date(str).getTime();
-}
-
-noUiSlider.create(dateSlider, {
+noUiSlider.create(slider, {
 // Create two timestamps to define a range.
     range: {
-        min: timestamp('2010'),
-        max: timestamp('2016')
+        min: 75,
+        max: 95
     },
 
-// Steps of one week
-    step: 7 * 24 * 60 * 60 * 1000,
+// Steps of one degree
+    step: 1,
 
-// Two more timestamps indicate the handle starting positions.
-    start: [timestamp('2011-01-15')],
+// handle starting positions.
+    start: [80],
 
 // No decimals
     format: {
       to: function (value) {
-        return value;
+        return Math.floor(Number(value));
       },
       from: function (value) {
-        return Number(value);
+        return Math.floor(Number(value));
       }
     }
 });
 
 
 // update slider
-var dateValues = [
-    document.getElementById('event')
-];
-
-var formatter = new Intl.DateTimeFormat('en-US');
-
-dateSlider.noUiSlider.on('update', function (values, handle) {
-    dateValues[handle].innerHTML = formatter.format(new Date(+values[handle]));
+slider.noUiSlider.on('update', function (values, handle) {
+  // console.log(values);
+  updateMap(values);
 });
 
 
@@ -149,3 +140,7 @@ function drawLegend(breaks, colorize) {
   legend.innerHTML = legendHTML;
 
 } // end drawLegend()
+
+function updateMap() {
+
+}
