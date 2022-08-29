@@ -40,6 +40,18 @@ L.control.zoom({
   position: 'bottomleft'
 }).addTo(map);
 
+var minTemp = 80;
+
+// example breaks for legend
+var breaks = [];
+for (var i = 0; i < 6; i++) {
+  breaks[i] = minTemp + 5*i;
+}
+var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
+drawLegend(breaks, colorize);
+
+var neighborhoodsLayer = L.geoJSON();
+
 // setup slider
 var slider = document.getElementById('slider');
 
@@ -54,7 +66,7 @@ noUiSlider.create(slider, {
     step: 1,
 
 // handle starting positions.
-    start: [80],
+    start: [minTemp],
 
 // No decimals
     format: {
@@ -69,41 +81,25 @@ noUiSlider.create(slider, {
 
 
 // update slider
-slider.noUiSlider.on('update', function (values, handle) {
-  // console.log(values);
-  updateMap(values);
+slider.noUiSlider.on('update', function (value) {
+  // console.log(value);
+  minTemp = +value;
+  updateMap(+value);
 });
 
 
 
-// GET DATA
-processData();
+drawMap();
 
-// PROCESS DATA FUNCTION
-function processData() {
-
-  drawMap();
-
-  // example breaks for legend
-  var breaks = [1, 4, 7, 10];
-  var colorize = chroma.scale(chroma.brewer.BuGn).classes(breaks).mode('lab');
-
-  drawLegend(breaks, colorize);
-
-}   //end processData()
 
 // DRAW MAP FUNCTION
 function drawMap() {
 
-  var neighborhoodsLayer = L.geoJSON(neighborhoods, {
-  style: function (feature) {
-    return {
-      weight: .5,
-      color: '#888',
-      fillOpacity: .5,
-    }
-  }
-}).addTo(map);
+  neighborhoodsLayer.addData(neighborhoods).addTo(map);
+
+  neighborhoodsLayer.setStyle(style);
+
+  map.fitBounds(neighborhoodsLayer.getBounds());
 
 }   //end drawMap()
 
@@ -123,7 +119,7 @@ function drawLegend(breaks, colorize) {
   legendControl.addTo(map);
 
   var legend = document.querySelector('.legend');
-  var legendHTML = "<h3><span>YYYY</span> Legend</h3><ul>";
+  var legendHTML = "<h3>Legend</h3><ul>";
 
   for (var i = 0; i < breaks.length - 1; i++) {
 
@@ -141,6 +137,45 @@ function drawLegend(breaks, colorize) {
 
 } // end drawLegend()
 
-function updateMap() {
+function updateMap(temp) {
 
+  for (var i = 0; i < 6; i++) {
+    breaks[i] = temp + 5*i;
+  }
+  var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
+
+  neighborhoodsLayer.setStyle(style);
+
+  updateLegend(breaks, colorize);
+
+}
+
+function style (feature) {
+  // console.log(minTemp+feature.properties['AvgTempDiff_F']+13.99);
+  let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99);
+  return {
+    weight: 1,
+    color: '#888',
+    fillColor: color,
+    fillOpacity: .9,
+  };
+}  // end style()
+
+function updateLegend(breaks, colorize) {
+  var legendul = document.querySelector(".legend ul");
+  // console.log(legendUl);
+  let legendList = "";
+
+  for (var i = 0; i < breaks.length - 1; i++) {
+
+    var color = colorize(breaks[i], breaks);
+
+    var classRange = '<li><span style="background:' + color + '"></span> ' +
+        breaks[i].toLocaleString() + ' &mdash; ' +
+        breaks[i + 1].toLocaleString() + '</li>';
+    legendList += classRange;
+
+  }
+
+  legendul.innerHTML = legendList;
 }
