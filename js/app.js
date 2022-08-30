@@ -68,6 +68,14 @@ noUiSlider.create(slider, {
 // handle starting positions.
     start: [minTemp],
 
+    tooltips: [true],
+
+    pips: {
+      mode: 'positions',
+      values: [0, 25, 50, 75, 100],
+      density: 4
+    },
+
 // No decimals
     format: {
       to: function (value) {
