@@ -103,7 +103,11 @@ drawMap();
 // DRAW MAP FUNCTION
 function drawMap() {
 
-  neighborhoodsLayer.addData(neighborhoods).addTo(map);
+  neighborhoodsLayer.addData(neighborhoods)
+    .bindTooltip(function (layer) {
+      return (minTemp+layer.feature.properties['AvgTempDiff_F']+13.99).toPrecision(3).toString() + " &deg;F";
+    })
+    .addTo(map);
 
   neighborhoodsLayer.setStyle(style);
 
