@@ -166,8 +166,9 @@ function style (feature) {
   // console.log(minTemp+feature.properties['AvgTempDiff_F']+13.99);
   let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99);
   return {
+    opacity: 1,
     weight: 1,
-    color: '#888',
+    color: color,
     fillColor: color,
     fillOpacity: .9,
   };
