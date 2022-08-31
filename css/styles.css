@@ -44,8 +44,8 @@ p {
 .legend {
     padding: 6px 8px;
     font-size: 1em;
-    background: rgba(75, 75, 75, 0.8);
-    color: whitesmoke;
+    background: #edeae5;
+    color: #001323;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 160px;
@@ -55,7 +55,7 @@ p {
     font-size: 1.1em;
     font-weight: bold;
     line-height: 1em;
-    color: whitesmoke;
+    color: #001323;
     margin: 0;
 }
 
@@ -79,21 +79,22 @@ p {
     height: 20px;
     float: left;
     margin-right: 10px;
+    opacity: 0.6;
 }
 
 .legend p {
   font-weight: bold;
   line-height: 1em;
-  color: whitesmoke;
+  color: #001323;
 }
 
 #ui-controls {
     width: 176px;
     padding: 8px 25px 43px 15px;
-    background: rgba(75, 75, 75, 0.8);
+    background: #edeae5;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    color: whitesmoke;
+    color: #001323;
     position: absolute;
     top: 100px;
     left: 20px;
@@ -119,5 +120,5 @@ label {
 }
 
 .noUi-value {
-  color: whitesmoke;
+  color: #001323;
 }

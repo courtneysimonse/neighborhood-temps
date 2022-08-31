@@ -106,12 +106,19 @@ function drawMap() {
   neighborhoodsLayer.addData(neighborhoods)
     .bindTooltip(function (layer) {
       return (minTemp+layer.feature.properties['AvgTempDiff_F']+13.99).toPrecision(3).toString() + " &deg;F";
+    }, {
+      sticky: true
     })
     .addTo(map);
 
   neighborhoodsLayer.setStyle(style);
 
   map.fitBounds(neighborhoodsLayer.getBounds());
+
+  map.on('zoomend', function (e) {
+    console.log(map.getZoom());
+  })
+
 
 }   //end drawMap()
 
@@ -164,13 +171,13 @@ function updateMap(temp) {
 
 function style (feature) {
   // console.log(minTemp+feature.properties['AvgTempDiff_F']+13.99);
-  let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99);
+  let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99, breaks);
   return {
     opacity: 1,
     weight: 1,
     color: color,
     fillColor: color,
-    fillOpacity: .9,
+    fillOpacity: .6,
   };
 }  // end style()
 
@@ -183,7 +190,7 @@ function updateLegend(breaks, colorize) {
 
     var color = colorize(breaks[i], breaks);
 
-    var classRange = '<li><span style="background:' + color + '"></span> ' +
+    var classRange = '<li><span style="background:' + color + ';"></span> ' +
         breaks[i].toLocaleString() + ' &mdash; ' +
         breaks[i + 1].toLocaleString() + '</li>';
     legendList += classRange;
