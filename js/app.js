@@ -71,8 +71,8 @@ var style = {
           ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
           colors[4]
         ],
-        'text-halo-width': 2,
-        'text-halo-color': "#fff"
+        'text-halo-width': 1,
+        'text-halo-color': "#444"
       },
       'layout': {
         'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
