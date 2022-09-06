@@ -58,6 +58,26 @@ var style = {
       }
     },
     {
+      'id': 'neighborhoods-outline',
+      'type': 'line',
+      'source': 'neighborhoods',
+      'paint': {
+        'line-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
+          colors[4]
+        ],
+        'line-width': 2
+      },
+      'layout': {
+
+      }
+    },
+    {
       'id': 'neighborhoods-label',
       'type': 'symbol',
       'source': 'neighborhoods',
