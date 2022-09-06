@@ -92,7 +92,16 @@ var style = {
           colors[4]
         ],
         'text-halo-width': 1,
-        'text-halo-color': "#444"
+        'text-halo-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], -10], "#fff",
+          ['<', ['get', 'AvgTempDiff_F'], -5], "#111",
+          ['<', ['get', 'AvgTempDiff_F'], 0], "#111",
+          ['<', ['get', 'AvgTempDiff_F'], 5], "#111",
+          "#fff"
+        ],
+        'text-halo-blur': 2
       },
       'layout': {
         'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
@@ -100,7 +109,8 @@ var style = {
           ['+', ['get','AvgTempDiff_F'], minTemp],
           { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
         ],
-        'text-size': 12
+        'text-size': 12,
+        'text-padding': 5
       }
     }
   ],
@@ -405,103 +415,6 @@ map.on("load", function () {
   });
 
 })
-
-
-// drawMap();
-
-
-// DRAW MAP FUNCTION
-function drawMap() {
-
-  neighborhoodsLayer.addData(neighborhoods).addTo(map);
-
-  neighborhoodsLayer.setStyle(style);
-
-  map.fitBounds(neighborhoodsLayer.getBounds());
-
-  // map.on('zoomend', function () {
-  //   console.log(map.getZoom());
-  //   if (map.getZoom() < 14) {
-  //     neighborhoodsLayer.eachLayer(function (layer) {
-  //       layer.closeTooltip();
-  //       layer.getTooltip().options.permanent = false;
-  //       layer.getTooltip().options.sticky = true;
-  //       layer.getTooltip().options.direction = 'auto';
-  //       layer.getTooltip().options.className = '';
-  //     });
-  //   } else {
-  //     neighborhoodsLayer.eachLayer(function (layer) {
-  //       // console.log(layer.getTooltip());
-  //       layer.closeTooltip();
-  //       layer.getTooltip().options.permanent = true;
-  //       layer.getTooltip().options.sticky = false;
-  //       layer.getTooltip().options.direction = 'center';
-  //       layer.getTooltip().options.className = 'polyLabel';
-  //       layer.openTooltip();
-  //     });
-  //   }
-  // });
-
-}   //end drawMap()
-
-function drawLegend(breaks, colorize) {
-
-  var legendControl = L.control({
-    position: 'bottomright'
-  });
-
-  legendControl.onAdd = function(map) {
-
-    var legend = L.DomUtil.create('div', 'legend');
-    return legend;
-
-  };
-
-  legendControl.addTo(map);
-
-  var legend = document.querySelector('.legend');
-  var legendHTML = "<h3>Legend</h3><ul>";
-
-  for (var i = 0; i < breaks.length - 1; i++) {
-
-    var color = colorize(breaks[i], breaks);
-
-    var classRange = '<li><span style="background:' + color + '"></span> ' +
-        breaks[i].toLocaleString() + ' &mdash; ' +
-        breaks[i + 1].toLocaleString() + '</li>'
-    legendHTML += classRange;
-
-  }
-
-  legendHTML += '</ul><p>(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)</p>';
-  legend.innerHTML = legendHTML;
-
-} // end drawLegend()
-
-function updateMap(temp) {
-
-  for (var i = 0; i < 6; i++) {
-    breaks[i] = temp + 5*i;
-  }
-  var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
-
-  neighborhoodsLayer.setStyle(style);
-
-  updateLegend(breaks, colorize);
-
-}
-
-function style (feature) {
-  // console.log(minTemp+feature.properties['AvgTempDiff_F']+13.99);
-  let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99, breaks);
-  return {
-    opacity: 1,
-    weight: 1,
-    color: color,
-    fillColor: color,
-    fillOpacity: .6,
-  };
-}  // end style()
 
 function updateLegend(value) {
   for (var i = 0; i < 6; i++) {
