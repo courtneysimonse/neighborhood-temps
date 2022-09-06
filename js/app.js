@@ -70,10 +70,21 @@ var style = {
           ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
           ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
           colors[4]
-        ]
+        ],
+        'text-halo-width': 2,
+        'text-halo-color': "#fff"
+      },
+      'layout': {
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        'text-field': ['number-format',
+          ['+', ['get','AvgTempDiff_F'], minTemp],
+          { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+        ],
+        'text-size': 12
       }
     }
-  ]
+  ],
+  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=dFoGksq0UrNkBuFCUsAj"
 }
 
 // Philly map options
