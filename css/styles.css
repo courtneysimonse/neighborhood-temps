@@ -85,7 +85,7 @@ p {
 
 #ui-controls {
     width: 176px;
-    padding: 8px 25px 43px 15px;
+    padding: 8px 25px 48px 15px;
     background: #edeae5;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -103,6 +103,7 @@ label {
 
 .noUi-value {
   color: #001323;
+  padding-top: 5px;
 }
 
 .polyLabel {
