@@ -392,7 +392,16 @@ map.on("load", function () {
   slider.noUiSlider.on('update', function (value) {
     // console.log(value);
     minTemp = +value;
+
     updateLegend(+value);
+  });
+
+  slider.noUiSlider.on('end', function (value) {
+    map.setLayoutProperty('neighborhoods-label', 'text-field',
+    ['number-format',
+      ['+', ['get','AvgTempDiff_F'], minTemp],
+      { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+    ])
   });
 
 })
