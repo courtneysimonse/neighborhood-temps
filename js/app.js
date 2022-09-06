@@ -47,10 +47,29 @@ var style = {
       'paint': {
         'fill-opacity': .6,
         'fill-color': ['case',
-          ['<', ['get', 'AvgTempDiff_F'], 0], colors[0],
-          ['<', ['get', 'AvgTempDiff_F'], 5], colors[1],
-          ['<', ['get', 'AvgTempDiff_F'], 10], colors[2],
-          'red'
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
+          colors[4]
+        ]
+      }
+    },
+    {
+      'id': 'neighborhoods-label',
+      'type': 'symbol',
+      'source': 'neighborhoods',
+      'paint': {
+        'text-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
+          colors[4]
         ]
       }
     }
@@ -87,7 +106,7 @@ var geocoder_api = {
       let request =
         'https://nominatim.openstreetmap.org/search?q=' +
         config.query +
-        'bounded=1&format=geojson';
+        '&bounded=1&viewbox=-74,41,-76,39&format=geojson';
       const response = await fetch(request);
       const geojson = await response.json();
       for (let feature of geojson.features) {
@@ -103,9 +122,9 @@ var geocoder_api = {
             type: 'Point',
             coordinates: center
           },
-          place_name: feature.properties.display_name,
+          place_name: feature.properties.display_name.replace(", United States","").replace(/,\s[^,]*County,/,","),
           properties: feature.properties,
-          text: feature.properties.display_name,
+          text: feature.properties.display_name.replace(", United States","").replace(/,\s[^,]*County,/,","),
           place_type: ['place'],
           center: center
         };
@@ -128,6 +147,7 @@ map.addControl(
     showResultMarkers: false
   })
 );
+
 
 // // create search button
 //
@@ -306,13 +326,45 @@ noUiSlider.create(slider, {
 });
 
 
-// update slider
-slider.noUiSlider.on('update', function (value) {
-  // console.log(value);
-  minTemp = +value;
-  // updateMap(+value);
-});
+class legendControl {
+    onAdd(map) {
+      this._map = map;
+      this._container = document.createElement('div');
+      this._container.className = 'maplibregl-ctrl legend';
+      let content = '<h3>Legend</h3><ul>';
 
+      for (var i = 0; i < breaks.length - 1; i++) {
+
+        var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
+            breaks[i].toLocaleString() + ' &mdash; ' +
+            breaks[i + 1].toLocaleString() + '</li>'
+        content += classRange;
+
+      }
+
+      content += '</ul><p>(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)</p>';
+
+      this._container.innerHTML = content;
+      return this._container;
+    }
+    onRemove() {
+      this._container.parentNode.removeChild(this._container);
+      this._map = undefined;
+    }
+}
+
+map.addControl(new legendControl(), 'bottom-left');
+
+map.on("load", function () {
+
+  // update slider
+  slider.noUiSlider.on('update', function (value) {
+    // console.log(value);
+    minTemp = +value;
+    updateLegend(+value);
+  });
+
+})
 
 
 // drawMap();
@@ -411,18 +463,18 @@ function style (feature) {
   };
 }  // end style()
 
-function updateLegend(breaks, colorize) {
+function updateLegend(value) {
+  for (var i = 0; i < 6; i++) {
+    breaks[i] = value + 5*i;
+  }
   var legendul = document.querySelector(".legend ul");
-  // console.log(legendUl);
   let legendList = "";
 
   for (var i = 0; i < breaks.length - 1; i++) {
 
-    var color = colorize(breaks[i], breaks);
-
-    var classRange = '<li><span style="background:' + color + ';"></span> ' +
+    var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
         breaks[i].toLocaleString() + ' &mdash; ' +
-        breaks[i + 1].toLocaleString() + '&deg;F</li>';
+        breaks[i + 1].toLocaleString() + '</li>'
     legendList += classRange;
 
   }
