@@ -8,14 +8,8 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Poppins">
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-      crossorigin=""/>
-
-    <!-- Autocomplete CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.5/dist/css/autocomplete.min.css"/> -->
-
+    <script src='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css' rel='stylesheet' />
 
     <link href='css/styles.css' rel='stylesheet' />
 
@@ -29,28 +23,18 @@
       <div id="slider"></div>
     </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-      crossorigin=""></script>
-
-    <!-- Chroma for Legend -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"
-      integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <!-- noUiSlider -->
     <link rel="stylesheet" href="./vendor/noUiSlider/nouislider.min.css">
     <script src="./vendor/noUiSlider/nouislider.min.js" charset="utf-8"></script>
 
-    <!-- leaflet-location control https://github.com/domoritz/leaflet-locatecontrol -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <!-- Load the `maplibre-gl-geocoder` plugin. -->
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.css"
+      type="text/css"
+    />
 
-    <!-- auto complete https://github.com/tomik23/autocomplete -->
-    <script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.5/dist/js/autocomplete.min.js"></script>
-
-    <script src="data/neighborhoods.js" charset="utf-8"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
