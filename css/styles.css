@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background: whitesmoke;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', 'Open Sans', sans-serif;
   color: #0D0000;
 }
 
@@ -103,7 +103,7 @@ label {
 
 .noUi-value {
   color: #001323;
-  padding-top: 5px;
+  padding-top: 2px;
 }
 
 .polyLabel {
