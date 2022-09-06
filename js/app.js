@@ -191,6 +191,15 @@ var breaks = [];
 for (var i = 0; i < 6; i++) {
   breaks[i] = minTemp + 5*i;
 }
+console.log(breaks);
+
+var tempDiffs = [];
+neighborhoods.features.forEach((x, i) => {
+  tempDiffs.push(x.properties.AvgTempDiff_F);
+});
+console.log(Math.min(...tempDiffs));
+console.log(Math.max(...tempDiffs));
+
 var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
 drawLegend(breaks, colorize);
 
