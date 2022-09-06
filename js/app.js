@@ -43,7 +43,8 @@ L.control.zoom({
 }).addTo(map);
 
 L.control.locate({
-  locateOptions: {maxZoom: 10},
+  setView: 'once',
+  locateOptions: {maxZoom: 15},
   position: 'topright'
 }).addTo(map);
 
@@ -251,15 +252,6 @@ function drawMap() {
   neighborhoodsLayer.setStyle(style);
 
   map.fitBounds(neighborhoodsLayer.getBounds());
-
-  neighborhoodsLayer.eachLayer(function (layer) {
-    layer.bindTooltip((minTemp+layer.feature.properties['AvgTempDiff_F']+13.99).toPrecision(3).toString() + " &deg;F", {
-      direction: 'auto',
-      sticky: 'true',
-      // permanent: true,
-      // className: 'polyLabel'
-    });
-  });
 
   // map.on('zoomend', function () {
   //   console.log(map.getZoom());
