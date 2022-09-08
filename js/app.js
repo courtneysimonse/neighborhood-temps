@@ -2,16 +2,22 @@ var minTemp = 80;
 
 // example breaks for legend
 var breaks = [];
-for (var i = 0; i < 6; i++) {
-  breaks[i] = minTemp + 5*i;
+var tempDiff = [];
+for (var i = 0; i < 8; i++) {
+  tempDiff[i] = -10 + 3.2*i;
+  breaks[i] = minTemp + 3.2*i;
 }
+// console.log(tempDiff);
+// console.log(breaks);
 
 colors = [
-  "#4575b4",
-  "#74add1",
+  "#08519c",
+  "#4292c6",
+  "#9ecae1",
   "#ffffbf",
-  "#e27b63",
-  "#a50026",
+  "#fc9272",
+  "#ef3b2c",
+  "#67000d",
 ]
 
 var style = {
@@ -49,11 +55,13 @@ var style = {
         'fill-color': ['case',
           // min difference -13.99034496
           // max difference 7.83785996
-          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
-          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
-          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
-          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
-          colors[4]
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
         ]
       }
     },
@@ -65,11 +73,13 @@ var style = {
         'line-color': ['case',
           // min difference -13.99034496
           // max difference 7.83785996
-          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
-          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
-          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
-          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
-          colors[4]
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
         ],
         'line-width': 2
       },
@@ -85,20 +95,21 @@ var style = {
         'text-color': ['case',
           // min difference -13.99034496
           // max difference 7.83785996
-          ['<', ['get', 'AvgTempDiff_F'], -10], colors[0],
-          ['<', ['get', 'AvgTempDiff_F'], -5], colors[1],
-          ['<', ['get', 'AvgTempDiff_F'], 0], colors[2],
-          ['<', ['get', 'AvgTempDiff_F'], 5], colors[3],
-          colors[4]
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
         ],
         'text-halo-width': 1,
         'text-halo-color': ['case',
           // min difference -13.99034496
           // max difference 7.83785996
-          ['<', ['get', 'AvgTempDiff_F'], -10], "#fff",
-          ['<', ['get', 'AvgTempDiff_F'], -5], "#111",
-          ['<', ['get', 'AvgTempDiff_F'], 0], "#111",
-          ['<', ['get', 'AvgTempDiff_F'], 5], "#111",
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
           "#fff"
         ],
         'text-halo-blur': 2
@@ -106,10 +117,17 @@ var style = {
       'layout': {
         'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
         'text-field': ['number-format',
-          ['+', ['get','AvgTempDiff_F'], minTemp],
+          ['+', ['get','AvgTempDiff_F'], minTemp+14],
           { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
         ],
-        'text-size': 12,
+        'text-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          10, 12,
+          13, 16,
+          15, 36
+        ],
         'text-padding': 5
       }
     }
@@ -272,7 +290,7 @@ map.on("load", function () {
   slider.noUiSlider.on('set', function (value) {
     map.setLayoutProperty('neighborhoods-label', 'text-field',
     ['number-format',
-      ['+', ['get','AvgTempDiff_F'], minTemp],
+      ['+', ['get','AvgTempDiff_F'], minTemp+14],
       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
     ])
   });
@@ -280,8 +298,8 @@ map.on("load", function () {
 })
 
 function updateLegend(value) {
-  for (var i = 0; i < 6; i++) {
-    breaks[i] = value + 5*i;
+  for (var i = 0; i < 8; i++) {
+    breaks[i] = value + 3.2*i;
   }
   var legendul = document.querySelector(".legend ul");
   let legendList = "";
