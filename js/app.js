@@ -228,7 +228,7 @@ noUiSlider.create(slider, {
 // handle starting positions.
     start: [minTemp],
 
-    tooltips: [true],
+    tooltips: [false],
 
     pips: {
       mode: 'positions',
@@ -281,6 +281,14 @@ map.on("load", function () {
 
   // update slider
   slider.noUiSlider.on('update', function (value) {
+
+    // slider.noUiSlider.updateOptions(
+    //   {
+    //     tooltips: [true]
+    //   },
+    //   false
+    // );
+
     // console.log(value);
     minTemp = +value;
 
@@ -293,6 +301,12 @@ map.on("load", function () {
       ['+', ['get','AvgTempDiff_F'], minTemp+14],
       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
     ])
+
+    // slider.noUiSlider.updateOptions(
+    //   {
+    //     tooltips: [false]
+    //   }
+    // );
   });
 
 })
