@@ -89,6 +89,7 @@ p {
 }
 
 .legend p {
+  font-size: .9em;
   font-weight: bold;
   line-height: 1em;
   color: #001323;

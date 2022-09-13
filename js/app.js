@@ -282,13 +282,6 @@ map.on("load", function () {
   // update slider
   slider.noUiSlider.on('update', function (value) {
 
-    // slider.noUiSlider.updateOptions(
-    //   {
-    //     tooltips: [true]
-    //   },
-    //   false
-    // );
-
     // console.log(value);
     minTemp = +value;
 
@@ -302,11 +295,6 @@ map.on("load", function () {
       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
     ])
 
-    // slider.noUiSlider.updateOptions(
-    //   {
-    //     tooltips: [false]
-    //   }
-    // );
   });
 
 })
