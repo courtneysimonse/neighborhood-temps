@@ -228,7 +228,7 @@ noUiSlider.create(slider, {
 // handle starting positions.
     start: [minTemp],
 
-    tooltips: [false],
+    tooltips: [true],
 
     pips: {
       mode: 'positions',
@@ -246,6 +246,8 @@ noUiSlider.create(slider, {
       }
     }
 });
+
+document.getElementsByClassName('noUi-tooltip')[0].classList.add('hidden');
 
 
 class legendControl {
@@ -277,10 +279,18 @@ class legendControl {
 
 map.addControl(new legendControl(), 'bottom-left');
 
+var initialize = false;
+
 map.on("load", function () {
 
   // update slider
   slider.noUiSlider.on('update', function (value) {
+
+    if (initialize == true) {
+      document.getElementsByClassName('noUi-tooltip')[0].classList.remove('hidden');
+    } else {
+      initialize = true;
+    }
 
     // console.log(value);
     minTemp = +value;
@@ -291,9 +301,11 @@ map.on("load", function () {
   slider.noUiSlider.on('set', function (value) {
     map.setLayoutProperty('neighborhoods-label', 'text-field',
     ['number-format',
-      ['+', ['get','AvgTempDiff_F'], minTemp+14],
+      ['+', ['get','AvgTempDiff_F'], +value+14],
       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
     ])
+
+    document.getElementsByClassName('noUi-tooltip')[0].classList.add('hidden');
 
   });
 
