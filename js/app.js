@@ -132,7 +132,7 @@ var style = {
       }
     }
   ],
-  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=dFoGksq0UrNkBuFCUsAj"
+  "glyphs": "/fonts/{fontstack}/{range}.pbf"
 }
 
 // Philly map options
