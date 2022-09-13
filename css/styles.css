@@ -40,7 +40,7 @@ h1 {
   }
 }
 
-p {
+#ui-controls p {
     font-size: .7em;
     color: #001323;
     padding-bottom: 1px;
