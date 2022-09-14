@@ -27,6 +27,9 @@ var style = {
       'type': 'raster',
       'tiles': [
         'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+        // 'https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
+        // 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png'
+        // 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png'
       ],
       'tileSize': 256,
       'attribution':
