@@ -243,19 +243,7 @@ var options = {
 // create map
 var map = new maplibregl.Map(options);
 
-// Navigation control
-var nav = new maplibregl.NavigationControl({showCompass: false});
-map.addControl(nav, 'top-right');
 
-// Add geolocate control to the map.
-map.addControl(
-  new maplibregl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true
-    },
-      trackUserLocation: false
-    })
-);
 
 // add geocoder for address search
 var geocoder_api = {
@@ -308,12 +296,37 @@ map.addControl(
   })
 );
 
+// Navigation control
+var nav = new maplibregl.NavigationControl({showCompass: false});
+map.addControl(nav, 'top-right');
+
+// Add geolocate control to the map.
+map.addControl(
+  new maplibregl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+      trackUserLocation: false
+    })
+);
+
 // setup legend
 class legendControl {
     onAdd(map) {
       this._map = map;
       this._container = document.createElement('div');
       this._container.className = 'maplibregl-ctrl legend-ctrl';
+      this._container.id = 'legend-ctrl'
+
+      this._container.insertAdjacentHTML("afterbegin",`<input type="checkbox" class="openLegend" id="openLegend" checked>
+			  <label for="openLegend" class="legendIconToggle">
+			    <div class="spinner diagonal part-1"></div>
+			    <div class="spinner horizontal"></div>
+			    <div class="spinner diagonal part-2"></div>
+			  </label>`)
+
+      const containerDiv = document.createElement('div');
+      containerDiv.id = "legend-contents";
 
       const uiDiv = document.createElement('div');
       uiDiv.classList = "ui-controls";
@@ -371,18 +384,24 @@ class legendControl {
 
       }
 
-      content += '</ul><p>(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)</p>';
+      content += '</ul>';
       legendDiv.innerHTML = content;
 
       const legendTitle = document.createElement('h3');
       legendTitle.innerText = "High Temperature";
-      this._container.appendChild(legendTitle);
+      containerDiv.appendChild(legendTitle);
       const sliderDesc = document.createElement('p');
       sliderDesc.innerText = "Set the high temperature for the coolest neighborhood:";
-      this._container.appendChild(sliderDesc);
+      containerDiv.appendChild(sliderDesc);
 
-      this._container.appendChild(uiDiv)
-      this._container.appendChild(legendDiv)
+      containerDiv.appendChild(uiDiv)
+      containerDiv.appendChild(legendDiv)
+
+      const sourceP = document.createElement('p');
+      sourceP.innerHTML = `(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)`
+      containerDiv.appendChild(sourceP)
+
+      this._container.appendChild(containerDiv)
       return this._container;
     }
     onRemove() {
