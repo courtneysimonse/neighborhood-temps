@@ -375,7 +375,7 @@ class legendControl {
       legendDiv.innerHTML = content;
 
       const legendTitle = document.createElement('h3');
-      legendTitle.innerText = "Legend";
+      legendTitle.innerText = "High Temperature";
       this._container.appendChild(legendTitle);
       const sliderDesc = document.createElement('p');
       sliderDesc.innerText = "Set the high temperature for the coolest neighborhood:";

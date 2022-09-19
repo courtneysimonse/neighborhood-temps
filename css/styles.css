@@ -56,6 +56,7 @@ h1 {
 .ui-controls {
     width: 10px;
     padding: 0px 15px 48px 15px;
+    margin-top: 5px;
     /* background: #d9dad9; */
     color: #001323;
     float: left;
@@ -65,8 +66,9 @@ h1 {
     font-size: .75em;
     line-height: 1em;
     /* color: #001323; */
-    padding-bottom: 1px;
+    /* padding-bottom: 1px; */
     margin-top: 0;
+    margin-bottom: 5px;
     /* font-family: "Helvetica Neue",Arial,Helvetica,sans-serif; */
 }
 
