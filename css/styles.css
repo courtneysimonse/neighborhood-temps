@@ -220,6 +220,7 @@ h1 {
     display: block;
     user-select: none;
     top: 0;
+    left: 0;
     transform: translateY(50px);
     transition: transform 250ms ease-in-out;
     height: 230px;
