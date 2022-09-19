@@ -20,6 +20,98 @@ colors = [
   "#67000d",
 ]
 
+// style.sources['neighborhoods'] = {
+//       'type': 'geojson',
+//       'data': "./data/neighborhoods.json",
+//       'promoteId': 'GEOID10'
+//     }
+//
+// style.layers.push({
+//       'id': 'neighborhoods-fill',
+//       'type': 'fill',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'fill-opacity': .6,
+//         'fill-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ]
+//       }
+//     },
+//     {
+//       'id': 'neighborhoods-outline',
+//       'type': 'line',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'line-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ],
+//         'line-width': 2
+//       },
+//       'layout': {
+//
+//       }
+//     },
+//     {
+//       'id': 'neighborhoods-label',
+//       'type': 'symbol',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'text-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ],
+//         'text-halo-width': 1,
+//         'text-halo-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
+//           "#fff"
+//         ],
+//         'text-halo-blur': 2
+//       },
+//       'layout': {
+//         'text-font': ['Noto Sans Regular'],
+//         'text-field': ['number-format',
+//           ['+', ['get','AvgTempDiff_F'], minTemp+14],
+//           { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+//         ],
+//         'text-size': [
+//           'interpolate',
+//           ['linear'],
+//           ['zoom'],
+//           10, 12,
+//           13, 16,
+//           15, 36
+//         ],
+//         'text-padding': 5
+//       }
+//     });
+
 var style = {
   'version': 8,
   'sources': {
@@ -141,6 +233,7 @@ var style = {
 // Philly map options
 var options = {
   container: 'mapid',
+  // style: "https://tiles.stadiamaps.com/styles/alidade_smooth.json",
   style: style,
   center: [-75.1, 40],
   zoom: 10,
@@ -215,63 +308,81 @@ map.addControl(
   })
 );
 
-// setup slider
-var slider = document.getElementById('slider');
-
-noUiSlider.create(slider, {
-// Create two timestamps to define a range.
-    range: {
-        min: 75,
-        max: 95
-    },
-
-// Steps of one degree
-    step: 1,
-
-// handle starting positions.
-    start: [minTemp],
-
-    tooltips: [true],
-
-    pips: {
-      mode: 'positions',
-      values: [0, 25, 50, 75, 100],
-      density: 4
-    },
-
-// No decimals
-    format: {
-      to: function (value) {
-        return Math.floor(Number(value));
-      },
-      from: function (value) {
-        return Math.floor(Number(value));
-      }
-    }
-});
-
-document.getElementsByClassName('noUi-tooltip')[0].classList.add('hidden');
-
-
+// setup legend
 class legendControl {
     onAdd(map) {
       this._map = map;
       this._container = document.createElement('div');
-      this._container.className = 'maplibregl-ctrl legend';
-      let content = '<h3>Legend</h3><ul>';
+      this._container.className = 'maplibregl-ctrl legend-ctrl';
+
+      const uiDiv = document.createElement('div');
+      uiDiv.classList = "ui-controls";
+
+      const slider = document.createElement('div');
+      slider.id = "slider";
+      uiDiv.appendChild(slider);
+
+      noUiSlider.create(slider, {
+      // Create two timestamps to define a range.
+          range: {
+              min: 75,
+              max: 95
+          },
+
+          orientation: 'vertical',
+          direction: 'rtl',
+          connect: 'lower',
+
+      // Steps of one degree
+          step: 1,
+
+      // handle starting positions.
+          start: [minTemp],
+
+          tooltips: [true],
+
+          // pips: {
+          //   mode: 'positions',
+          //   values: [0, 25, 50, 75, 100],
+          //   density: 4
+          // },
+
+      // No decimals
+          format: {
+            to: function (value) {
+              return Math.floor(Number(value));
+            },
+            from: function (value) {
+              return Math.floor(Number(value));
+            }
+          }
+      });
+
+      const legendDiv = document.createElement('div');
+      legendDiv.classList = "legend"
+      let content = `<ul>`;
 
       for (var i = 0; i < breaks.length - 1; i++) {
 
         var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
-            breaks[i].toLocaleString() + ' &mdash; ' +
+            breaks[i].toLocaleString() + '&ndash;' +
             breaks[i + 1].toLocaleString() + '</li>'
         content += classRange;
 
       }
 
       content += '</ul><p>(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)</p>';
+      legendDiv.innerHTML = content;
 
-      this._container.innerHTML = content;
+      const legendTitle = document.createElement('h3');
+      legendTitle.innerText = "Legend";
+      this._container.appendChild(legendTitle);
+      const sliderDesc = document.createElement('p');
+      sliderDesc.innerText = "Set the high temperature for the coolest neighborhood:";
+      this._container.appendChild(sliderDesc);
+
+      this._container.appendChild(uiDiv)
+      this._container.appendChild(legendDiv)
       return this._container;
     }
     onRemove() {
@@ -282,18 +393,11 @@ class legendControl {
 
 map.addControl(new legendControl(), 'bottom-left');
 
-var initialize = false;
-
 map.on("load", function () {
+  var slider = document.getElementById('slider')
 
   // update slider
   slider.noUiSlider.on('update', function (value) {
-
-    if (initialize == true) {
-      document.getElementsByClassName('noUi-tooltip')[0].classList.remove('hidden');
-    } else {
-      initialize = true;
-    }
 
     // console.log(value);
     minTemp = +value;
@@ -308,7 +412,6 @@ map.on("load", function () {
       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
     ])
 
-    document.getElementsByClassName('noUi-tooltip')[0].classList.add('hidden');
 
   });
 
@@ -324,7 +427,7 @@ function updateLegend(value) {
   for (var i = 0; i < breaks.length - 1; i++) {
 
     var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
-        breaks[i].toLocaleString() + ' &mdash; ' +
+        breaks[i].toLocaleString() + '&ndash;' +
         breaks[i + 1].toLocaleString() + '</li>'
     legendList += classRange;
 
