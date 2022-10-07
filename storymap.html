@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <script src='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css' rel='stylesheet' />
+
+
+    <!-- noUiSlider -->
+    <link rel="stylesheet" href="./vendor/noUiSlider/nouislider.min.css">
+    <script src="./vendor/noUiSlider/nouislider.min.js" charset="utf-8"></script>
+
+    <link href='css/styles.css' rel='stylesheet' />
+    <link rel="stylesheet" href="/css/storymap.css">
+
+    <title>Demo</title>
+  </head>
+  <body>
+    <!-- <h1>Neighborhood Temperatures</h1> -->
+
+    <div id="mapid"></div>
+    <div id='features'>
+        <section id='intro' class='active'>
+            <h3>Rec It Philly Coalition</h3>
+            <ul>
+              <li>Safe and Clean Sites</li>
+              <li>More Rec Programming</li>
+              <li>Grow the Urban Forest</li>
+            </ul>
+        </section>
+        <section id='three-pillars'>
+            <h3>Three Pillars</h3>
+            <p>text</p>
+            <p><a href="#">See blog for more details</a></p>
+            <img src="/images/info1.png" alt="">
+            <img src="/images/info2.png" alt="">
+            <img src="/images/info3.png" alt="">
+        </section>
+        <section id='program-staff'>
+            <h3>Program Staff Map by Site</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='temperature-map'>
+            <h3>Temperature Map</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='priority-canopy'>
+            <h3>Priority Canopy Neighborhoods</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='west'>
+            <h3>Priority Area Analysis - West</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='southwest'>
+            <h3>Priority Area Analysis - Southwest</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='south'>
+            <h3>Priority Area Analysis - South</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='north'>
+            <h3>Priority Area Analysis - North</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='kensington-harrowgate'>
+            <h3>Priority Area Analysis - Kensington / Harrowgate</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='northwest'>
+            <h3>Priority Area Analysis - Northwest</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='northeast'>
+            <h3>Priority Area Analysis - Northeast</h3>
+            <p>paragraph</p>
+        </section>
+        <section id='operations'>
+            <h3>Operations Map by District</h3>
+            <p>paragraph</p>
+        </section>
+    </div>
+
+    <!-- Load the `maplibre-gl-geocoder` plugin. -->
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.css"
+      type="text/css"
+    />
+
+    <script src="vendor/mapbox-gl-arcgis-featureserver/tilebelt.js" charset="utf-8"></script>
+    <script src="vendor/mapbox-gl-arcgis-featureserver/arcgis-pbf.min.js" charset="utf-8"></script>
+    <script src="vendor/mapbox-gl-arcgis-featureserver/main.js" charset="utf-8"></script>
+
+    <script src="js/alidade_smooth.js" charset="utf-8"></script>
+    <script src="js/storymap.js"></script>
+  </body>
+</html>
