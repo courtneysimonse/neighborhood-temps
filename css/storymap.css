@@ -1,9 +1,17 @@
 #features {
-    width: 50%;
-    margin-left: 50%;
     font-family: sans-serif;
     overflow: hidden;
     background-color: #fafafa;
+}
+.fullWidth {
+  width: 100%;
+}
+#features.halfWidth {
+  width: 50%;
+  margin-left: 50%
+}
+.hidden {
+  width:0%;
 }
 section {
     padding:  25px 50px;
@@ -20,7 +28,11 @@ section:last-child {
     margin-bottom: 400px;
 }
 
-#mapid { position:fixed; top:0; bottom:0; width:50%; }
+#mapid { position:fixed; top:0; bottom:0; }
+
+#mapid.halfWidth {
+  width: 50%;
+}
 
 .marker {
   background-color: black;

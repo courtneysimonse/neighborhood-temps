@@ -132,10 +132,16 @@ var style = {
       'data': "./data/neighborhoods.json",
       'promoteId': 'GEOID10'
     },
-    // 'priority-areas': {
-    //   'type': 'geojson',
-    //   'data': 'https://services2.arcgis.com/qjOOiLCYeUtwT7x7/arcgis/rest/services/Priority_Blocks_Azavea_v4/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson'
-    // },
+    'priority-areas': {
+      'type': 'geojson',
+      'data': '/data/priority_areas.geojson',
+      'promoteId': 'GEOID10',
+      'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
+    },
+    'parks': {
+      'type': 'geojson',
+      'data': '/data/parks.json'
+    }
     // 'priority-areas': {
     //   'type': 'vector',
     //   'tiles': ['https://services2.arcgis.com/qjOOiLCYeUtwT7x7/arcgis/rest/services/Priority_Blocks_Azavea_v4/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pbf']
@@ -149,18 +155,24 @@ var style = {
       'minzoom': 0,
       'maxzoom': 19
     },
-    // {
-    //   'id': 'priority-fill',
-    //   'type': 'fill',
-    //   'source': 'priority-areas',
-    //   'source-layer': 'priority_map_layer_0325',
-    //   'paint': {
-    //     'fill-color': ['case',
-    //       ['>', ['get', 'Priority_Score'], 0], 'purple',
-    //       'yellow'
-    //     ]
-    //   }
-    // },
+    {
+      'id': 'priority-fill',
+      'type': 'fill',
+      'source': 'priority-areas',
+      // 'source-layer': 'priority_map_layer_0325',
+      'paint': {
+        'fill-color': ['case',
+          // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
+          ['==', ['get', 'Priority_Level'], "Very Low Priority"], '#fff',
+          ['==', ['get', 'Priority_Level'], "Low Priority"], '#f4c8a5',
+          ['==', ['get', 'Priority_Level'], "Moderate Priority"], '#f2b07e',
+          ['==', ['get', 'Priority_Level'], "High Priority"], '#fb8e5c',
+          ['==', ['get', 'Priority_Level'], "Very High Priority"], '#f6783e',
+          ['==', ['get', 'Priority_Level'], "Highest Priority"], '#f75e22',
+          'black'
+        ]
+      }
+    },
     {
       'id': 'neighborhoods-fill',
       'type': 'fill',
@@ -245,6 +257,15 @@ var style = {
         ],
         'text-padding': 5
       }
+    },
+    {
+      'id': 'parks-fill',
+      'source': 'parks',
+      'type': 'fill',
+      'paint': {
+        'fill-opacity': .4,
+        'fill-color': '#65c144'
+      }
     }
   ],
   "glyphs": "/fonts/{fontstack}/{range}.pbf"
@@ -262,6 +283,12 @@ var options = {
 
 // create map
 var map = new maplibregl.Map(options);
+
+var layers = {
+  temp: ['neighborhood-fill', 'neighborhood-outline', 'neighborhood-label'],
+  canopy: ['priority-fill', 'priority-outline', 'parks-fill']
+};
+
 const markers = [];
 
 var areas = {
@@ -307,11 +334,11 @@ var mapDefault = {
 var chapters = {
     'intro': {
       mapOptions: mapDefault,
-      mapWidth: 0
+      mapWidth: 'hidden'
     },
     'three-pillars': {
       mapOptions: mapDefault,
-      mapWidth: 0
+      mapWidth: 'hidden'
     },
     'program-staff': {
       mapOptions: mapDefault,
@@ -634,13 +661,10 @@ function updateLegend(value) {
 
 function showTemperatureMap() {
   // add temperature layers
-  map.setLayoutProperty('neighborhoods-fill', 'visibility', 'visible');
-  map.setLayoutProperty('neighborhoods-outline', 'visibility', 'visible');
-  map.setLayoutProperty('neighborhoods-label', 'visibility', 'visible');
+  changeVisibility('temp', 'visible');
 
   if (map.getSource('priority-areas')) {
-    map.setLayoutProperty('priority-fill', 'visibility', 'none');
-    map.setLayoutProperty('priority-outline', 'visibility', 'none');
+    changeVisibility('canopy', 'none');
     // service.disableRequests();
   }
 
@@ -654,9 +678,11 @@ function showTemperatureMap() {
 
 function drawPriorityAreas() {
   // remove temperature layers
-  map.setLayoutProperty('neighborhoods-fill', 'visibility', 'none');
-  map.setLayoutProperty('neighborhoods-outline', 'visibility', 'none');
-  map.setLayoutProperty('neighborhoods-label', 'visibility', 'none');
+  changeVisibility('temp', 'none');
+
+  // map.setLayoutProperty('neighborhoods-fill', 'visibility', 'none');
+  // map.setLayoutProperty('neighborhoods-outline', 'visibility', 'none');
+  // map.setLayoutProperty('neighborhoods-label', 'visibility', 'none');
 
   const prioritySourceId = 'priority-areas'
 
@@ -676,90 +702,94 @@ function drawPriorityAreas() {
       // //
       // console.log(service);
 
-      map.addSource(prioritySourceId, {
-        'type': 'geojson',
-        'data': '/data/priority_areas.geojson',
-        'promoteId': 'GEOID10',
-        'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
-      })
+      // map.addSource(prioritySourceId, {
+      //   'type': 'geojson',
+      //   'data': '/data/priority_areas.geojson',
+      //   'promoteId': 'GEOID10',
+      //   'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
+      // })
 
-      const priorityColorExp = ['case',
-        // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
-        ['==', ['get', 'Priority_Level'], "Very Low Priority"], '#fff',
-        ['==', ['get', 'Priority_Level'], "Low Priority"], '#f4c8a5',
-        ['==', ['get', 'Priority_Level'], "Moderate Priority"], '#f2b07e',
-        ['==', ['get', 'Priority_Level'], "High Priority"], '#fb8e5c',
-        ['==', ['get', 'Priority_Level'], "Very High Priority"], '#f6783e',
-        ['==', ['get', 'Priority_Level'], "Highest Priority"], '#f75e22',
-        'black'
-      ];
+      // const priorityColorExp = ['case',
+      //   // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
+      //   ['==', ['get', 'Priority_Level'], "Very Low Priority"], '#fff',
+      //   ['==', ['get', 'Priority_Level'], "Low Priority"], '#f4c8a5',
+      //   ['==', ['get', 'Priority_Level'], "Moderate Priority"], '#f2b07e',
+      //   ['==', ['get', 'Priority_Level'], "High Priority"], '#fb8e5c',
+      //   ['==', ['get', 'Priority_Level'], "Very High Priority"], '#f6783e',
+      //   ['==', ['get', 'Priority_Level'], "Highest Priority"], '#f75e22',
+      //   'black'
+      // ];
+      //
+      // map.addLayer({
+      //   'id': 'priority-fill',
+      //   'source': prioritySourceId,
+      //   'type': 'fill',
+      //   // 'minzoom': 12,
+      //   'paint': {
+      //     'fill-opacity': .4,
+      //     'fill-color': priorityColorExp
+      //   }
+      // });
+      //
+      // map.addLayer({
+      //   'id': 'priority-outline',
+      //   'source': prioritySourceId,
+      //   'type': 'line',
+      //   // 'minzoom': 12,
+      //   'paint': {
+      //     'line-color': '#f4c8a5',
+      //     'line-width': .5
+      //   }
+      // });
 
-      map.addLayer({
-        'id': 'priority-fill',
-        'source': prioritySourceId,
-        'type': 'fill',
-        // 'minzoom': 12,
-        'paint': {
-          'fill-opacity': .4,
-          'fill-color': priorityColorExp
-        }
-      });
+      // map.addSource('parks', {
+      //   'type': 'geojson',
+      //   'data': '/data/parks.json'
+      // })
 
-      map.addLayer({
-        'id': 'priority-outline',
-        'source': prioritySourceId,
-        'type': 'line',
-        // 'minzoom': 12,
-        'paint': {
-          'line-color': '#f4c8a5',
-          'line-width': 1
-        }
-      });
-
-      map.addSource('parks', {
-        'type': 'geojson',
-        'data': '/data/parks.json'
-      })
-
-      map.addLayer({
-        'id': 'parks-fill',
-        'source': 'parks',
-        'type': 'fill',
-        'paint': {
-          'fill-opacity': .4,
-          'fill-color': '#65c144'
-        }
-      })
+      // map.addLayer({
+      //   'id': 'parks-fill',
+      //   'source': 'parks',
+      //   'type': 'fill',
+      //   'paint': {
+      //     'fill-opacity': .4,
+      //     'fill-color': '#65c144'
+      //   }
+      // })
 
       // map.on('click', 'priority-fill', (e) => {
       //   console.log(e.features);
       // })
-      if (markers.length == 0) {
-        console.log(areas);
-        for (var area in areas) {
-          console.log(area);
-          console.log(areas[area]);
-          var markerEl = document.createElement('div');
-          markerEl.classList = 'marker'
-          markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
 
-          markers[area] = new maplibregl.Marker({
-            element: markerEl
-          }).setLngLat(areas[area].coords)
-            .addTo(map);
-
-          markerEl.addEventListener('click', () => {
-            console.log(area);
-            document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
-          })
-
-        }
-      }
 
   } else {
-    map.setLayoutProperty('priority-fill', 'visibility', 'visible');
-    map.setLayoutProperty('priority-outline', 'visibility', 'visible');
+    changeVisibility('canopy', 'visible');
+
+    // map.setLayoutProperty('priority-fill', 'visibility', 'visible');
+    // map.setLayoutProperty('priority-outline', 'visibility', 'visible');
     // service.enableRequests();
+  }
+
+  if (markers.length == 0) {
+    console.log(areas);
+    for (var area in areas) {
+      console.log(area);
+      console.log(areas[area]);
+      var markerEl = document.createElement('div');
+      markerEl.classList = 'marker'
+      markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
+
+      markers[area] = new maplibregl.Marker({
+        element: markerEl
+      }).setLngLat(areas[area].coords)
+        .addTo(map);
+
+      markerEl.addEventListener('click', () => {
+        console.log(area);
+        document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
+      })
+
+    }
   }
 
 }  // end drawPriorityAreas()
@@ -773,7 +803,18 @@ function drawStaff() {
     }
   }
 
+  // remove temperature and canopy layers
+  changeVisibility('temp', 'none');
+  changeVisibility('canopy', 'none');
+
+
 } // end drawStaff()
+
+function changeVisibility(cat, viz) {
+  layers[cat].forEach((l, i) => {
+    map.setLayoutProperty(l, 'visibility', viz);
+  });
+}
 
 function setActiveChapter(chapterName) {
     if (chapterName === activeChapterName) return;
@@ -786,6 +827,16 @@ function setActiveChapter(chapterName) {
 
     document.getElementById(chapterName).setAttribute('class', 'active');
     document.getElementById(activeChapterName).setAttribute('class', '');
+
+    if (chapters[chapterName].mapWidth != undefined) {
+      if (chapters[chapterName].mapWidth == 'hidden') {
+        document.getElementById('features').setAttribute('class', 'fullWidth');
+        document.getElementById('mapid').setAttribute('class', 'hidden');
+      }
+    } else {
+      document.getElementById('features').setAttribute('class', 'halfWidth');
+      document.getElementById('mapid').setAttribute('class', 'halfWidth');
+    }
 
     activeChapterName = chapterName;
 }
