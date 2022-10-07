@@ -7,8 +7,8 @@
   width: 100%;
 }
 #features.halfWidth {
-  width: 50%;
-  margin-left: 50%
+  width: 40%;
+  margin-left: 60%
 }
 .hidden {
   width:0%;
@@ -31,7 +31,7 @@ section:last-child {
 #mapid { position:fixed; top:0; bottom:0; }
 
 #mapid.halfWidth {
-  width: 50%;
+  width: 60%;
 }
 
 .marker {
