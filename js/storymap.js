@@ -298,42 +298,31 @@ var areas = {
 
 var activeChapterName = 'intro'; //Change this to match the first chapter of your story
 
+var mapDefault = {
+        bearing: 0,
+        center: [-75.1, 40],
+        zoom: 10,
+      }
+
 var chapters = {
     'intro': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      }
+      mapOptions: mapDefault,
+      mapWidth: 0
     },
     'three-pillars': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      }
+      mapOptions: mapDefault,
+      mapWidth: 0
     },
     'program-staff': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      }
+      mapOptions: mapDefault,
+      mapFunction: drawStaff
     },
     'temperature-map': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      },
+      mapOptions: mapDefault,
       mapFunction: showTemperatureMap
     },
     'priority-canopy': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      },
+      mapOptions: mapDefault,
       mapFunction: drawPriorityAreas
     },
     'west': {
@@ -393,11 +382,19 @@ var chapters = {
       mapFunction: drawPriorityAreas
     },
     'operations': {
-      mapOptions: {
-        bearing: 0,
-        center: [-75.1, 40],
-        zoom: 10,
-      }
+      mapOptions: mapDefault
+    },
+    'burden-asset': {
+      mapOptions: mapDefault
+    },
+    'our-ask': {
+      mapOptions: mapDefault
+    },
+    'supporters-coalition': {
+      mapOptions: mapDefault
+    },
+    'take-action': {
+      mapOptions: mapDefault
     }
 };
 
@@ -646,7 +643,14 @@ function showTemperatureMap() {
     map.setLayoutProperty('priority-outline', 'visibility', 'none');
     // service.disableRequests();
   }
-}
+
+  if (markers.length > 0) {
+    // remove neighborhood markers
+    for (const id in markers) {
+      markers[id].remove();
+    }
+  }
+} // end showTemperatureMap()
 
 function drawPriorityAreas() {
   // remove temperature layers
@@ -673,14 +677,14 @@ function drawPriorityAreas() {
       // console.log(service);
 
       map.addSource(prioritySourceId, {
-        type: 'geojson',
-        data: '/data/priority_areas.geojson',
-        promoteId: 'GEOID10',
-        filter: ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
+        'type': 'geojson',
+        'data': '/data/priority_areas.geojson',
+        'promoteId': 'GEOID10',
+        'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
       })
 
       const priorityColorExp = ['case',
-        ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
+        // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
         ['==', ['get', 'Priority_Level'], "Very Low Priority"], '#fff',
         ['==', ['get', 'Priority_Level'], "Low Priority"], '#f4c8a5',
         ['==', ['get', 'Priority_Level'], "Moderate Priority"], '#f2b07e',
@@ -711,6 +715,21 @@ function drawPriorityAreas() {
           'line-width': 1
         }
       });
+
+      map.addSource('parks', {
+        'type': 'geojson',
+        'data': '/data/parks.json'
+      })
+
+      map.addLayer({
+        'id': 'parks-fill',
+        'source': 'parks',
+        'type': 'fill',
+        'paint': {
+          'fill-opacity': .4,
+          'fill-color': '#65c144'
+        }
+      })
 
       // map.on('click', 'priority-fill', (e) => {
       //   console.log(e.features);
@@ -743,7 +762,18 @@ function drawPriorityAreas() {
     // service.enableRequests();
   }
 
-}
+}  // end drawPriorityAreas()
+
+function drawStaff() {
+
+  if (markers.length > 0) {
+    // remove neighborhood markers
+    for (const id in markers) {
+      markers[id].remove();
+    }
+  }
+
+} // end drawStaff()
 
 function setActiveChapter(chapterName) {
     if (chapterName === activeChapterName) return;
