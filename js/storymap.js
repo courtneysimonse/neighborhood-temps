@@ -174,6 +174,19 @@ var style = {
       }
     },
     {
+      'id': 'priority-outline',
+      'type': 'line',
+      'source': 'priority-areas',
+      'minzoom': 13,
+      'paint': {
+        'line-color': '#f4c8a5',
+        'line-width': 1
+      },
+      'layout': {
+
+      }
+    },
+    {
       'id': 'neighborhoods-fill',
       'type': 'fill',
       'source': 'neighborhoods',
