@@ -278,6 +278,9 @@ var style = {
       'paint': {
         'fill-opacity': .4,
         'fill-color': '#65c144'
+      },
+      'layout': {
+        'visibility': 'none'
       }
     }
   ],
@@ -298,11 +301,11 @@ var options = {
 var map = new maplibregl.Map(options);
 
 var layers = {
-  temp: ['neighborhood-fill', 'neighborhood-outline', 'neighborhood-label'],
+  temp: ['neighborhoods-fill', 'neighborhoods-outline', 'neighborhoods-label'],
   canopy: ['priority-fill', 'priority-outline', 'parks-fill']
 };
 
-const markers = [];
+const markers = {};
 
 var areas = {
   'west': {
@@ -346,12 +349,10 @@ var mapDefault = {
 
 var chapters = {
     'intro': {
-      mapOptions: mapDefault,
-      mapWidth: 'hidden'
+      mapOptions: mapDefault
     },
     'three-pillars': {
-      mapOptions: mapDefault,
-      mapWidth: 'hidden'
+      mapOptions: mapDefault
     },
     'program-staff': {
       mapOptions: mapDefault,
@@ -681,11 +682,9 @@ function showTemperatureMap() {
     // service.disableRequests();
   }
 
-  if (markers.length > 0) {
-    // remove neighborhood markers
-    for (const id in markers) {
+  console.log(markers);
+  for (const id in markers) {
       markers[id].remove();
-    }
   }
 } // end showTemperatureMap()
 
@@ -783,16 +782,18 @@ function drawPriorityAreas() {
     // service.enableRequests();
   }
 
-  if (markers.length == 0) {
-    console.log(areas);
-    for (var area in areas) {
-      console.log(area);
-      console.log(areas[area]);
+  console.log(markers);
+  // console.log(areas);
+  for (var area in areas) {
+    if (!markers.hasOwnProperty(area)) {
+      // console.log(area);
+      // console.log(areas[area]);
       var markerEl = document.createElement('div');
       markerEl.classList = 'marker'
       markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
 
-      markers[area] = new maplibregl.Marker({
+      let marker = markers[area]
+      marker = markers[area] = new maplibregl.Marker({
         element: markerEl
       }).setLngLat(areas[area].coords)
         .addTo(map);
@@ -803,17 +804,17 @@ function drawPriorityAreas() {
       })
 
     }
+
   }
+  console.log(markers);
 
 }  // end drawPriorityAreas()
 
 function drawStaff() {
 
-  if (markers.length > 0) {
-    // remove neighborhood markers
-    for (const id in markers) {
+  console.log(markers);
+  for (const id in markers) {
       markers[id].remove();
-    }
   }
 
   // remove temperature and canopy layers
@@ -840,16 +841,6 @@ function setActiveChapter(chapterName) {
 
     document.getElementById(chapterName).setAttribute('class', 'active');
     document.getElementById(activeChapterName).setAttribute('class', '');
-
-    if (chapters[chapterName].mapWidth != undefined) {
-      if (chapters[chapterName].mapWidth == 'hidden') {
-        document.getElementById('features').setAttribute('class', 'fullWidth');
-        document.getElementById('mapid').setAttribute('class', 'hidden');
-      }
-    } else {
-      document.getElementById('features').setAttribute('class', 'halfWidth');
-      document.getElementById('mapid').setAttribute('class', 'halfWidth');
-    }
 
     activeChapterName = chapterName;
 }

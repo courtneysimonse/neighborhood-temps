@@ -2,16 +2,8 @@
     font-family: sans-serif;
     overflow: hidden;
     background-color: #fafafa;
-}
-.fullWidth {
-  width: 100%;
-}
-#features.halfWidth {
-  width: 40%;
-  margin-left: 60%
-}
-.hidden {
-  width:0%;
+    width: 40%;
+    margin-left: 60%;
 }
 section {
     padding:  25px 50px;
@@ -28,10 +20,11 @@ section:last-child {
     margin-bottom: 400px;
 }
 
-#mapid { position:fixed; top:0; bottom:0; }
-
-#mapid.halfWidth {
-  width: 60%;
+#mapid {
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:60%;
 }
 
 .marker {
