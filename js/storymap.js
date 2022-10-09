@@ -791,61 +791,6 @@ function drawPriorityAreas() {
       // //
       // console.log(service);
 
-      // map.addSource(prioritySourceId, {
-      //   'type': 'geojson',
-      //   'data': '/data/priority_areas.geojson',
-      //   'promoteId': 'GEOID10',
-      //   'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
-      // })
-
-      // const priorityColorExp = ['case',
-      //   // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
-      //   ['==', ['get', 'Priority_Level'], "Very Low Priority"], '#fff',
-      //   ['==', ['get', 'Priority_Level'], "Low Priority"], '#f4c8a5',
-      //   ['==', ['get', 'Priority_Level'], "Moderate Priority"], '#f2b07e',
-      //   ['==', ['get', 'Priority_Level'], "High Priority"], '#fb8e5c',
-      //   ['==', ['get', 'Priority_Level'], "Very High Priority"], '#f6783e',
-      //   ['==', ['get', 'Priority_Level'], "Highest Priority"], '#f75e22',
-      //   'black'
-      // ];
-      //
-      // map.addLayer({
-      //   'id': 'priority-fill',
-      //   'source': prioritySourceId,
-      //   'type': 'fill',
-      //   // 'minzoom': 12,
-      //   'paint': {
-      //     'fill-opacity': .4,
-      //     'fill-color': priorityColorExp
-      //   }
-      // });
-      //
-      // map.addLayer({
-      //   'id': 'priority-outline',
-      //   'source': prioritySourceId,
-      //   'type': 'line',
-      //   // 'minzoom': 12,
-      //   'paint': {
-      //     'line-color': '#f4c8a5',
-      //     'line-width': .5
-      //   }
-      // });
-
-      // map.addSource('parks', {
-      //   'type': 'geojson',
-      //   'data': '/data/parks.json'
-      // })
-
-      // map.addLayer({
-      //   'id': 'parks-fill',
-      //   'source': 'parks',
-      //   'type': 'fill',
-      //   'paint': {
-      //     'fill-opacity': .4,
-      //     'fill-color': '#65c144'
-      //   }
-      // })
-
       // map.on('click', 'priority-fill', (e) => {
       //   console.log(e.features);
       // })
