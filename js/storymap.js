@@ -170,6 +170,16 @@ var style = {
           ['==', ['get', 'Priority_Level'], "Very High Priority"], '#f6783e',
           ['==', ['get', 'Priority_Level'], "Highest Priority"], '#f75e22',
           'black'
+        ],
+        'fill-opacity': ['case',
+          // ['==', ['get', 'Priority_Level'], "Lowest Priority"], '#fff',
+          ['==', ['get', 'Priority_Level'], "Very Low Priority"], 0,
+          ['==', ['get', 'Priority_Level'], "Low Priority"], .5,
+          ['==', ['get', 'Priority_Level'], "Moderate Priority"], .5,
+          ['==', ['get', 'Priority_Level'], "High Priority"], .5,
+          ['==', ['get', 'Priority_Level'], "Very High Priority"], .5,
+          ['==', ['get', 'Priority_Level'], "Highest Priority"], .5,
+          0
         ]
       }
     },
@@ -337,6 +347,14 @@ var areas = {
     'coords': [-75.10122, 40.03676]
   }
 }
+
+var priorityLegend = [
+  ["Low", '#f4c8a5'],
+  ["Moderate", '#f2b07e'],
+  ["High", '#fb8e5c'],
+  ["Very High", '#f6783e'],
+  ["Highest", '#f75e22']
+];
 
 
 var activeChapterName = 'intro'; //Change this to match the first chapter of your story
@@ -529,6 +547,9 @@ map.addControl(
 );
 
 // setup legend
+const legendTitle = document.createElement('h3');
+const sourceP = document.createElement('p');
+var legendSorce = '';
 class legendControl {
     onAdd(map) {
       this._map = map;
@@ -605,7 +626,6 @@ class legendControl {
       content += '</ul>';
       legendDiv.innerHTML = content;
 
-      const legendTitle = document.createElement('h3');
       legendTitle.innerText = "High Temperature";
       containerDiv.appendChild(legendTitle);
       const sliderDesc = document.createElement('p');
@@ -615,7 +635,6 @@ class legendControl {
       containerDiv.appendChild(uiDiv)
       containerDiv.appendChild(legendDiv)
 
-      const sourceP = document.createElement('p');
       sourceP.innerHTML = `(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)`
       containerDiv.appendChild(sourceP)
 
@@ -655,6 +674,7 @@ map.on("load", function () {
 })
 
 function updateLegend(value) {
+
   for (var i = 0; i < 8; i++) {
     breaks[i] = value + 3.2*i;
   }
@@ -673,30 +693,87 @@ function updateLegend(value) {
   legendul.innerHTML = legendList;
 }
 
+function priorityLegendDraw() {
+
+  document.getElementById('legend-ctrl').style.display = '';
+  document.querySelector(".ui-controls").style.display = 'none';
+
+  var legendul = document.querySelector(".legend ul");
+  let legendList = "";
+
+  legendTitle.innerText = "Priority Levels";
+
+  for (var i = 0; i < priorityLegend.length; i++) {
+
+    var classDesc = '<li><span style="background:' + priorityLegend[i][1] + '"></span> ' +
+        priorityLegend[i][0] + '</li>'
+    legendList += classDesc;
+
+  }
+
+  legendul.innerHTML = legendList;
+  document.getElementById('legend-contents').classList = 'canopy';
+
+  document.querySelector('input[type="checkbox"]:checked ~ label').classList = 'legendIconToggle canopy';
+  // if (document.querySelector('input[type="checkbox"]:checked ~ #legend-contents') != null) {
+  //   document.querySelector('input[type="checkbox"]:checked ~ #legend-contents').style.transform = "translateY(-160px)";
+  //   document.querySelector('input[type="checkbox"]:checked ~ label').style.transform = "translateY(-160px)";
+  // }
+  // input[type="checkbox"]:checked ~ #legend-contents {
+  //     transform: translateY(-210px);
+  // }
+  //
+  // input[type="checkbox"]:checked ~ label {
+  //     transform: translateY(-210px);
+  // }
+
+} // end priorityLegendDraw()
+
 function showTemperatureMap() {
   // add temperature layers
   changeVisibility('temp', 'visible');
+
+  // reset legend
+  document.querySelector(".ui-controls").style.display = '';
+  legendTitle.innerText = "High Temperature";
+  updateLegend(document.getElementById('slider').noUiSlider.get());
+  document.getElementById('legend-ctrl').style.display = '';
+
+  document.getElementById('legend-contents').classList = 'temps';
+
+  document.querySelector('input[type="checkbox"]:checked ~ label').classList = 'legendIconToggle temps';
+
+
+  // if (document.querySelector('input[type="checkbox"]:checked ~ #legend-contents') != null) {
+  //   document.querySelector('input[type="checkbox"]:checked ~ #legend-contents').style.transform = "translateY(-210px)";
+  //   document.querySelector('input[type="checkbox"]:checked ~ label').style.transform = "translateY(-210px)";
+  // }
+
 
   if (map.getSource('priority-areas')) {
     changeVisibility('canopy', 'none');
     // service.disableRequests();
   }
 
-  console.log(markers);
-  for (const id in markers) {
-      markers[id].remove();
-  }
+  // console.log(markers);
+  removeMarkers();
+
 } // end showTemperatureMap()
 
 function drawPriorityAreas() {
   // remove temperature layers
   changeVisibility('temp', 'none');
 
+  priorityLegendDraw();
   // map.setLayoutProperty('neighborhoods-fill', 'visibility', 'none');
   // map.setLayoutProperty('neighborhoods-outline', 'visibility', 'none');
   // map.setLayoutProperty('neighborhoods-label', 'visibility', 'none');
 
-  const prioritySourceId = 'priority-areas'
+  const prioritySourceId = 'priority-areas';
+
+
+  // console.log(markers);
+  removeMarkers();
 
   if (!map.getSource(prioritySourceId)) {
 
@@ -780,42 +857,45 @@ function drawPriorityAreas() {
     // map.setLayoutProperty('priority-fill', 'visibility', 'visible');
     // map.setLayoutProperty('priority-outline', 'visibility', 'visible');
     // service.enableRequests();
-  }
 
-  console.log(markers);
-  // console.log(areas);
-  for (var area in areas) {
-    if (!markers.hasOwnProperty(area)) {
-      // console.log(area);
-      // console.log(areas[area]);
-      var markerEl = document.createElement('div');
-      markerEl.classList = 'marker'
-      markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
+    // console.log(markers);
+    // console.log(areas);
+    for (var area in areas) {
+      if (!markers.hasOwnProperty(area)) {
+        // console.log(area);
+        // console.log(areas[area]);
+        var markerEl = document.createElement('div');
+        markerEl.classList = 'marker'
+        markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
 
-      let marker = markers[area]
-      marker = markers[area] = new maplibregl.Marker({
-        element: markerEl
-      }).setLngLat(areas[area].coords)
-        .addTo(map);
+        let marker = markers[area]
+        marker = markers[area] = new maplibregl.Marker({
+          element: markerEl
+        }).setLngLat(areas[area].coords)
+          .addTo(map);
 
-      markerEl.addEventListener('click', () => {
-        console.log(area);
-        document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
-      })
+        markerEl.addEventListener('click', () => {
+          console.log(area);
+          document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
+        })
 
+      } else {
+        markers[area].addTo(map);
+      }
     }
 
   }
-  console.log(markers);
+  // console.log(markers);
 
 }  // end drawPriorityAreas()
 
 function drawStaff() {
 
-  console.log(markers);
-  for (const id in markers) {
-      markers[id].remove();
-  }
+  // hide legend
+  document.getElementById('legend-ctrl').style.display = 'none';
+
+  removeMarkers();
+
 
   // remove temperature and canopy layers
   changeVisibility('temp', 'none');
@@ -828,6 +908,12 @@ function changeVisibility(cat, viz) {
   layers[cat].forEach((l, i) => {
     map.setLayoutProperty(l, 'visibility', viz);
   });
+}
+
+function removeMarkers() {
+  for (const id in markers) {
+      markers[id].remove();
+  }
 }
 
 function setActiveChapter(chapterName) {

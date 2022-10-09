@@ -28,11 +28,40 @@ section:last-child {
 }
 
 .marker {
-  background-color: black;
-  color: whitesmoke;
+  /* background-color: black; */
+  color: darkgreen;
   border-radius: 10%;
   padding: 0px 10px;
-  opacity: 50%;
+  opacity: 70%;
   max-width: 75px;
   cursor: pointer;
+}
+
+.marker > h4 {
+  margin: 0;
+  padding 0;
+}
+
+.infographic {
+  width: 100%;
+}
+
+#legend-contents.temps {
+  height: 230px;
+}
+
+#legend-contents.canopy {
+  height: 180px;
+}
+
+input[type="checkbox"]:checked ~ #legend-contents.temps {
+    transform: translateY(-210px);
+}
+
+input[type="checkbox"]:checked ~ #legend-contents.canopy {
+    transform: translateY(-160px);
+}
+
+input[type="checkbox"]:checked ~ label.canopy {
+    transform: translateY(-160px);
 }
