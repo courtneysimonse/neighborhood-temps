@@ -374,7 +374,7 @@ var chapters = {
     },
     'program-staff': {
       mapOptions: mapDefault,
-      mapFunction: drawStaff
+      // mapFunction: drawStaff
     },
     'temperature-map': {
       mapOptions: mapDefault,
@@ -756,7 +756,7 @@ function showTemperatureMap() {
   }
 
   // console.log(markers);
-  removeMarkers();
+  // removeMarkers();
 
 } // end showTemperatureMap()
 
@@ -773,7 +773,7 @@ function drawPriorityAreas() {
 
 
   // console.log(markers);
-  removeMarkers();
+  // removeMarkers();
 
   if (!map.getSource(prioritySourceId)) {
 
@@ -805,29 +805,29 @@ function drawPriorityAreas() {
 
     // console.log(markers);
     // console.log(areas);
-    for (var area in areas) {
-      if (!markers.hasOwnProperty(area)) {
-        // console.log(area);
-        // console.log(areas[area]);
-        var markerEl = document.createElement('div');
-        markerEl.classList = 'marker'
-        markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
-
-        let marker = markers[area]
-        marker = markers[area] = new maplibregl.Marker({
-          element: markerEl
-        }).setLngLat(areas[area].coords)
-          .addTo(map);
-
-        markerEl.addEventListener('click', () => {
-          console.log(area);
-          document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
-        })
-
-      } else {
-        markers[area].addTo(map);
-      }
-    }
+    // for (var area in areas) {
+    //   if (!markers.hasOwnProperty(area)) {
+    //     // console.log(area);
+    //     // console.log(areas[area]);
+    //     var markerEl = document.createElement('div');
+    //     markerEl.classList = 'marker'
+    //     markerEl.innerHTML = `<h4>${areas[area].name}</h4>`;
+    //
+    //     let marker = markers[area]
+    //     marker = markers[area] = new maplibregl.Marker({
+    //       element: markerEl
+    //     }).setLngLat(areas[area].coords)
+    //       .addTo(map);
+    //
+    //     markerEl.addEventListener('click', function(e) {
+    //       console.log(area);
+    //       document.getElementById(area).scrollIntoView({ behavior: "smooth", inline: "start" });
+    //     })
+    //
+    //   } else {
+    //     markers[area].addTo(map);
+    //   }
+    // }
 
   }
   // console.log(markers);
@@ -839,7 +839,7 @@ function drawStaff() {
   // hide legend
   document.getElementById('legend-ctrl').style.display = 'none';
 
-  removeMarkers();
+  // removeMarkers();
 
 
   // remove temperature and canopy layers
