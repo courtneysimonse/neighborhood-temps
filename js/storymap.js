@@ -305,6 +305,22 @@ var style = {
       }
     },
     {
+      'id': 'parks-label',
+      'source': 'parks',
+      'type': 'symbol',
+      'minzoom': 11,
+      'paint': {
+        'text-opacity': .7
+      },
+      'layout': {
+        'visibility': 'none',
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        // 'text-allow-overlap': true,
+        'text-field': ['get', 'PUBLIC_NAM'],
+        'text-size': 8
+      }
+    },
+    {
       'id': 'staff-circle',
       'source': 'sites',
       'type': 'circle',
@@ -329,7 +345,7 @@ var style = {
       'layout': {
         'visibility': 'none',
         'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
-        'text-allow-overlap': true,
+        // 'text-allow-overlap': true,
         'text-field': ['get', 'Staff FT (program and maintenance)'],
         'text-size': 10
       }
@@ -366,7 +382,7 @@ var map = new maplibregl.Map(options);
 
 var layers = {
   temp: ['neighborhoods-fill', 'neighborhoods-outline', 'neighborhoods-label'],
-  canopy: ['priority-fill', 'priority-outline', 'parks-fill'],
+  canopy: ['priority-fill', 'priority-outline', 'parks-fill', 'parks-label'],
   staff: ['staff-circle', 'staff-label']
 };
 
