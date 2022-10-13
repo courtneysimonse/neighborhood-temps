@@ -305,7 +305,9 @@ var style = {
       'source': 'sites',
       'type': 'circle',
       'paint': {
-        'circle-radius': 10,
+        'circle-radius': ['+',
+          ['*', ['get', 'Staff FT (program and maintenance)'], 4], 3
+        ],
         'circle-color': 'green',
         'circle-opacity': .4
       },
@@ -325,7 +327,7 @@ var style = {
         'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
         'text-allow-overlap': true,
         'text-field': ['get', 'Staff FT (program and maintenance)'],
-        'text-size': 11
+        'text-size': 10
       }
     }
   ],
