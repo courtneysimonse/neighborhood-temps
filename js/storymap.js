@@ -145,6 +145,10 @@ var style = {
     'sites': {
       'type': 'geojson',
       'data': '/data/sites.geojson'
+    },
+    'area-circles': {
+      'type': 'geojson',
+      'data': '/data/areas.geojson'
     }
     // 'priority-areas': {
     //   'type': 'vector',
@@ -329,6 +333,19 @@ var style = {
         'text-field': ['get', 'Staff FT (program and maintenance)'],
         'text-size': 10
       }
+    },
+    {
+      'id': 'area-circles',
+      'source': 'area-circles',
+      'type': 'line',
+      'paint': {
+        'line-blur': 3,
+        'line-width': 3,
+        'line-dasharray': [1, 3]
+      },
+      'layout': {
+        'line-cap': 'round'
+      }
     }
   ],
   "glyphs": "/fonts/{fontstack}/{range}.pbf"
@@ -405,10 +422,12 @@ var mapDefault = {
 
 var chapters = {
     'intro': {
-      mapOptions: mapDefault
+      mapOptions: mapDefault,
+      mapFunction: showTemperatureMap
     },
     'three-pillars': {
-      mapOptions: mapDefault
+      mapOptions: mapDefault,
+      mapFunction: showTemperatureMap
     },
     'program-staff': {
       mapOptions: mapDefault,
