@@ -491,21 +491,9 @@ var chapters = {
       },
       mapFunction: drawPriorityAreas
     },
-    'operations': {
-      mapOptions: mapDefault
-    },
-    'burden-asset': {
-      mapOptions: mapDefault
-    },
-    'our-ask': {
-      mapOptions: mapDefault
-    },
-    'supporters-coalition': {
-      mapOptions: mapDefault
-    },
-    'take-action': {
-      mapOptions: mapDefault
-    }
+    // 'operations': {
+    //   mapOptions: mapDefault
+    // }
 };
 
 map.on('load', () => {
