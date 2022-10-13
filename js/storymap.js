@@ -421,21 +421,15 @@ var mapDefault = {
       }
 
 var chapters = {
-    'intro': {
-      mapOptions: mapDefault,
-      mapFunction: showTemperatureMap
-    },
-    'three-pillars': {
-      mapOptions: mapDefault,
-      mapFunction: showTemperatureMap
-    },
-    'program-staff': {
-      mapOptions: mapDefault,
-      mapFunction: drawStaff
-    },
+    // 'program-staff': {
+    //   mapOptions: mapDefault,
+    //   mapFunction: drawStaff,
+    //   layout: "side-by-side"
+    // },
     'temperature-map': {
       mapOptions: mapDefault,
-      mapFunction: showTemperatureMap
+      mapFunction: showTemperatureMap,
+      layout: "side-by-side"
     },
     'priority-canopy': {
       mapOptions: mapDefault,
