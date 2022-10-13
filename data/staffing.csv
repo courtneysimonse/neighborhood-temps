@@ -1,0 +1,225 @@
+﻿X,Y,OBJECTID,PARK_NAME,DPP_ASSET_ID,PROGRAM_TYPE,SITE_CLASS,BUILDING,GYM,LABEL_NUMBER,COMMENTS,DATA_SOURCE,Staff FT (program and maintenance),Staff PT
+-75.16983191,40.06468648,3,Charles M Finley Playground,1989,PPR_REC,A,Y,Y,40, ,Programs 9/2021,3,1
+-75.17151936,39.94211853,5,Marian Anderson Recreation Center,1901,PPR_REC,A,Y,Y,6, ,Programs 9/2021,3,1
+-75.15406983,39.91564174,15,Lawrence E Murphy Recreation Center,1919,PPR_REC,A,Y,Y,97, ,Programs 9/2021,3,1
+-75.17304961,39.92287371,16,Thomas I Guerin Recreation Center,1865,PPR_REC,A,Y,Y,51, ,Programs 9/2021,3,1
+-75.18886295,39.93137988,19,George A Vare Recreation Center,1966,PPR_REC,A,Y,Y,138, ,Programs 1/2022,3,1
+-75.16434979,39.93325422,20,Columbus Square,966,PPR_REC,A,Y,N,28, ,Programs 9/2021,3,1
+-75.15848785,39.94136194,27,Walter Palumbo Recreation Center,1927,PPR_REC,A,Y,Y,103, ,Programs 9/2021,3,1
+-75.21701254,39.94284846,28,Kingsessing Recreation Center,1886,PPR_REC,A,Y,Y,72, ,Programs 9/2021,3,1
+-75.23441297,39.94889501,29,Albert W Christy Sr Recreation Center,1829,PPR_REC,A,Y,Y,22, ,Programs 9/2021,3,1
+-75.14346019,39.96275069,30,Northern Liberties Recreation Center,1921,PPR_REC,A,Y,Y,100, ,Programs 9/2021,3,1
+-75.12780419,39.97185194,38,Fishtown Recreation Center,1856,PPR_REC,A,Y,N,41, ,Programs 9/2021,3,1
+-75.13233696,39.97756361,41,Dan Shissler Recreation Center,1844,PPR_REC,A,Y,Y,124, ,Programs 9/2021,3,1
+-75.16995131,39.98081653,43,Dr Martin Luther King Jr Recreation Center,1985,PPR_REC,A,Y,Y,82, ,Programs 9/2021,3,1
+-75.11255696,39.98412862,50,Cohocksink Recreation Center,1838,PPR_REC,A,Y,Y,27, ,Programs 9/2021,3,1
+-75.17484853,39.98759003,51,Eric W (Hank) Gathers Jr Recreation Center,1852,PPR_REC,A,Y,Y,47, ,Programs 9/2021,3,1
+-75.0970003,39.99068624,52,Bernard Samuel Playground,1948,PPR_REC,A,Y,Y,118, ,Programs 9/2021,3,1
+-75.09865666,39.99770506,54,Robert T Heitzman Recreation Center,1870,PPR_REC,A,Y,Y,57, ,Programs 9/2021,3,1
+-75.13762017,40.00044753,55,Ramonita Negron Rivera Recreation and Community Center,1941,PPR_REC,A,Y,Y,113,Closed for Rebuild,Programs 9/2021,3,1
+-75.12154861,40.00016946,56,Sergeant John J McVeigh Recreation Center,1908,PPR_REC,A,Y,Y,89, ,Programs 9/2021,3,1
+-75.06818741,39.99952346,57,Bridesburg Recreation Center,1822,PPR_REC,A,Y,Y,14, ,Programs 9/2021,3,1
+-75.10836046,40.00145766,60,Joseph A Scanlon Playground,1950,PPR_REC,A,Y,N,120, ,Programs 9/2021,3,1
+-75.20358875,40.01335603,62,Gustine Recreation Center,1984,PPR_REC,A,Y,Y,52, ,Programs 9/2021,3,1
+-75.14365306,40.01766214,65,Hunting Park,845,PPR_REC,A,Y,Y,64, ,Programs 9/2021,3,1
+-75.12093218,40.02161957,67,Feltonville Recreation Center,1853,PPR_REC,A,Y,Y,39, ,Programs 9/2021,3,1
+-75.09312462,40.02152856,68,Private Alfred J Simpson Memorial Recreation Center,1954,PPR_REC,A,Y,Y,128, ,Programs 9/2021,3,1
+-75.21135314,40.02882834,72,W Freeland Kendrick Recreation Center,1885,PPR_REC,A,Y,Y,71, ,Programs 9/2021,3,1
+-75.0542344,40.02582097,73,Franklin Delano Roosevelt Playground,1943,PPR_REC,A,Y,N,114, ,Programs 9/2021,3,1
+-75.04916539,40.02812492,74,Joseph F Vogt Playground,1968,PPR_REC,A,Y,Y,139, ,Programs 9/2021,3,1
+-75.04404779,40.02838246,75,Disston Recreation Center,1847,PPR_REC,A,Y,Y,33, ,Programs 9/2021,3,1
+-75.09367576,40.02970474,77,Edward Houseman Playground,1875,PPR_REC,A,Y,Y,62, ,Programs 9/2021,3,1
+-75.22908718,40.03395115,80,Hillside Recreation Center,1872,PPR_REC,A,Y,Y,59, ,Programs 9/2021,3,1
+-75.07038813,40.03874115,86,Max Myers Playground,1904,PPR_REC,A,Y,N,83, ,Programs 9/2021,3,1
+-75.15630331,40.0421738,87,Belfield Recreation Center,1815,PPR_REC,A,Y,Y,12, ,Programs 9/2021,3,1
+-75.08218162,40.04072222,88,Seymour Tarken Recreation Center,1962,PPR_REC,A,Y,N,134,Tarkan Ice Rink is a separate buliding on the same site.,Programs 9/2021,3,1
+-75.05308337,40.03988168,89,Mayfair Recreation Center,1905,PPR_REC,A,Y,Y,84, ,Programs 9/2021,3,1
+-75.11687037,40.04253855,90,Olney Recreation Center,1924,PPR_REC,A,Y,Y,101,Closed for Rebuild ,Programs 9/2021,3,1
+-75.16868647,40.0454222,91,Waterview Recreation Center,1980,PPR_REC,A,Y,Y,142, ,Programs 9/2021,3,1
+-75.10132019,40.04615633,92,Lawncrest Recreation Center,1891,PPR_REC,A,Y,Y,74, ,Programs 9/2021,3,1
+-75.07642177,40.05623383,100,Thomas E Jardel Memorial Field,1879,PPR_REC,A,Y,Y,67, ,Programs 9/2021,3,1
+-75.15748535,40.06157006,102,William B Simons Recreation Center,1953,PPR_REC,A,Y,Y,127, ,Programs 9/2021,3,1
+-75.05077936,40.06174095,103,George C Pelbano Playground,1987,PPR_REC,A,Y,Y,107, ,Programs 9/2021,3,1
+-75.20049791,40.07537903,106,Water Tower Recreation Center,1979,PPR_REC,A,Y,Y,140, ,Programs 9/2021,3,1
+-75.08167881,40.07419483,107,Fox Chase Recreation Center,1857,PPR_REC,A,Y,Y,44, ,Programs 9/2021,3,1
+-75.17566252,40.08145064,108,Dorothy Emanuel Recreation Center,1849,PPR_REC,A,Y,Y,38, ,Programs 9/2021,3,1
+-74.97401896,40.08011207,109,Corporal Jimmy OConnor Memorial Playground,1826,PPR_REC,A,Y,N,19,"Gym nearby is NOT PPR, it is an athletic association building. Formerly Chalfont Playground",Programs 9/2021,3,1
+-75.15956395,40.04999922,117,Lonnie Young Recreation Center of East Germantown,1897,PPR_REC,A,Y,Y,77, ,Programs 9/2021,3,1
+-75.22848905,39.93462566,120,Francis J Myers Recreation Center,1858,PPR_REC,A,Y,Y,98, ,Programs 9/2021,3,1
+-75.19086662,39.9637683,125,James L Wright Playground,1975,PPR_REC,A,Y,Y,148, ,Programs 9/2021,3,1
+-75.16755266,39.99366032,126,Cecil B Moore Recreation Center,1825,PPR_REC,A,Y,Y,18, ,Programs 9/2021,3,1
+-75.14593696,39.93479863,128,Shot Tower Recreation Center,969,PPR_REC,A,Y,Y,125, ,Programs 9/2021,3,1
+-75.24910303,39.95819632,133,Johnny Sample Recreation Center,1836,PPR_REC,A,Y,Y,26,Located in Cobbs Creek Park,Programs 1/2022,3,1
+-75.23417965,39.96726986,136,Haddington-Marshall L Shepard Sr Recreation Center,1952,PPR_REC,A,Y,Y,123, ,Programs 9/2021,3,1
+-75.21270627,39.97925153,138,Carousel House Recreation Center,1824,PPR_REC,A,Y,Y,17,Located in West Fairmount Park. Currently closed for Rebuild.,Programs 9/2021,3,1
+-75.13510968,39.97839894,139,Michael J Towey Playground,1964,PPR_REC,A,Y,Y,136, ,Programs 9/2021,3,1
+-75.18676969,40.00879634,142,Harry S McDevitt Playground,1906,PPR_REC,A,Y,Y,87, ,Programs 9/2021,3,1
+-75.1786677,39.97795136,146,Athletic Recreation Center,1811,PPR_REC,A,Y,Y,7, ,Programs 9/2021,3,1
+-75.13818642,39.9890714,148,Frank S Nelson Jr Memorial Recreation Center,1988,PPR_REC,A,Y,N,99,2019-2020 Renovations,Programs 9/2021,3,1
+-75.1634348,39.92627489,173,East Passyunk Community Recreation Center,1963,PPR_REC,A,Y,Y,0, ,Programs 9/2021,3,1
+-75.14542678,39.93274882,178,Ralph R Rizzo Sr Ice Rink,1407,PPR_REC,A,Y,N,, ,Programs 9/2021,3,1
+-75.16363419,40.05386267,1,Awbury Park and Recreation Center,604,PPR_REC,B,Y,N,8, ,Programs 9/2021,1,1
+-75.00751075,40.12284317,2,Daniel Boyle Memorial Recreation Center,1843,PPR_REC,B,Y,N,13, ,Programs 9/2021,1,1
+-75.17476354,40.00222123,4,James Allen Shuler Playground,1878,PPR_REC,B,Y,N,126, ,Programs 9/2021,1,1
+-75.23856601,39.95669258,6,Howard Sayre Morris Recreation Center,1949,PPR_REC,B,Y,N,119, ,Programs 9/2021,1,1
+-75.10129625,39.98646601,9,Frank Glavin Playground,1860,PPR_REC,B,Y,N,49, ,Programs 9/2021,1,1
+-75.18509125,39.96905477,10,Lloyd Hall Recreation Center,997,PPR_REC,B,Y,Y,76,Located in East Fairmount Park,Programs 9/2021,1,1
+-75.23324251,39.99521825,11,John C Anderson Cultural Center,3479,PPR_REC,B,Y,N,69, ,Programs 9/2021,1,1
+-75.248617,39.90816103,12,William A Cibotti Recreation Center,498,PPR_REC,B,Y,N,23, ,Programs 9/2021,1,1
+-75.23174319,39.9152726,13,J Francis Finnegan Playground,95,PPR_REC,B,Y,N,66, ,Programs 9/2021,1,1
+-75.17875813,39.915938,14,Commodore John Barry Playground,262,PPR_REC,B,Y,N,11, ,Programs 9/2021,1,1
+-75.24019174,39.92613768,17,John J McCreesh Sr Playground,508,PPR_REC,B,Y,N,86, ,Programs 9/2021,1,1
+-75.15948203,39.93400587,22,Dr Nicola Capitolo Playground,501,PPR_REC,B,Y,N,15, ,Programs 9/2021,1,1
+-75.174181,39.93816825,24,Charles H Chew Jr Playground,268,PPR_REC,B,Y,N,21, ,Programs 9/2021,1,1
+-75.20980829,39.94195648,26,48th and Woodland Playground,1804,PPR_REC,B,Y,N,2, ,Programs 9/2021,1,1
+-75.21581737,39.96598037,31,Mill Creek Playground and Recreation Center,1911,PPR_REC,B,Y,N,91, ,Programs 9/2021,1,1
+-75.19562178,39.96747897,33,Miles Mack Playground,1910,PPR_REC,B,Y,N,90, ,Programs 9/2021,1,1
+-75.25039597,39.96935865,34,William T Granahan Playground,1864,PPR_REC,B,Y,N,50,Located within Cobbs Creek Park,Programs 9/2021,1,1
+-75.16712929,39.96849538,35,Francisville Recreation Center,1859,PPR_REC,B,Y,N,45, ,Programs 9/2021,1,1
+-75.25630045,39.97445813,37,Charles A Papa Playground,1929,PPR_REC,B,Y,N,105,Located in Morris Park.,Programs 9/2021,1,1
+-75.14534802,39.97323548,39,Narcissa S Cruz Recreation Center,908,PPR_REC,B,Y,N,30,Two Programmable Buildings on site.,Programs 9/2021,1,1
+-75.24070891,39.98186735,42,Ernest L Tustin Recreation Center,1965,PPR_REC,B,Y,N,137, ,Programs 9/2021,1,1
+-75.22658553,39.98326167,44,Parkside Evans Recreation Center,1930,PPR_REC,B,Y,N,106,Located within West Fairmount Park.,Programs 9/2021,1,1
+-75.16029959,39.98171659,45,Fletcher B Amos Playground,1809,PPR_REC,B,Y,N,5, ,Programs 9/2021,1,1
+-75.1184313,39.98101037,46,Frederick Cione Playground,1830,PPR_REC,B,Y,N,24, ,Programs 9/2021,1,1
+-75.14745045,39.98323717,48,8th and Diamond Playground,1805,PPR_REC,B,Y,N,3, ,Programs 9/2021,1,1
+-75.14978668,39.99681664,53,12th and Cambria Playground,1800,PPR_REC,B,Y,N,1, ,Programs 9/2021,1,1
+-75.16578241,40.00214183,58,Vincent G Panati Playground,1928,PPR_REC,B,Y,N,104, ,Programs 9/2021,1,1
+-75.1292342,40.0018467,59,John (Steve) Schmidt Playground,1978,PPR_REC,B,Y,N,121, ,Programs 9/2021,1,1
+-75.16140023,40.0062418,61,Jerome Brown Playground,1880,PPR_REC,B,Y,N,68, ,Programs 9/2021,1,1
+-75.07311198,40.01112118,63,Carmella A DiTizio Playground,1823,PPR_REC,B,Y,N,16, ,Programs 9/2021,1,1
+-75.09687267,40.01279776,64,Boniface Piccoli Playground,1935,PPR_REC,B,Y,N,110, ,Programs 9/2021,1,1
+-75.05427955,40.0184248,66,American Legion Playground,1808,PPR_REC,B,Y,N,4, ,Programs 9/2021,1,1
+-75.15231546,40.02449835,70,Stenton Park,1958,PPR_REC,B,Y,N,131, ,Programs 9/2021,1,1
+-75.06126381,40.02938936,76,Lower Mayfair Playground,1898,PPR_REC,B,Y,N,78, ,Programs 9/2021,1,1
+-75.03342486,40.03006659,81,Charles A Russo Playground,1946,PPR_REC,B,Y,N,116, ,Programs 9/2021,1,1
+-75.11808114,40.03411018,82,Charles J Ziehler Playground,1976,PPR_REC,B,Y,N,149, ,Programs 9/2021,1,1
+-75.13680121,40.03830509,84,A Albert Cherashore Playground,1828,PPR_REC,B,Y,N,20, ,Programs 9/2021,1,1
+-75.02714042,40.03610125,85,Holmesburg Recreation Center,1873,PPR_REC,B,Y,N,61, ,Programs 9/2021,1,1
+-75.17968609,40.04773278,93,Daniel E Rumph II Recreation Center,1945,PPR_REC,B,Y,Y,79, ,Programs 9/2021,1,1
+-75.12381393,40.04910704,94,Helen G Sturgis Playground,1960,PPR_REC,B,Y,N,133, ,Programs 9/2021,1,1
+-75.14636289,40.05054228,95,Morris Estate Cultural Center,1914,PPR_REC,B,Y,N,94, ,Programs 9/2021,1,1
+-75.02456936,40.04789742,96,James J Ramp Playground,1938,PPR_REC,B,Y,N,112, ,Programs 9/2021,1,1
+-75.00196045,40.0514017,97,George Jacobs Playground,1877,PPR_REC,B,Y,N,65,"Gym on site is Non-PPR, it is an athletic association.",Programs 9/2021,1,1
+-75.18802029,40.05773574,98,Mount Airy Playground,1917,PPR_REC,B,Y,N,95, ,Programs 9/2021,1,1
+-75.18239753,40.05709209,99,Pleasant Playground,1936,PPR_REC,B,Y,N,111, ,Programs 9/2021,1,1
+-75.23139861,40.06910761,104,Samuel F Houston Playground,1876,PPR_REC,B,Y,N,63,Located within Wissahickon Valley Park,Programs 9/2021,1,1
+-74.99194831,40.06823961,105,Thomas Mitchell Playground,1912,PPR_REC,B,Y,N,92, ,Programs 9/2021,1,1
+-74.98926858,40.08044252,110,Elizabeth M Picariello Playground,1934,PPR_REC,B,Y,N,109, ,Programs 9/2021,1,1
+-75.02078199,40.09117744,111,Officer Robert Hayes Memorial Playground,1923,PPR_REC,B,Y,Y,56,Gym extension constructred in 2019.,Programs 9/2021,1,1
+-74.98906437,40.09578237,112,Michael Palmer Playground,1926,PPR_REC,B,Y,N,102,"Northern property building is for the Far NE Athletic Association, it is NOT PPR Programmed.",Programs 9/2021,1,1
+-74.97219479,40.09632119,113,Eileen Fitzpatrick Playground,1983,PPR_REC,B,Y,N,42, ,Programs 9/2021,1,1
+-75.03320141,40.10026795,114,William A Lackman Memorial Playground,1888,PPR_REC,B,Y,N,73, ,Programs 9/2021,1,1
+-74.96943963,40.10340606,115,Jim Junod Recreation Center,1883,PPR_REC,B,Y,N,70, ,Programs 9/2021,1,1
+-75.02472468,40.11490966,116,Tomlinson and Gifford Playground,1863,PPR_REC,B,Y,N,48, ,Programs 9/2021,1,1
+-75.07587524,40.01422542,118,William (Billy) Gambrel Playground,1862,PPR_REC,B,Y,Y,46, ,Programs 9/2021,1,1
+-75.15171967,39.98607489,119,Penrose Memorial Playground,1977,PPR_REC,B,Y,N,108,Located in PPR District 6 but managed by District 10. ,Programs 9/2021,1,1
+-75.15077396,39.97608265,121,Marie Dendy Recreation Center,1902,PPR_REC,B,Y,N,31, ,Programs 9/2021,1,1
+-75.13731965,39.97288301,122,Hancock Playground,1867,PPR_REC,B,Y,N,53, ,Programs 9/2021,1,1
+-75.13292583,39.98857526,123,Waterloo Playground,2901,PPR_REC,B,Y,N,141, ,Programs 9/2021,1,1
+-75.16349396,39.93847958,129,Hawthorne Cultural Center,1869,PPR_REC,B,Y,N,55, ,Programs 9/2021,1,1
+-75.15930833,39.94361834,131,Charles T Mitchell Jr (Seger) Park,1951,PPR_REC,B,Y,N,122,Building is named for Charles Seger (1977); Site is named for Charles T Mitchell Jr (1976).,Programs 9/2021;Communication 2022,1,1
+-75.18327252,39.94799461,132,William H (Billy) Markward Memorial Playground,1903,PPR_REC,B,Y,N,81,Located within Schuylkill River Park,Programs 9/2021,1,1
+-75.2107279,39.961664,134,John A Lee Cultural Center,1892,PPR_REC,B,Y,N,75, ,Programs 9/2021,1,1
+-75.22302452,39.96746678,135,West Mill Creek,1970,PPR_REC,B,Y,N,144, ,Programs 9/2021,1,1
+-75.15115213,39.96679646,137,East Poplar Playground,1851,PPR_REC,B,Y,N,36, ,Programs 9/2021,1,1
+-75.18780303,39.98978191,141,Joseph E Mander Playground,1900,PPR_REC,B,Y,N,80,Located in East Fairmount Park,Programs 9/2021,1,1
+-75.16627217,40.0236932,143,Happy Hollow Recreation Center,1868,PPR_REC,B,Y,Y,54, ,Programs 9/2021,1,1
+-74.99820507,40.05897969,145,Torresdale Recreation Center,68,PPR_REC,B,Y,N,135, ,Programs 9/2021,1,1
+-75.25110101,39.90443774,147,Eastwick Regional Playground,499,PPR_REC,B,Y,N,37, ,Programs 9/2021,1,1
+-75.13106611,40.04354765,153,Fisher Park,679,PPR_REC,B,Y,N,0,Staff deployed from Olney (Closed),Programs 9/2021,1,1
+-75.15777061,39.98880972,156,Marie Winchester Playground,2900,PPR_REC,B,Y,N,0, ,Programs 9/2021,1,1
+-75.22184019,40.02330914,169,Venice Island Performing Arts and Recreation Center,3448,PPR_REC,B,Y,N,0, ,Programs 9/2021,1,1
+-75.18736468,39.92542697,172,Thomas B Smith Recreation Center,502,PPR_REC,B,Y,N,0, ,Programs 9/2021,1,1
+-75.24810754,39.95930112,179,Laura Sims Skating Rink,984,PPR_REC,B,Y,N,,Building located within Johnny Sample Recreation Center (Cobbs Creek Park),Programs 9/2021,1,1
+-75.14849567,39.93069602,7,Nelson M Herron Playground and Recreation Center,2898,PPR_REC,C,Y,N,58, ,Programs 9/2021,1,
+-75.16996239,39.92914005,18,A Giuseppe DiSilvestro Playground,228,PPR_REC,C,Y,N,32,Mixed use building with CHOP/Free Library/Public Health/PPR,Programs 9/2021,1,
+-75.15121407,39.93379046,21,Solomon Sacks Playground,1947,PPR_REC,C,Y,N,117, ,Programs 9/2021,1,
+-75.19293309,39.93774622,23,Donald P Finnegan Recreation Center,452,PPR_REC,C,Y,N,34, ,Programs 9/2021,1,
+-75.15084259,39.93784436,25,Weccacoe Square,1969,PPR_REC,C,Y,N,143, ,Programs 9/2021,1,
+-75.16793882,39.96571906,32,Roberto Clemente Playground,1831,PPR_REC,C,Y,N,25, ,Programs 9/2021,1,
+-75.26015319,39.97312812,36,Samuel Rose Recreation Center,1944,PPR_REC,C,Y,N,115,Located with Cobbs Creek Park,Programs 9/2021,1,
+-75.22811203,39.97551667,40,Conestoga Community Playground,1982,PPR_REC,C,Y,N,29, ,Programs 9/2021,1,
+-75.10709092,39.98213307,47,Thomas P Stokley Recreation Center,1959,PPR_REC,C,N,N,132,Only PPR building is staff/storage building.,Programs 9/2021,1,
+-75.10022755,39.98298027,49,Reverend M Monkiewicz Recreation Center,1913,PPR_REC,C,Y,N,93,Site is split by I-95 ,Programs 9/2021,1,
+-75.04857506,40.02131385,69,Frank JG Dorsey Memorial Playground,1848,PPR_REC,C,Y,N,35, ,Programs 9/2021,1,
+-75.08013192,40.02423598,71,Joseph C McIlvain Playground,1907,PPR_REC,C,Y,N,88, ,Programs 9/2021,1,
+-75.13567434,40.03127737,78,John L Barrett Playground,1814,PPR_REC,C,Y,N,10, ,Programs 9/2021,1,
+-75.16026612,40.03237743,79,Wister Playground,1974,PPR_REC,C,Y,N,147, ,Programs 9/2021,1,
+-75.04212234,40.03223139,83,Senator William Vincent Mullin Playground,1918,PPR_REC,C,Y,N,96, ,Programs 9/2021,1,
+-75.01156663,40.05613179,101,Thomas Holme School Playground,2939,PPR_REC,C,Y,N,60,"School District Property, PPR Programs",Programs 9/2021,1,
+-75.23118655,39.97723084,124,Charles A Baker Playground,1981,PPR_REC,C,Y,N,9,Staff from Conestoga ,Programs 9/2021,1,
+-75.18324594,39.93549944,127,Wharton Square,305,PPR_REC,C,Y,N,145, ,Programs 9/2021,1,
+-75.15283583,39.94272067,130,Starr Garden Playground,1957,PPR_REC,C,Y,N,130, ,Programs 9/2021,1,
+-75.06961996,40.02401372,144,Wissinoming Park,1973,PPR_REC,C,Y,N,146, ,Programs 9/2021,1,
+-75.10499811,40.01477654,149,Joseph A Ferko Playground,1854,PPR_REC,C,Y,N,150,,Programs 9/2021,1,
+-75.06283087,40.01627911,150,Victor J Moss Memorial Field,1916,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.12345451,39.98380829,151,Black Coyle and McBride Playground,1820,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.15557136,40.0006427,154,Heritage Park Playground,1871,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.17426555,40.03970459,155,Morton Playground,1915,PPR_REC,C,N,N,0,"Building on site is an L&I Office building, it is NOT a PPR Building.",Programs 9/2021,1,
+-75.19774341,39.93621729,157,Jacob Stinger Park,443,PPR_REC,C,N,N,0,Only PPR building is staff/restroom building.,Programs 9/2021,1,
+-75.15044139,39.92125968,158,Reverend Edward P Burke Playground,202,PPR_REC,C,N,N,0,Only PPR building is storage shed.,Programs 9/2021,1,
+-75.19081262,39.96503672,159,33rd and Wallace Playground,1801,PPR_REC,C,N,N,0, ,Programs 9/2021,1,
+-75.20088332,39.96593196,160,Norman (Butch) Ellis Playground,1803,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.20844808,40.00207671,161,Woodside Park,1840,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.19896285,39.97348146,162,Clayborne and Lewis Playground,2896,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.17967686,39.99901849,171,29th and Chalmers Playground,1990,PPR_REC,C,Y,N,0, ,Programs 9/2021,1,
+-75.02720626,40.06053786,175,Frank McArdle Memorial Recreation Center,1991,PPR_REC,C,N,N,0,,Programs 9/2021,1,
+-75.1516727,39.92758567,176,John Dickinson Square,960,PPR_REC,C,Y,N,, ,Programs 9/2021,1,
+-75.19323367,39.93340567,177,William Lanier Park,407,PPR_REC,C,N,N,, ,Programs 9/2021,1,
+-75.13722002,39.96675695,180,Tip Top Playground,279,PPR_REC,C,N,N,, ,Programs 9/2021,1,
+-75.12324848,39.99434967,182,Marian Winfield Hissey Recreation Center,569,PPR_REC,C,N,N,, ,Programs 9/2021,1,
+-75.09177022,40.0120004,183,Joseph Deni Recreation Center,1846,PPR_REC,C,N,N,,Building on site is for storage.,Programs 9/2021,1,
+-75.13100894,39.97235062,189,Dave Dougherty (Hetzell) Field,629,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.08048221,40.01394834,190,Wilmot Park,99,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.11657994,39.98619788,191,Trenton and Auburn Playground,583,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.12826678,39.98347747,192,Hagert Street Playground,847,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.21310312,40.02163202,193,Wissahickon Neighbors Playground,2902,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.13305795,39.99160063,197,Gerald J Maguire Playground,780,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.13329804,40.00253787,198,Corporal George J Reed Jr Memorial Playground,1173,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.15158661,39.97878188,199,11th and Cecil B Moore Playground,1135,PPR_REC,C,N,N,,Located in PPR District 10 but managed by PPR District 6,Programs1/2022,1,
+-75.13936391,39.98110241,202,3rd and Norris Playground,2903,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.24896634,39.89717532,209,Pepper School Playground,2799,NON_PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.22038341,39.93171818,210,Russell DeRitis Playground,198,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.24596894,39.94357595,211,Robert Wilson III Park,3454,PPR_REC,C,N,N,,Located in Cobbs Creek Park,Programs 9/2021,1,
+-75.15498461,39.96358545,215,10th and Lemon Playground,2914,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.20644635,39.99936593,218,Ford Road Playground,2899,PPR_REC,C,N,N,,Located in West Fairmount Park,Programs 9/2021,1,
+-75.18449427,39.97959913,219,Howard McCall Sr Playground,797,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.18693723,39.99500863,221,Strawberry Mansion Playground,808,PPR_REC,C,N,N,,,Programs 9/2021,1,
+-75.19081262,39.96503672,223,33rd and Wallace Playground,1801,PPR_REC,C,Y,N,,,Programs 9/2021,1,
+-75.02189588,40.05729491,163,Holme Crispin Park,1633,PPR_REC,D,Y,N,0, ,Programs 9/2021,0,0
+-75.11298601,40.02210566,165,Lauretha Vaird Fields,1890,NON_PPR_REC,D,Y,Y,0,"Located in Tacony Creek Park, Boys and Girls Club Programs",Programs 9/2021,0,0
+-75.11568438,40.03987896,166,Hammond and Nedro Fields,1866,PPR_REC,D,Y,N,0,Located in Tacony Creek Park,Programs 9/2021,0,0
+-75.16805868,40.01920309,168,Fernhill Park,833,PPR_REC,D,Y,N,0, ,Programs 9/2021,0,0
+-75.20320885,40.02196707,170,David P Montgomery Field,3065,PPR_REC,D,Y,N,0,Located in Wissahickon Valley Park.,Programs 9/2021,0,0
+-75.02095803,40.04406173,174,Frankford and Solly Playground,2934,PPR_REC,D,Y,N,0,Pavilion building on site. Located in Pennypack Park.,Programs 9/2021,0,0
+-75.14632245,39.98951882,181,Veterans Memorial Recreation Center of the Nineteenth Ward,1198,PPR_REC,D,N,N,,"School District Property, PPR Programs",Programs 9/2021,0,0
+-75.13050736,39.99967322,196,Jose Manuel Collazo Park,636,PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.16545638,40.00651478,200,22nd and Ontario Park,1185,PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.05126995,40.091887,203,CCA Baldi School Playground,2808,NON_PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.06708941,40.08075934,204,Verree and Susquehanna Playground,1371,PPR_REC,D,N,N,,Located within Pennypack Park,Programs 9/2021,0,0
+-75.02054398,40.03898212,206,Torresdale and Enfield Fields,1370,PPR_REC,D,N,N,,Located within Pennypack Park,Programs 9/2021,0,0
+-75.19468263,39.92149318,208,29th and Passyunk Park,432,PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.24682253,39.94523727,212,61st and Cobbs Creek Park,3481,PPR_REC,D,N,N,,Located in Cobbs Creek Park,Programs 9/2021,0,0
+-75.23814712,39.94100053,213,Whitby Avenue Playground,1372,PPR_REC,D,N,N,,Located in Cobbs Creek Park,Programs 9/2021,0,0
+-75.14240098,39.97167203,214,Thomas Hart Park,578,PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.18188732,39.96873683,217,26th and Pennsylvania Playground,3458,PPR_REC,D,N,N,,Located in East Fairmount Park,Programs 9/2021,0,0
+-75.18171551,39.94883674,220,Schuylkill River Park,2992,PPR_REC,D,N,N,,Markward is located within this park.,Programs 9/2021,0,0
+-75.1628626,39.97273266,222,Stiles Street Play Lot,945,NON_PPR_REC,D,N,N,,,Programs 9/2021,0,0
+-75.11913585,39.99503034,224,McPherson Square,576,PPR_REC,D,N,N,,,Programs 9/2022,0,0
+-75.15744514,39.92298858,8,James Otis Ford Playground,958,NON_PPR_REC,NA,Y,Y,43,PAL Programs and Staffs,Programs 9/2021,,
+-75.19536151,39.98161137,140,Smith Memorial Playground and Playhouse,1955,NON_PPR_REC,NA,Y,N,129,"Located in East Fairmount Park. Programmed by Smith Memorial Trust, Wells Fargo Trustee.",Programs 9/2021,,
+-75.11234902,40.00160124,152,Ramblers Recreation Center,1937,NON_PPR_REC,NA,Y,Y,0,Kensington Ramblers PAL Center (aka Harrowgate),Programs 9/2021,,
+-75.03992289,40.0426712,164,Lincoln Indoor Pool,3471,POOL,NA,Y,N,0,School District Property/Facility;PPR Programs (Ramp),Programs 9/2021,,
+-75.20287273,40.05200499,167,Allens Lane Art Center,1807,NON_PPR_REC,NA,Y,N,0, ,Programs 9/2021,,
+-75.10455182,40.00384922,184,Juniata Park Older Adult Center,3466,OLDER_ADULT_CENTER,NA,Y,N,, ,Programs 9/2021,,
+-75.05915831,40.08750802,185,Pennypack Environmental Center,3462,ENVIRONMENTAL_EDUCATION_CENTER,NA,Y,N,,Located within Pennypack Park,Programs 9/2021,,
+-75.23387145,40.08130529,186,Wissahickon Environmental Center,3456,ENVIRONMENTAL_EDUCATION_CENTER,NA,Y,N,,Located within the Andorra Natural Area which is within Wissahickon Valley Park,Programs 9/2021,,
+-75.25041458,39.95198692,187,Cobbs Creek Community Environmental Center,1835,ENVIRONMENTAL_EDUCATION_CENTER,NA,Y,N,,Located in Cobbs Creek Park.,Programs 9/2021,,
+-75.16958498,39.97992947,188,Dr Martin Luther King Jr Older Adult Center,3078,OLDER_ADULT_CENTER,NA,Y,N,, ,Programs 9/2021,,
+-75.15421001,40.06437774,194,West Oak Lane Senior Center,3477,OLDER_ADULT_CENTER,NA,Y,N,,Not City-Owned Property,Programs 9/2021,,
+-75.1381381,40.00072425,195,Mann Older Adult Center,1040,OLDER_ADULT_CENTER,NA,Y,Y,,Located in same building as Rivera.,Programs 9/2021,,
+-75.17160924,39.98220677,201,Montgomery and Croskey Play Lot,614,NON_PPR_REC,NA,N,N,,,Programs 9/2021,,
+-75.05131603,40.06252311,205,Northeast Older Adult Center,3087,OLDER_ADULT_CENTER,NA,Y,N,,Located on same property as George C Pelbano Playground,Programs 9/2021,,
+-75.16253172,39.93136989,207,South Philadelphia Older Adult Center,964,OLDER_ADULT_CENTER,NA,Y,N,,,Programs 9/2021,,
+-75.20774577,39.97905047,216,Kelly Pool,1278,POOL,NA,N,N,,Located in West Fairmount Park,Programs 9/2021,,

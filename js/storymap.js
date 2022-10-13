@@ -141,6 +141,10 @@ var style = {
     'parks': {
       'type': 'geojson',
       'data': '/data/parks.json'
+    },
+    'sites': {
+      'type': 'geojson',
+      'data': '/data/sites.geojson'
     }
     // 'priority-areas': {
     //   'type': 'vector',
@@ -181,6 +185,9 @@ var style = {
           ['==', ['get', 'Priority_Level'], "Highest Priority"], .5,
           0
         ]
+      },
+      'layout': {
+        'visibility': 'none'
       }
     },
     {
@@ -193,7 +200,7 @@ var style = {
         'line-width': 1
       },
       'layout': {
-
+        'visibility': 'none'
       }
     },
     {
@@ -286,11 +293,39 @@ var style = {
       'source': 'parks',
       'type': 'fill',
       'paint': {
-        'fill-opacity': .4,
-        'fill-color': '#65c144'
+        'fill-opacity': .7,
+        'fill-color': '#c1c9cc'
       },
       'layout': {
         'visibility': 'none'
+      }
+    },
+    {
+      'id': 'staff-circle',
+      'source': 'sites',
+      'type': 'circle',
+      'paint': {
+        'circle-radius': 10,
+        'circle-color': 'green',
+        'circle-opacity': .4
+      },
+      'layout': {
+        'visibility': 'none'
+      }
+    },
+    {
+      'id': 'staff-label',
+      'source': 'sites',
+      'type': 'symbol',
+      'paint': {
+
+      },
+      'layout': {
+        'visibility': 'none',
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        'text-allow-overlap': true,
+        'text-field': ['get', 'Staff FT (program and maintenance)'],
+        'text-size': 11
       }
     }
   ],
@@ -312,7 +347,8 @@ var map = new maplibregl.Map(options);
 
 var layers = {
   temp: ['neighborhoods-fill', 'neighborhoods-outline', 'neighborhoods-label'],
-  canopy: ['priority-fill', 'priority-outline', 'parks-fill']
+  canopy: ['priority-fill', 'priority-outline', 'parks-fill'],
+  staff: ['staff-circle', 'staff-label']
 };
 
 const markers = {};
@@ -374,7 +410,7 @@ var chapters = {
     },
     'program-staff': {
       mapOptions: mapDefault,
-      // mapFunction: drawStaff
+      mapFunction: drawStaff
     },
     'temperature-map': {
       mapOptions: mapDefault,
@@ -752,6 +788,7 @@ function showTemperatureMap() {
 
   if (map.getSource('priority-areas')) {
     changeVisibility('canopy', 'none');
+    changeVisibility('staff', 'none');
     // service.disableRequests();
   }
 
@@ -763,6 +800,7 @@ function showTemperatureMap() {
 function drawPriorityAreas() {
   // remove temperature layers
   changeVisibility('temp', 'none');
+  changeVisibility('staff', 'none');
 
   priorityLegendDraw();
   // map.setLayoutProperty('neighborhoods-fill', 'visibility', 'none');
@@ -840,7 +878,7 @@ function drawStaff() {
   document.getElementById('legend-ctrl').style.display = 'none';
 
   // removeMarkers();
-
+  changeVisibility('staff', 'visible');
 
   // remove temperature and canopy layers
   changeVisibility('temp', 'none');
