@@ -362,6 +362,30 @@ var style = {
       'layout': {
         'line-cap': 'round'
       }
+    },
+    {
+      'id': 'area-labels',
+      'source': 'area-circles',
+      'type': 'symbol',
+      'paint': {
+        'text-color': '#444',
+        'text-halo-width': 1,
+        'text-halo-color': '#ccc',
+        'text-halo-blur': 2
+      },
+      'layout': {
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        'text-field': ['get','name'],
+        'text-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          10, 12,
+          13, 16,
+          15, 36
+        ],
+        'text-padding': 5
+      }
     }
   ],
   "glyphs": "/fonts/{fontstack}/{range}.pbf"
