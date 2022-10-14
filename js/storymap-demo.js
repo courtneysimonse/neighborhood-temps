@@ -129,26 +129,26 @@ var style = {
     },
     'neighborhoods': {
       'type': 'geojson',
-      'data': "/s/neighborhoods.json",
+      'data': "/data/neighborhoods.json",
       'promoteId': 'GEOID10'
     },
     'priority-areas': {
       'type': 'geojson',
-      'data': '/s/priority_areas.geojson',
+      'data': '/data/priority_areas.geojson',
       'promoteId': 'GEOID10',
       'filter': ['!=', ['get', 'Priority_Level'], "Lowest Priority"]
     },
     'parks': {
       'type': 'geojson',
-      'data': '/s/parks.json'
+      'data': '/data/parks.json'
     },
     'sites': {
       'type': 'geojson',
-      'data': '/s/sites.geojson'
+      'data': '/data/sites.geojson'
     },
     'area-circles': {
       'type': 'geojson',
-      'data': '/s/areas.geojson'
+      'data': '/data/areas.geojson'
     }
     // 'priority-areas': {
     //   'type': 'vector',
