@@ -24,7 +24,7 @@ section:last-child {
 .intro, .closing {
   opacity: 1;
   background-color: whitesmoke;
-  position: relative;
+  position: inherit;
   z-index: 1000;
 }
 
@@ -32,12 +32,12 @@ section:last-child {
   margin: 0;
   padding: 0;
   display: block;
-  position: absolute;
+  position: relative;
 }
 
 .scroll-map {
   position: relative;
-  display: inline;
+  display: inline-block;
   /* overflow: hidden;
   height: 100vh; */
 }
@@ -48,6 +48,8 @@ section:last-child {
   bottom: 0;
   width: 60%;
   height: 100vh;
+  display: inherit;
+  float: left;
 }
 
 .marker {
