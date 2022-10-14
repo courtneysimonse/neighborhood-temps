@@ -823,12 +823,6 @@ function showTemperatureMap() {
   document.querySelector('input[type="checkbox"]:checked ~ label').classList = 'legendIconToggle temps';
 
 
-  // if (document.querySelector('input[type="checkbox"]:checked ~ #legend-contents') != null) {
-  //   document.querySelector('input[type="checkbox"]:checked ~ #legend-contents').style.transform = "translateY(-210px)";
-  //   document.querySelector('input[type="checkbox"]:checked ~ label').style.transform = "translateY(-210px)";
-  // }
-
-
   if (map.getSource('priority-areas')) {
     changeVisibility('canopy', 'none');
     changeVisibility('staff', 'none');
