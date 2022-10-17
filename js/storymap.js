@@ -536,29 +536,6 @@ var chapters = {
     // }
 };
 
-map.on('load', () => {
-  //var service;
-
-
-
-  //Function to run the story
-  // On every scroll event, check which element is on screen
-  window.onscroll = function() {
-      var chapterNames = Object.keys(chapters);
-      for (var i = 0; i < chapterNames.length; i++) {
-          var chapterName = chapterNames[i];
-          if (isElementOnScreen(chapterName)) {
-              setActiveChapter(chapterName);
-              break;
-          }
-      }
-  };
-
-
-})
-
-
-
 
 // add geocoder for address search
 var geocoder_api = {
@@ -729,6 +706,20 @@ class legendControl {
 map.addControl(new legendControl(), 'bottom-left');
 
 map.on("load", function () {
+
+  //Function to run the story
+  // On every scroll event, check which element is on screen
+  window.onscroll = function() {
+      var chapterNames = Object.keys(chapters);
+      for (var i = 0; i < chapterNames.length; i++) {
+          var chapterName = chapterNames[i];
+          if (isElementOnScreen(chapterName)) {
+              setActiveChapter(chapterName);
+              break;
+          }
+      }
+  };
+
   var slider = document.getElementById('slider')
 
   // update slider
