@@ -125,7 +125,9 @@ var style = {
       ],
       'tileSize': 256,
       'attribution':
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        `<a href="https://www.stadiamaps.com/">&copy; Stadia Maps</a>
+        <a href="https://openmaptiles.org/">&copy; OpenMapTiles</a>
+        <a href="https://www.openstreetmap.org/about/">&copy; OpenStreetMap contributors</a>.`
     },
     'neighborhoods': {
       'type': 'geojson',
