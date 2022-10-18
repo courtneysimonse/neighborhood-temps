@@ -545,7 +545,8 @@ map.on('load', () => {
 
   //Function to run the story
   // On every scroll event, check which element is on screen
-  window.onscroll = function() {
+  document.onscroll = function() {
+    console.log("scroll");
       var chapterNames = Object.keys(chapters);
       for (var i = 0; i < chapterNames.length; i++) {
           var chapterName = chapterNames[i];

@@ -145,6 +145,18 @@ input[type="checkbox"]:checked ~ label.canopy {
   .legend-ctrl {
     display: none;
   }
+  #mapid {
+    width: 100%;
+    height: 50vh;
+    float: none;
+  }
+  #features {
+    width: 100%;
+    float: right;
+  }
+  section {
+    min-height: 30vh;
+  }
 }
 
 .legend-ctrl {
