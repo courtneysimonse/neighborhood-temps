@@ -155,7 +155,7 @@ var style = {
     // }
   ],
   "glyphs": "/fonts/{fontstack}/{range}.pbf",
-  "sprite": "/sprites/sprites"
+  "sprite": "https://stunning-choux-3558b1.netlify.app/sprites/sprites"
 }
 
 // Philly map options
