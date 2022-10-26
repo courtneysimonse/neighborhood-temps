@@ -20,6 +20,19 @@ colors = [
   "#67000d",
 ]
 
+amenityFilter = ["basketball",
+      "water",
+      "swimming",
+      "tennis",
+      "soccer",
+      "baseball",
+      "playground",
+      "school",
+      "picnic-sites",
+      "harbor",
+      "garden"
+    ];
+
 var style = {
   'version': 8,
   'sources': {
@@ -45,6 +58,7 @@ var style = {
     'park-amenities': {
       'type': 'geojson',
       'data': './data/ppr_datapts.geojson',
+      'generateId': true,
       'filter': ["any",
           ["==", ["get", "YEAR"], 2022],
           ["==", ["get", "YEAR"], null]
@@ -67,14 +81,22 @@ var style = {
       'id': 'park-amenities',
       'type': 'symbol',
       'source': 'park-amenities',
+      'filter': ["==", ["get", "icon"], amenityFilter[0]],
       'layout': {
         'icon-image': "{icon}",
         'icon-size': 1,
         'icon-padding': 0,
-        'icon-allow-overlap': true
+        'icon-allow-overlap': true,
+        'symbol-sort-key': ["get", "sort"]
+        // 'symbol-z-order': 'viewport-y'
       },
       'paint': {
-        'icon-color': 'green'
+        // 'icon-color': 'green',
+        // 'icon-opacity': ["case",
+        //     ["boolean", ["feature-state", 'visible'], false],
+        //     1,
+        //     0
+        //   ]
       }
     },
     {
@@ -260,131 +282,35 @@ map.addControl(
     })
 );
 
-// // setup legend
-// class legendControl {
-//     onAdd(map) {
-//       this._map = map;
-//       this._container = document.createElement('div');
-//       this._container.className = 'maplibregl-ctrl legend-ctrl';
-//       this._container.id = 'legend-ctrl'
-//
-//       this._container.insertAdjacentHTML("afterbegin",`<input type="checkbox" class="openLegend" id="openLegend" checked>
-// 			  <label for="openLegend" class="legendIconToggle">
-// 			    <div class="spinner diagonal part-1"></div>
-// 			    <div class="spinner horizontal"></div>
-// 			    <div class="spinner diagonal part-2"></div>
-// 			  </label>`)
-//
-//       const containerDiv = document.createElement('div');
-//       containerDiv.id = "legend-contents";
-//
-//       const uiDiv = document.createElement('div');
-//       uiDiv.classList = "ui-controls";
-//
-//       const slider = document.createElement('div');
-//       slider.id = "slider";
-//       uiDiv.appendChild(slider);
-//
-//       noUiSlider.create(slider, {
-//       // Create two timestamps to define a range.
-//           range: {
-//               min: 75,
-//               max: 95
-//           },
-//
-//           orientation: 'vertical',
-//           direction: 'rtl',
-//           connect: 'lower',
-//
-//       // Steps of one degree
-//           step: 1,
-//
-//       // handle starting positions.
-//           start: [minTemp],
-//
-//           tooltips: [true],
-//
-//           // pips: {
-//           //   mode: 'positions',
-//           //   values: [0, 25, 50, 75, 100],
-//           //   density: 4
-//           // },
-//
-//       // No decimals
-//           format: {
-//             to: function (value) {
-//               return Math.floor(Number(value));
-//             },
-//             from: function (value) {
-//               return Math.floor(Number(value));
-//             }
-//           }
-//       });
-//
-//       const legendDiv = document.createElement('div');
-//       legendDiv.classList = "legend"
-//       let content = `<ul>`;
-//
-//       for (var i = 0; i < breaks.length - 1; i++) {
-//
-//         var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
-//             breaks[i].toLocaleString() + '&ndash;' +
-//             breaks[i + 1].toLocaleString() + '</li>'
-//         content += classRange;
-//
-//       }
-//
-//       content += '</ul>';
-//       legendDiv.innerHTML = content;
-//
-//       const legendTitle = document.createElement('h3');
-//       legendTitle.innerText = "High Temperature";
-//       containerDiv.appendChild(legendTitle);
-//       const sliderDesc = document.createElement('p');
-//       sliderDesc.innerText = "Set the high temperature for the coolest neighborhood:";
-//       containerDiv.appendChild(sliderDesc);
-//
-//       containerDiv.appendChild(uiDiv)
-//       containerDiv.appendChild(legendDiv)
-//
-//       const sourceP = document.createElement('p');
-//       sourceP.innerHTML = `(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)`
-//       containerDiv.appendChild(sourceP)
-//
-//       this._container.appendChild(containerDiv)
-//       return this._container;
-//     }
-//     onRemove() {
-//       this._container.parentNode.removeChild(this._container);
-//       this._map = undefined;
-//     }
-// }
-//
-// map.addControl(new legendControl(), 'bottom-left');
 
+var numAmenities = 1;
 map.on("load", function () {
-  // var slider = document.getElementById('slider')
-  //
-  // // update slider
-  // slider.noUiSlider.on('update', function (value) {
-  //
-  //   // console.log(value);
-  //   minTemp = +value;
-  //
-  //   updateLegend(+value);
-  // });
-  //
-  // slider.noUiSlider.on('set', function (value) {
-  //   map.setLayoutProperty('neighborhoods-label', 'text-field',
-  //   ['number-format',
-  //     ['+', ['get','AvgTempDiff_F'], +value+14],
-  //     { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
-  //   ])
-  //
-  //
-  // });
 
-})
+  console.log(map.getLayer('park-amenities'));
+
+  setInterval(setFilter, 2500);
+
+
+
+});
+
+function setFilter() {
+
+  var newFilter = [];
+  newFilter.push("any");
+
+  for (var i = 0; i < numAmenities; i++) {
+    newFilter.push(["==", ["get", "icon"], amenityFilter[i]])
+  }
+
+  map.setFilter('park-amenities', newFilter);
+
+  numAmenities++;
+
+  if (numAmenities == amenityFilter.length) {
+    numAmenities = 0;
+  }
+}
 
 // function updateLegend(value) {
 //   for (var i = 0; i < 8; i++) {
