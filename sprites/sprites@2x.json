@@ -6,32 +6,60 @@
     "x": 0,
     "y": 0
   },
-  "picnic-site": {
+  "garden": {
     "height": 42,
     "pixelRatio": 2,
     "width": 42,
     "x": 42,
     "y": 0
   },
-  "playground": {
+  "harbor": {
     "height": 42,
     "pixelRatio": 2,
     "width": 42,
     "x": 0,
     "y": 42
   },
-  "swimming": {
+  "picnic-site": {
     "height": 42,
     "pixelRatio": 2,
     "width": 42,
     "x": 42,
     "y": 42
   },
-  "tennis": {
+  "playground": {
     "height": 42,
     "pixelRatio": 2,
     "width": 42,
     "x": 84,
     "y": 0
+  },
+  "school": {
+    "height": 42,
+    "pixelRatio": 2,
+    "width": 42,
+    "x": 126,
+    "y": 0
+  },
+  "swimming": {
+    "height": 42,
+    "pixelRatio": 2,
+    "width": 42,
+    "x": 84,
+    "y": 42
+  },
+  "tennis": {
+    "height": 42,
+    "pixelRatio": 2,
+    "width": 42,
+    "x": 126,
+    "y": 42
+  },
+  "water": {
+    "height": 42,
+    "pixelRatio": 2,
+    "width": 42,
+    "x": 0,
+    "y": 84
   }
 }

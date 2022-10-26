@@ -61,7 +61,7 @@ var style = {
       'source': 'park-amenities',
       'layout': {
         'icon-image': 'swimming',
-        'icon-size': 2,
+        'icon-size': 1,
         'icon-padding': 1
       },
       'paint': {
