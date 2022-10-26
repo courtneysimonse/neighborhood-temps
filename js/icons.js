@@ -44,7 +44,15 @@ var style = {
     },
     'park-amenities': {
       'type': 'geojson',
-      'data': './data/ppr_datapts.geojson'
+      'data': './data/ppr_datapts.geojson',
+      'filter': ["any",
+          ["==", ["get", "YEAR"], 2022],
+          ["==", ["get", "YEAR"], null]
+        ]
+    },
+    'trails': {
+      'type': 'geojson',
+      'data': './data/ppr_lines.geojson'
     }
   },
   'layers': [
@@ -67,6 +75,19 @@ var style = {
       },
       'paint': {
         'icon-color': 'green'
+      }
+    },
+    {
+      'id': 'trails',
+      'type': 'line',
+      'source': 'trails',
+      'paint': {
+        'line-width': .5,
+        'line-color': 'green',
+        'line-dasharray': [10,2]
+      },
+      'layout': {
+
       }
     }
     // {
