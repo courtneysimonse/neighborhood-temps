@@ -60,9 +60,10 @@ var style = {
       'type': 'symbol',
       'source': 'park-amenities',
       'layout': {
-        'icon-image': 'swimming',
+        'icon-image': "{icon}",
         'icon-size': 1,
-        'icon-padding': 1
+        'icon-padding': 0,
+        'icon-allow-overlap': true
       },
       'paint': {
         'icon-color': 'green'
