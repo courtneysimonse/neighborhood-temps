@@ -288,9 +288,7 @@ map.on("load", function () {
 
   console.log(map.getLayer('park-amenities'));
 
-  setInterval(setFilter, 2500);
-
-
+  setInterval(setFilter, 2000);
 
 });
 
