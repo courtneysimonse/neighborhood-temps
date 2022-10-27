@@ -20,18 +20,15 @@ colors = [
   "#67000d",
 ]
 
-amenityFilter = ["basketball",
-      "water",
-      "swimming",
-      "tennis",
-      "soccer",
-      "baseball",
-      "playground",
-      "school",
-      "picnic-sites",
-      "harbor",
-      "garden"
-    ];
+amenityFilter = [
+  ["all"],
+  ["basketball"],
+  ["water", "swimming", "harbor"],
+  ["tennis"],
+  ["soccer", "baseball"],
+  ["playground", "school", "garden"],
+  ["picnic-site"]
+];
 
 var style = {
   'version': 8,
@@ -60,14 +57,18 @@ var style = {
       'data': './data/ppr_datapts.geojson',
       'generateId': true,
       'filter': ["any",
-          ["==", ["get", "YEAR"], 2022],
+          ["==", ["get", "YEAR"], "2022"],
           ["==", ["get", "YEAR"], null]
         ]
     },
     'trails': {
       'type': 'geojson',
       'data': './data/ppr_lines.geojson'
-    }
+    },
+    'parks': {
+      'type': 'geojson',
+      'data': './data/parks.json'
+    },
   },
   'layers': [
     {
@@ -78,10 +79,38 @@ var style = {
       'maxzoom': 19
     },
     {
+      'id': 'parks-fill',
+      'source': 'parks',
+      'type': 'fill',
+      'paint': {
+        'fill-opacity': .7,
+        'fill-color': '#c1c9cc'
+      },
+      'layout': {
+        // 'visibility': 'none'
+      }
+    },
+    {
+      'id': 'parks-label',
+      'source': 'parks',
+      'type': 'symbol',
+      'minzoom': 11,
+      'paint': {
+        'text-opacity': .7
+      },
+      'layout': {
+        // 'visibility': 'none',
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        // 'text-allow-overlap': true,
+        'text-field': ['get', 'PUBLIC_NAM'],
+        'text-size': 8
+      }
+    },
+    {
       'id': 'park-amenities',
       'type': 'symbol',
       'source': 'park-amenities',
-      'filter': ["==", ["get", "icon"], amenityFilter[0]],
+      // 'filter': ["==", ["get", "icon"], amenityFilter[0]],
       'layout': {
         'icon-image': "{icon}",
         'icon-size': 1,
@@ -283,7 +312,7 @@ map.addControl(
 );
 
 
-var numAmenities = 1;
+var indexAmenities = 0;
 map.on("load", function () {
 
   console.log(map.getLayer('park-amenities'));
@@ -294,19 +323,26 @@ map.on("load", function () {
 
 function setFilter() {
 
-  var newFilter = [];
-  newFilter.push("any");
+  if (indexAmenities == 0) {
+    map.setFilter('park-amenities', null);
+  } else {
+    var newFilter = [];
+    newFilter.push("any");
 
-  for (var i = 0; i < numAmenities; i++) {
-    newFilter.push(["==", ["get", "icon"], amenityFilter[i]])
+    for (var i = 0; i < amenityFilter[indexAmenities].length; i++) {
+      newFilter.push(["==", ["get", "icon"], amenityFilter[indexAmenities][i]])
+    }
+
+    console.log(newFilter);
+    map.setFilter('park-amenities', newFilter);
   }
 
-  map.setFilter('park-amenities', newFilter);
 
-  numAmenities++;
 
-  if (numAmenities == amenityFilter.length) {
-    numAmenities = 0;
+  indexAmenities++;
+
+  if (indexAmenities == amenityFilter.length) {
+    indexAmenities = 0;
   }
 }
 
