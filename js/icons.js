@@ -27,7 +27,8 @@ var amenityFilter = [
   ["basketball"],
   ["water", "swimming", "harbor"],
   ["tennis"],
-  ["soccer", "baseball"],
+  ["soccer"],
+  ["baseball"],
   ["playground", "school", "garden"],
   ["picnic-site"]
 ];
