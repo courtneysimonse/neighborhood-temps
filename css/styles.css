@@ -126,38 +126,6 @@ h1 {
     font-weight: bold;
 }
 
-
-#slider {
-  height: 150px;
-  width: 10px;
-}
-
-.noUi-value {
-  color: #001323;
-  padding-top: 2px;
-}
-
-.noUi-handle {
-    box-shadow: none;
-}
-
-.noUi-connect {
-    background: #67000d;
-}
-
-.noUi-vertical .noUi-handle {
-  height: 18px;
-  width: 18px;
-  right: -5px;
-  border-radius: 9px;
-}
-
-/* Hide markers on slider handles */
-.noUi-handle::before,
-.noUi-handle::after {
-    display: none;
-}
-
 .hidden {
   visibility: hidden;
 }
@@ -233,33 +201,75 @@ h1 {
     border-radius: 5px;
 }
 
-input[type="checkbox"]:checked ~ #legend-contents {
+input[type="checkbox"]:checked.openLegend ~ #legend-contents {
     transform: translateY(-210px);
 }
 
-input[type="checkbox"]:checked ~ label {
+input[type="checkbox"]:checked.openLegend ~ label {
     transform: translateY(-210px);
 }
 
-input[type=checkbox] {
+input[type=checkbox].openLegend {
     transition: all 0.3s;
     box-sizing: border-box;
     display: none;
 }
-input[type=checkbox]:checked ~ .legendIconToggle > .horizontal {
+input[type=checkbox]:checked.openLegend ~ .legendIconToggle > .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     opacity: 0;
 }
-input[type=checkbox]:checked ~ .legendIconToggle > .diagonal.part-1 {
+input[type=checkbox]:checked.openLegend ~ .legendIconToggle > .diagonal.part-1 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(135deg);
     margin-top: 8px;
 }
-input[type=checkbox]:checked ~ .legendIconToggle > .diagonal.part-2 {
+input[type=checkbox]:checked.openLegend ~ .legendIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+
+
+.layers-ctrl {
+  background-color: whitesmoke;
+  color: #333333;
+  padding: 3px 3px 3px 3px;
+  font-family: madefor-display,helveticaneuew01-45ligh,helveticaneuew02-45ligh,helveticaneuew10-45ligh,sans-serif;
+  font-size: 14px;
+  width: 180px;
+}
+
+.layers-ctrl h3 {
+  padding: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 0px;
+}
+
+.layers-ctrl div {
+padding: 4px 0px 4px 3px;
+}
+
+.layers-ctrl input {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.layers-ctrl select {
+  width: 120px;
+}
+
+/* .control-layers-selector {
+  margin-top: 2px;
+  position: relative;
+  top: 1px;
+} */
+
+.legendColor {
+  width: 20px;
+  height: 20px;
+  float: left;
 }
