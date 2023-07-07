@@ -25,7 +25,7 @@ var style = {
       },
       'park-amenities': {
         'type': 'geojson',
-        'data': '../data/ppr_datapts.geojson',
+        'data': '../data/ppr_datapts_2022.geojson',
         'generateId': true,
         'filter': ["any",
             ["==", ["get", "YEAR"], "2022"],
