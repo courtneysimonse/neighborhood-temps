@@ -92,8 +92,7 @@ var categories = [
   "playground",
   "school",
   "garden",
-  "picnic-site",
-  "heat map"
+  "picnic-site"
 ]
 
 var amenityFilter = [
@@ -109,7 +108,7 @@ var amenityFilter = [
 
 const layerStatus = {};
 categories.forEach(c => {
-    layerStatus[c] = true;
+    layerStatus[c] = false;
 })
 
 map.addControl(new layersControl(categories), 'bottom-right')
@@ -143,7 +142,7 @@ function layersToggle(name) {
               }
           }
       }
-
+      
       map.setFilter('park-amenities', 
         ['in', 'icon', ...layersShown]
         );

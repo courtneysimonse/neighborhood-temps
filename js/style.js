@@ -27,10 +27,6 @@ var style = {
         'type': 'geojson',
         'data': '../data/ppr_datapts_2022.geojson',
         'generateId': true,
-        'filter': ["any",
-            ["==", ["get", "YEAR"], "2022"],
-            ["==", ["get", "YEAR"], null]
-          ],
         // 'attribution': `Swing by Emfahmin from <a href="https://thenounproject.com/browse/icons/term/swing/" target="_blank" title="Swing Icons">Noun Project</a>`
       },
       'trails': {
@@ -167,7 +163,7 @@ var style = {
         'id': 'park-amenities',
         'type': 'symbol',
         'source': 'park-amenities',
-        // 'filter': ["==", ["get", "icon"], amenityFilter[0]],
+        'filter': ['==', 'icon', 'nothing'],
         'layout': {
           'icon-image': "{icon}",
           'icon-size': 1,

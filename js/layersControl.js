@@ -8,13 +8,13 @@ class layersControl {
         this._container = document.createElement('div');
         this._container.className = 'maplibregl-ctrl layers-ctrl';
         const categories = this.categories;
-        let content = '<h3>Legend</h3>';
+        let content = '<h3>Park Amenities</h3>';
         content += '<div>';
 
         categories.forEach(item => {
 
             content += '<label><div>';
-            content += '<input type="checkbox" class="control-layers-selector" id="check-' + item.replace(/\s/g,'') + '" checked="">';
+            content += '<input type="checkbox" class="control-layers-selector" id="check-' + item.replace(/\s/g,'') + '" />';
             // content += '<span><span class="legendColor" style="background:' + colors[item] + '"></span>';
 
             content += item + '</span>';
