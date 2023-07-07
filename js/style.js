@@ -20,7 +20,7 @@ var style = {
       },
       'neighborhoods': {
         'type': 'geojson',
-        'data': "./data/neighborhoods.json",
+        'data': "../data/neighborhoods.json",
         'promoteId': 'GEOID10'
       },
       'park-amenities': {
