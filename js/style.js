@@ -3308,7 +3308,7 @@ var style = {
 
     ],
     "glyphs": "/fonts/{fontstack}/{range}.pbf",
-    "sprite": "https://stunning-choux-3558b1.netlify.app/sprites/sprite"
+    "sprite": "https://mayor--stunning-choux-3558b1.netlify.app/sprites/sprite"
   }
 
   export default style
