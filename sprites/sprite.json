@@ -1,93 +1,254 @@
 {
-  "baseball": {
-    "width": 22,
-    "height": 22,
+  "alidade-smooth/circle-11": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 110,
+    "y": 90
+  },
+  "alidade-smooth/circle-alt-11": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
     "x": 0,
-    "y": 0,
-    "pixelRatio": 1
+    "y": 77
   },
-  "basketball": {
-    "width": 21,
-    "height": 21,
-    "x": 22,
-    "y": 0,
-    "pixelRatio": 1
+  "alidade-smooth/pin-standard": {
+    "height": 42,
+    "pixelRatio": 1,
+    "width": 26,
+    "x": 0,
+    "y": 0
   },
-  "garden": {
-    "width": 21,
-    "height": 21,
-    "x": 43,
-    "y": 0,
-    "pixelRatio": 1
+  "alidade-smooth/road_1": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 14,
+    "x": 0,
+    "y": 108
   },
-  "harbor": {
-    "width": 21,
-    "height": 21,
-    "x": 64,
-    "y": 0,
-    "pixelRatio": 1
-  },
-  "picnic-site": {
-    "width": 21,
-    "height": 21,
-    "x": 85,
-    "y": 0,
-    "pixelRatio": 1
-  },
-  "playground-orig": {
-    "width": 21,
-    "height": 21,
-    "x": 106,
-    "y": 0,
-    "pixelRatio": 1
-  },
-  "playground-swings": {
-    "width": 13,
-    "height": 15,
-    "x": 127,
-    "y": 0,
-    "pixelRatio": 1
-  },
-  "playground": {
+  "alidade-smooth/road_2": {
+    "height": 14,
+    "pixelRatio": 1,
     "width": 20,
+    "x": 0,
+    "y": 94
+  },
+  "alidade-smooth/road_3": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 26,
+    "x": 42,
+    "y": 71
+  },
+  "alidade-smooth/road_4": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 31,
+    "x": 66,
+    "y": 0
+  },
+  "alidade-smooth/road_5": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 36,
+    "x": 26,
+    "y": 28
+  },
+  "alidade-smooth/road_6": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 40,
+    "x": 26,
+    "y": 0
+  },
+  "alidade-smooth/star-11": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 17,
+    "y": 77
+  },
+  "alidade-smooth/star-alt-11": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 34,
+    "y": 85
+  },
+  "alidade-smooth/us-highway_1": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 51,
+    "y": 85
+  },
+  "alidade-smooth/us-highway_2": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 68,
+    "y": 93
+  },
+  "alidade-smooth/us-highway_3": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 105,
+    "y": 56
+  },
+  "alidade-smooth/us-interstate_1": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 85,
+    "y": 104
+  },
+  "alidade-smooth/us-interstate_2": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 102,
+    "y": 107
+  },
+  "alidade-smooth/us-interstate_3": {
+    "height": 17,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 105,
+    "y": 73
+  },
+  "alidade-smooth/us-state_1": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 17,
+    "x": 20,
+    "y": 102
+  },
+  "alidade-smooth/us-state_2": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 22,
+    "x": 88,
+    "y": 90
+  },
+  "alidade-smooth/us-state_3": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 27,
+    "x": 97,
+    "y": 0
+  },
+  "alidade-smooth/us-state_4": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 32,
+    "x": 63,
+    "y": 14
+  },
+  "alidade-smooth/us-state_5": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 37,
+    "x": 26,
+    "y": 14
+  },
+  "alidade-smooth/us-state_6": {
+    "height": 14,
+    "pixelRatio": 1,
+    "width": 42,
+    "x": 0,
+    "y": 42
+  },
+  "figma/baseball": {
+    "height": 22,
+    "pixelRatio": 1,
+    "width": 22,
+    "x": 62,
+    "y": 28
+  },
+  "figma/basketball": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 95,
+    "y": 14
+  },
+  "figma/garden": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 84,
+    "y": 35
+  },
+  "figma/harbor": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 105,
+    "y": 35
+  },
+  "figma/picnic-site": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 42,
+    "y": 50
+  },
+  "figma/playground": {
     "height": 16,
-    "x": 140,
-    "y": 0,
-    "pixelRatio": 1
+    "pixelRatio": 1,
+    "width": 20,
+    "x": 68,
+    "y": 77
   },
-  "school": {
-    "width": 21,
+  "figma/playground-orig": {
     "height": 21,
-    "x": 160,
-    "y": 0,
-    "pixelRatio": 1
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 63,
+    "y": 50
   },
-  "soccer": {
+  "figma/playground-swings": {
+    "height": 15,
+    "pixelRatio": 1,
     "width": 13,
+    "x": 37,
+    "y": 102
+  },
+  "figma/school": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 0,
+    "y": 56
+  },
+  "figma/soccer": {
     "height": 13,
-    "x": 181,
-    "y": 0,
-    "pixelRatio": 1
+    "pixelRatio": 1,
+    "width": 13,
+    "x": 88,
+    "y": 77
   },
-  "swimming": {
-    "width": 21,
+  "figma/swimming": {
     "height": 21,
-    "x": 194,
-    "y": 0,
-    "pixelRatio": 1
-  },
-  "tennis": {
+    "pixelRatio": 1,
     "width": 21,
-    "height": 21,
-    "x": 215,
-    "y": 0,
-    "pixelRatio": 1
+    "x": 21,
+    "y": 56
   },
-  "water": {
-    "width": 11,
+  "figma/tennis": {
+    "height": 21,
+    "pixelRatio": 1,
+    "width": 21,
+    "x": 84,
+    "y": 56
+  },
+  "figma/water": {
     "height": 11,
-    "x": 236,
-    "y": 0,
-    "pixelRatio": 1
+    "pixelRatio": 1,
+    "width": 11,
+    "x": 116,
+    "y": 14
   }
 }

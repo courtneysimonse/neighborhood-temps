@@ -1,0 +1,9 @@
+These source icons come from several sources including Maki (CC0)
+and the OpenMapTiles OSM Bright GL Style (CC-BY-4.0).
+
+https://labs.mapbox.com/maki-icons/
+https://github.com/openmaptiles/osm-bright-gl-style/blob/master/LICENSE.md
+
+The marker pin-standard.svg is owned by Stadia Maps.
+While you maintain an account with us, we grant you royalty-free use of
+this image when displayed on our maps.
