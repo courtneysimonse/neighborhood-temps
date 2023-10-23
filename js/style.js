@@ -3307,7 +3307,7 @@ var style = {
       },
 
     ],
-    "glyphs": "/fonts/{fontstack}/{range}.pbf",
+    "glyphs": "./fonts/{fontstack}/{range}.pbf",
     "sprite": "https://mayor--stunning-choux-3558b1.netlify.app/sprites/sprite"
   }
 
