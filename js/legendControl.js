@@ -43,14 +43,14 @@ class legendControl {
       legendDiv.innerHTML = content;
   
       const legendTitle = document.createElement('h3');
-      legendTitle.innerText = "High Temperature";
+      legendTitle.innerText = "Social Progress Index";
       containerDiv.appendChild(legendTitle);
   
       containerDiv.appendChild(uiDiv)
       containerDiv.appendChild(legendDiv)
   
       const sourceP = document.createElement('p');
-      sourceP.innerHTML = `(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)`
+      sourceP.innerHTML = `(Data from the <a href="https://controller.phila.gov/philadelphia-audits/progressphl/#/" target="_blank">ProgressPHL</a>)`
       containerDiv.appendChild(sourceP)
   
       this._container.appendChild(containerDiv)

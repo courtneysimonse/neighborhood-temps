@@ -191,7 +191,7 @@ h1 {
     left: 0;
     transform: translateY(50px);
     transition: transform 250ms ease-in-out;
-    height: 230px;
+    height: 150px;
     width: 150px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     padding: 6px 8px;
@@ -202,11 +202,11 @@ h1 {
 }
 
 input[type="checkbox"]:checked.openLegend ~ #legend-contents {
-    transform: translateY(-210px);
+    transform: translateY(-150px);
 }
 
 input[type="checkbox"]:checked.openLegend ~ label {
-    transform: translateY(-210px);
+    transform: translateY(-150px);
 }
 
 input[type=checkbox].openLegend {
