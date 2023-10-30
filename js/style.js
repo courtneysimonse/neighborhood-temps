@@ -3369,7 +3369,7 @@ var style = {
           'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
           'text-field': ['number-format',
             ['get','Social Progress Index'],
-            { 'min-fraction-digits': 0, 'max-fraction-digits': 0 }
+            { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
           ],
           'text-size': [
             'interpolate',
