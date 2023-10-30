@@ -3319,7 +3319,7 @@ var style = {
         'type': 'fill',
         'source': 'tracts',
         'paint': {
-          'fill-opacity': .3,
+          'fill-opacity': .2,
           'fill-color': ['case',
             ['<', ['get', 'Social Progress Index'], 40], 'red',
             ['<', ['get', 'Social Progress Index'], 50], 'orange',
@@ -3339,7 +3339,7 @@ var style = {
             ['<', ['get', 'Social Progress Index'], 60], 'yellow',
             'green'
           ],
-          'line-width': 2
+          'line-width': 1
         },
         'layout': {
   
