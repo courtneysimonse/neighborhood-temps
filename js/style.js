@@ -3242,6 +3242,9 @@ var style = {
             ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
             colors[6]
           ]
+        },
+        'layout': {
+          'visibility': 'none'
         }
       },
       {
@@ -3263,7 +3266,7 @@ var style = {
           'line-width': 2
         },
         'layout': {
-  
+          'visibility': 'none'
         }
       },
       {
@@ -3307,7 +3310,8 @@ var style = {
             13, 16,
             15, 36
           ],
-          'text-padding': 5
+          'text-padding': 5,
+          'visibility': 'none'
         }
       },
       {
@@ -3315,12 +3319,12 @@ var style = {
         'type': 'fill',
         'source': 'tracts',
         'paint': {
-          'fill-opacity': .6,
+          'fill-opacity': .3,
           'fill-color': ['case',
-            ['<', ['get', 'Social Progress Index'], 40], colors[0],
-            ['<', ['get', 'Social Progress Index'], 50], colors[1],
-            ['<', ['get', 'Social Progress Index'], 60], colors[2],
-            colors[3]
+            ['<', ['get', 'Social Progress Index'], 40], 'red',
+            ['<', ['get', 'Social Progress Index'], 50], 'orange',
+            ['<', ['get', 'Social Progress Index'], 60], 'yellow',
+            'green'
           ]
         }
       },
@@ -3330,10 +3334,10 @@ var style = {
         'source': 'tracts',
         'paint': {
           'line-color': ['case',
-            ['<', ['get', 'Social Progress Index'], 40], colors[0],
-            ['<', ['get', 'Social Progress Index'], 50], colors[1],
-            ['<', ['get', 'Social Progress Index'], 60], colors[2],
-            colors[3]
+            ['<', ['get', 'Social Progress Index'], 40], 'red',
+            ['<', ['get', 'Social Progress Index'], 50], 'orange',
+            ['<', ['get', 'Social Progress Index'], 60], 'yellow',
+            'green'
           ],
           'line-width': 2
         },
@@ -3341,7 +3345,43 @@ var style = {
   
         }
       },
-
+      {
+        'id': 'tracts-label',
+        'type': 'symbol',
+        'source': 'tracts',
+        'paint': {
+          'text-color': ['case',
+            ['<', ['get', 'Social Progress Index'], 40], 'red',
+            ['<', ['get', 'Social Progress Index'], 50], 'orange',
+            ['<', ['get', 'Social Progress Index'], 60], 'yellow',
+            'green'
+          ],
+          'text-halo-width': 1,
+          'text-halo-color': ['case',
+            ['<', ['get', 'Social Progress Index'], 40], '#fff',
+            ['<', ['get', 'Social Progress Index'], 50], '#111',
+            ['<', ['get', 'Social Progress Index'], 60], '#111',
+            '#fff'
+          ],
+          'text-halo-blur': 2
+        },
+        'layout': {
+          'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+          'text-field': ['number-format',
+            ['get','Social Progress Index'],
+            { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+          ],
+          'text-size': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            10, 12,
+            13, 16,
+            15, 36
+          ],
+          'text-padding': 5,
+        }
+      },
     ],
     "glyphs": "./fonts/{fontstack}/{range}.pbf",
     "sprite": "https://mayor--stunning-choux-3558b1.netlify.app/sprites/sprite"

@@ -113,7 +113,9 @@ categories.forEach(c => {
 
 map.addControl(new layersControl(categories), 'bottom-right')
 
-map.addControl(new legendControl(breaks, colors), 'bottom-left');
+// map.addControl(new legendControl(breaks, colors), 'bottom-left');
+
+map.addControl(new legendControl([0,40,50,60,100], ['red','orange','yellow','green']), 'bottom-left');
 
 map.on("load", function () {
 
