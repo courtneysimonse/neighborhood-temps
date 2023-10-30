@@ -10,7 +10,12 @@ var style = {
       },
       'neighborhoods': {
         'type': 'geojson',
-        'data': "../data/neighborhoods.json",
+        'data': "../data/neighborhoods.geojson",
+        'promoteId': 'GEOID10'
+      },
+      'tracts': {
+        'type': 'geojson',
+        'data': "../data/tracts.geojson",
         'promoteId': 'GEOID10'
       },
       'park-amenities': {
@@ -3303,6 +3308,37 @@ var style = {
             15, 36
           ],
           'text-padding': 5
+        }
+      },
+      {
+        'id': 'tracts-fill',
+        'type': 'fill',
+        'source': 'tracts',
+        'paint': {
+          'fill-opacity': .6,
+          'fill-color': ['case',
+            ['<', ['get', 'Social Progress Index'], 40], colors[0],
+            ['<', ['get', 'Social Progress Index'], 50], colors[1],
+            ['<', ['get', 'Social Progress Index'], 60], colors[2],
+            colors[3]
+          ]
+        }
+      },
+      {
+        'id': 'tracts-outline',
+        'type': 'line',
+        'source': 'tracts',
+        'paint': {
+          'line-color': ['case',
+            ['<', ['get', 'Social Progress Index'], 40], colors[0],
+            ['<', ['get', 'Social Progress Index'], 50], colors[1],
+            ['<', ['get', 'Social Progress Index'], 60], colors[2],
+            colors[3]
+          ],
+          'line-width': 2
+        },
+        'layout': {
+  
         }
       },
 
