@@ -65,15 +65,18 @@ h1 {
     float: left;
 }
 
-.legend-ctrl p {
+p.source {
     font-size: .75em;
     line-height: 1em;
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
 .legend {
   width: 155px;
+  display: flex;
+  column-gap: 15px;
+  margin-left: 12px;
 }
 
 .ui-controls::after, .legend::after {
@@ -95,17 +98,17 @@ h1 {
     margin: 0 20px 0 0;
 }
 
-.legend ul {
+.scale ul {
     list-style-type: none;
     padding: 0;
     margin: 12px 4px 0;
 }
 
-.legend li {
+.scale li {
     height: 22px;
 }
 
-.legend span {
+.scale span {
     width: 30px;
     height: 20px;
     float: left;
@@ -113,15 +116,7 @@ h1 {
     opacity: 0.6;
 }
 
-.legend p {
-  font-size: .9em;
-  font-weight: bold;
-  line-height: 1em;
-  color: #001323;
-}
-
-
-.legend label {
+.scale label {
     font-size: 1.1em;
     font-weight: bold;
 }
@@ -191,7 +186,7 @@ h1 {
     left: 0;
     transform: translateY(50px);
     transition: transform 250ms ease-in-out;
-    height: 150px;
+    height: 180px;
     width: 150px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     padding: 6px 8px;
@@ -202,11 +197,11 @@ h1 {
 }
 
 input[type="checkbox"]:checked.openLegend ~ #legend-contents {
-    transform: translateY(-130px);
+    transform: translateY(-160px);
 }
 
 input[type="checkbox"]:checked.openLegend ~ label {
-    transform: translateY(-130px);
+    transform: translateY(-160px);
 }
 
 input[type=checkbox].openLegend {
@@ -268,8 +263,6 @@ padding: 4px 0px 4px 3px;
   top: 1px;
 } */
 
-.legendColor {
-  width: 20px;
-  height: 20px;
-  float: left;
+.custom-popup > .maplibregl-popup-content {
+  background-color: #fff8;
 }

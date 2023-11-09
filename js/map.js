@@ -1,6 +1,6 @@
 import style from "./style.js";
 import layersControl from "./layersControl.js";
-import legendControl from "./legendControl.js";
+import LegendControl from "./LegendControl.js";
 import { breaks, colors } from "./constants.js";
 
 // Philly map options
@@ -115,7 +115,7 @@ map.addControl(
 
 // map.addControl(new legendControl(breaks, colors), 'bottom-left');
 
-map.addControl(new legendControl([0,40,50,60,100], ['red','orange','yellow','green']), 'bottom-left');
+map.addControl(new LegendControl([0,40,50,60,100], ['red','orange','yellow','green']), 'bottom-left');
 
 map.on("load", function () {
 
@@ -128,13 +128,19 @@ map.on("load", function () {
 
   // Create a popup, but don't add it to the map yet.
   const popup = new maplibregl.Popup({
-    closeButton: false,
-    closeOnClick: false
+    // closeButton: false,
+    // closeOnClick: false,
+    className: 'custom-popup'
   });
 
   // add SPI score to site points
-  // event to show popup on hover
-  map.on('mouseenter', 'parks-spi', (e) => {
+  map.on('mouseover', 'parks-spi', (e) => {
+    map.getCanvas().style.cursor = 'pointer';
+  })
+
+
+  // event to show popup on click
+  map.on('click', 'parks-spi', (e) => {
     // Change the cursor style as a UI indicator.
     map.getCanvas().style.cursor = 'pointer';
 
@@ -155,7 +161,7 @@ map.on("load", function () {
 
   map.on('mouseleave', 'parks-spi', () => {
       map.getCanvas().style.cursor = '';
-      popup.remove();
+      // popup.remove();
   });
 
   
