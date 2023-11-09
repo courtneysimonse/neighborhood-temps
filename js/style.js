@@ -3396,9 +3396,19 @@ var style = {
         'type': 'circle',
         'source': 'sites',
         'paint': {
-          'circle-color': '#6E8C03',
+          'circle-color': ['case',
+          ['<', ['get', 'Social Progress Index'], 40], 'red',
+          ['<', ['get', 'Social Progress Index'], 50], 'orange',
+          ['<', ['get', 'Social Progress Index'], 60], 'yellow',
+          'green'
+        ],
           'circle-opacity': .7,
-          'circle-stroke-color': '#465902',
+          'circle-stroke-color': ['case',
+          ['<', ['get', 'Social Progress Index'], 40], 'red',
+          ['<', ['get', 'Social Progress Index'], 50], 'orange',
+          ['<', ['get', 'Social Progress Index'], 60], 'yellow',
+          'green'
+        ],
           'circle-stroke-width': 1,
           'circle-radius': 6.5
         },
