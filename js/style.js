@@ -32,6 +32,10 @@ var style = {
         'type': 'geojson',
         'data': '../data/parks.json'
       },
+      'sites': {
+        'type': 'geojson',
+        'data': '../data/sites_spi.geojson'
+      },
     },
     'layers': [
       {
@@ -3168,7 +3172,7 @@ var style = {
         'type': 'fill',
         'paint': {
           'fill-opacity': .7,
-          'fill-color': '#c1c9cc'
+          'fill-color': '#CDD973'
         },
         'layout': {
           // 'visibility': 'none'
@@ -3190,130 +3194,131 @@ var style = {
           'text-size': 8
         }
       },
-      {
-        'id': 'park-amenities',
-        'type': 'symbol',
-        'source': 'park-amenities',
-        'filter': ['==', 'icon', 'nothing'],
-        'layout': {
-          'icon-image': "{icon}",
-          'icon-size': 1,
-          'icon-padding': 0,
-          'icon-allow-overlap': true,
-          'symbol-sort-key': ["get", "sort"]
-          // 'symbol-z-order': 'viewport-y'
-        },
-        'paint': {
-          // 'icon-color': 'green',
-          // 'icon-opacity': ["case",
-          //     ["boolean", ["feature-state", 'visible'], false],
-          //     1,
-          //     0
-          //   ]
-        }
-      },
+      // {
+      //   'id': 'park-amenities',
+      //   'type': 'symbol',
+      //   'source': 'park-amenities',
+      //   'filter': ['==', 'icon', 'nothing'],
+      //   'layout': {
+      //     'icon-image': "{icon}",
+      //     'icon-size': 1,
+      //     'icon-padding': 0,
+      //     'icon-allow-overlap': true,
+      //     'symbol-sort-key': ["get", "sort"]
+      //     // 'symbol-z-order': 'viewport-y'
+      //   },
+      //   'paint': {
+      //     // 'icon-color': 'green',
+      //     // 'icon-opacity': ["case",
+      //     //     ["boolean", ["feature-state", 'visible'], false],
+      //     //     1,
+      //     //     0
+      //     //   ]
+      //   }
+      // },
       {
         'id': 'trails',
         'type': 'line',
         'source': 'trails',
         'paint': {
           'line-width': 1,
-          'line-color': 'green',
-          'line-dasharray': [10,2]
+          'line-color': '#6E8C03',
+          'line-dasharray': [10,2],
+          'line-opacity': .4
         },
         'layout': {
   
         }
       },
-      {
-        'id': 'neighborhoods-fill',
-        'type': 'fill',
-        'source': 'neighborhoods',
-        'paint': {
-          'fill-opacity': .6,
-          'fill-color': ['case',
-            // min difference -13.99034496
-            // max difference 7.83785996
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
-            colors[6]
-          ]
-        },
-        'layout': {
-          'visibility': 'none'
-        }
-      },
-      {
-        'id': 'neighborhoods-outline',
-        'type': 'line',
-        'source': 'neighborhoods',
-        'paint': {
-          'line-color': ['case',
-            // min difference -13.99034496
-            // max difference 7.83785996
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
-            colors[6]
-          ],
-          'line-width': 2
-        },
-        'layout': {
-          'visibility': 'none'
-        }
-      },
-      {
-        'id': 'neighborhoods-label',
-        'type': 'symbol',
-        'source': 'neighborhoods',
-        'paint': {
-          'text-color': ['case',
-            // min difference -13.99034496
-            // max difference 7.83785996
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
-            colors[6]
-          ],
-          'text-halo-width': 1,
-          'text-halo-color': ['case',
-            // min difference -13.99034496
-            // max difference 7.83785996
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
-            ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
-            "#fff"
-          ],
-          'text-halo-blur': 2
-        },
-        'layout': {
-          'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
-          'text-field': ['number-format',
-            ['+', ['get','AvgTempDiff_F'], minTemp+14],
-            { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
-          ],
-          'text-size': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            10, 12,
-            13, 16,
-            15, 36
-          ],
-          'text-padding': 5,
-          'visibility': 'none'
-        }
-      },
+      // {
+      //   'id': 'neighborhoods-fill',
+      //   'type': 'fill',
+      //   'source': 'neighborhoods',
+      //   'paint': {
+      //     'fill-opacity': .6,
+      //     'fill-color': ['case',
+      //       // min difference -13.99034496
+      //       // max difference 7.83785996
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+      //       colors[6]
+      //     ]
+      //   },
+      //   'layout': {
+      //     'visibility': 'none'
+      //   }
+      // },
+      // {
+      //   'id': 'neighborhoods-outline',
+      //   'type': 'line',
+      //   'source': 'neighborhoods',
+      //   'paint': {
+      //     'line-color': ['case',
+      //       // min difference -13.99034496
+      //       // max difference 7.83785996
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+      //       colors[6]
+      //     ],
+      //     'line-width': 2
+      //   },
+      //   'layout': {
+      //     'visibility': 'none'
+      //   }
+      // },
+      // {
+      //   'id': 'neighborhoods-label',
+      //   'type': 'symbol',
+      //   'source': 'neighborhoods',
+      //   'paint': {
+      //     'text-color': ['case',
+      //       // min difference -13.99034496
+      //       // max difference 7.83785996
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+      //       colors[6]
+      //     ],
+      //     'text-halo-width': 1,
+      //     'text-halo-color': ['case',
+      //       // min difference -13.99034496
+      //       // max difference 7.83785996
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
+      //       ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
+      //       "#fff"
+      //     ],
+      //     'text-halo-blur': 2
+      //   },
+      //   'layout': {
+      //     'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+      //     'text-field': ['number-format',
+      //       ['+', ['get','AvgTempDiff_F'], minTemp+14],
+      //       { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+      //     ],
+      //     'text-size': [
+      //       'interpolate',
+      //       ['linear'],
+      //       ['zoom'],
+      //       10, 12,
+      //       13, 16,
+      //       15, 36
+      //     ],
+      //     'text-padding': 5,
+      //     'visibility': 'none'
+      //   }
+      // },
       {
         'id': 'tracts-fill',
         'type': 'fill',
@@ -3326,6 +3331,9 @@ var style = {
             ['<', ['get', 'Social Progress Index'], 60], 'yellow',
             'green'
           ]
+        },
+        'layout': {
+          'visibility': 'none'
         }
       },
       {
@@ -3342,7 +3350,7 @@ var style = {
           'line-width': 1
         },
         'layout': {
-  
+          'visibility': 'none'
         }
       },
       {
@@ -3380,11 +3388,44 @@ var style = {
             15, 36
           ],
           'text-padding': 5,
+          'visibility': 'none'
         }
       },
+      {
+        'id': 'parks-spi',
+        'type': 'circle',
+        'source': 'sites',
+        'paint': {
+          'circle-color': '#6E8C03',
+          'circle-opacity': .7,
+          'circle-stroke-color': '#465902',
+          'circle-stroke-width': 1,
+          'circle-radius': 6.5
+        },
+        'layout': {
+
+        }
+      },
+      {
+        'id': 'nine-to-nine',
+        'type': 'symbol',
+        'source': 'sites',
+        'filter': [
+          '==',
+          ['get', 'NINE_TO_NINE'],
+          true
+        ],
+        'paint': {
+
+        },
+        'layout': {
+          'icon-image': 'star-11',
+          'icon-allow-overlap': true,
+        }
+      }
     ],
     "glyphs": "./fonts/{fontstack}/{range}.pbf",
-    "sprite": "https://mayor--stunning-choux-3558b1.netlify.app/sprites/sprite"
+    "sprite": "https://spi--stunning-choux-3558b1.netlify.app/sprites/sprite"
   }
 
   export default style

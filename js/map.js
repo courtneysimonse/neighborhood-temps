@@ -81,37 +81,37 @@ map.addControl(
     })
 );
 
-var categories = [
-  "basketball",
-  "water",
-  "swimming",
-  "harbor",
-  "tennis",
-  "soccer",
-  "baseball",
-  "playground",
-  "school",
-  "garden",
-  "picnic-site"
-]
+// var categories = [
+//   "basketball",
+//   "water",
+//   "swimming",
+//   "harbor",
+//   "tennis",
+//   "soccer",
+//   "baseball",
+//   "playground",
+//   "school",
+//   "garden",
+//   "picnic-site"
+// ]
 
-var amenityFilter = [
-  ["all"],
-  ["basketball"],
-  ["water", "swimming", "harbor"],
-  ["tennis"],
-  ["soccer"],
-  ["baseball"],
-  ["playground", "school", "garden"],
-  ["picnic-site"]
-];
+// var amenityFilter = [
+//   ["all"],
+//   ["basketball"],
+//   ["water", "swimming", "harbor"],
+//   ["tennis"],
+//   ["soccer"],
+//   ["baseball"],
+//   ["playground", "school", "garden"],
+//   ["picnic-site"]
+// ];
 
-const layerStatus = {};
-categories.forEach(c => {
-    layerStatus[c] = false;
-})
+// const layerStatus = {};
+// categories.forEach(c => {
+//     layerStatus[c] = false;
+// })
 
-map.addControl(new layersControl(categories), 'bottom-right')
+// map.addControl(new layersControl(categories), 'bottom-right')
 
 // map.addControl(new legendControl(breaks, colors), 'bottom-left');
 
@@ -119,35 +119,69 @@ map.addControl(new legendControl([0,40,50,60,100], ['red','orange','yellow','gre
 
 map.on("load", function () {
 
-  for (const l in layerStatus) {
-    if (Object.hasOwnProperty.call(layerStatus, l)) {
-        layersToggle(l);
+  // for (const l in layerStatus) {
+  //   if (Object.hasOwnProperty.call(layerStatus, l)) {
+  //       layersToggle(l);
         
+  //   }
+  // }
+
+  // Create a popup, but don't add it to the map yet.
+  const popup = new maplibregl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+  // add SPI score to site points
+  // event to show popup on hover
+  map.on('mouseenter', 'parks-spi', (e) => {
+    // Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const spi = e.features[0].properties["PARK_NAME"] + " - " + Math.round(e.features[0].properties["Social Progress Index"]);
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
-}
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    popup.setLngLat(coordinates).setText(spi).addTo(map);
+  });
+
+  map.on('mouseleave', 'parks-spi', () => {
+      map.getCanvas().style.cursor = '';
+      popup.remove();
+  });
+
+  
 
 })
 
-function layersToggle(name) {
-  let checkbox = document.getElementById('check-'+name.replace(/\s/g,''));
+// function layersToggle(name) {
+//   let checkbox = document.getElementById('check-'+name.replace(/\s/g,''));
 
-  checkbox.addEventListener('change', function(event) {
+//   checkbox.addEventListener('change', function(event) {
 
-      layerStatus[name] = !layerStatus[name];
+//       layerStatus[name] = !layerStatus[name];
 
-      let layersShown = [];
+//       let layersShown = [];
 
-      for (const key in layerStatus) {
-          if (Object.hasOwnProperty.call(layerStatus, key)) {
-              if (layerStatus[key]) {
-                  layersShown.push(key)
-              }
-          }
-      }
+//       for (const key in layerStatus) {
+//           if (Object.hasOwnProperty.call(layerStatus, key)) {
+//               if (layerStatus[key]) {
+//                   layersShown.push(key)
+//               }
+//           }
+//       }
       
-      map.setFilter('park-amenities', 
-        ['in', 'icon', ...layersShown]
-        );
-  });
-}  // end legendToggle
+//       map.setFilter('park-amenities', 
+//         ['in', 'icon', ...layersShown]
+//         );
+//   });
+// }  // end legendToggle
 

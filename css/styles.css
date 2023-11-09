@@ -202,11 +202,11 @@ h1 {
 }
 
 input[type="checkbox"]:checked.openLegend ~ #legend-contents {
-    transform: translateY(-150px);
+    transform: translateY(-130px);
 }
 
 input[type="checkbox"]:checked.openLegend ~ label {
-    transform: translateY(-150px);
+    transform: translateY(-130px);
 }
 
 input[type=checkbox].openLegend {
