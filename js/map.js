@@ -115,7 +115,7 @@ map.addControl(
 
 // map.addControl(new legendControl(breaks, colors), 'bottom-left');
 
-map.addControl(new LegendControl([0,40,50,60,100], ['red','orange','yellow','green']), 'bottom-left');
+map.addControl(new LegendControl([0,40,50,60,100], ['#FF0000','#FFA500','#FFFF00','#008000']), 'bottom-left');
 
 map.on("load", function () {
 

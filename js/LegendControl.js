@@ -40,7 +40,7 @@ class LegendControl {
     legendDiv.classList = 'legend';
     legendDiv.innerHTML = `<div>
       <img src="./icons/production/alidade-smooth/star-11.svg">
-      <span style="background:#6E8C03"></span>
+      <span style="background:#6E8C0399"></span>
       </div>
       <div><p>9 to 9 sites<p>
       <p><input type="checkbox" class="layers-checkbox" data-layer="tree-plan-circles" checked /> Tree Plan Priority Areas<p>
@@ -52,7 +52,7 @@ class LegendControl {
     let content = '<ul>';
 
     for (let i = 0; i < this.breaks.length - 1; i++) {
-        const classRange = `<li><input type="checkbox" class="layers-checkbox" data-layer="parks-spi" data-low=${this.breaks[i]} data-high=${this.breaks[i + 1]} checked /><span style="background:${this.colors[i]}"></span> ${this.breaks[i].toLocaleString()}&ndash;${this.breaks[i + 1].toLocaleString()}</li>`;
+        const classRange = `<li><input type="checkbox" class="layers-checkbox" data-layer="parks-spi" data-low=${this.breaks[i]} data-high=${this.breaks[i + 1]} checked /><span style="background:${this.colors[i]}99; border-color:${this.colors[i]}"></span> ${this.breaks[i].toLocaleString()}&ndash;${this.breaks[i + 1].toLocaleString()}</li>`;
         content += classRange;
     }
 
