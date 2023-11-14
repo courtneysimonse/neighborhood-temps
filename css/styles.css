@@ -73,10 +73,23 @@ p.source {
 }
 
 .legend {
-  width: 155px;
+  width: 150px;
   display: flex;
   column-gap: 15px;
   margin-left: 12px;
+}
+
+.legend p {
+  margin: 0;
+}
+
+.legend span {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 10px;
+  opacity: 0.6;
+  border-radius: 50%;
 }
 
 .ui-controls::after, .legend::after {
@@ -186,8 +199,8 @@ p.source {
     left: 0;
     transform: translateY(50px);
     transition: transform 250ms ease-in-out;
-    height: 180px;
-    width: 150px;
+    height: 200px;
+    /* width: 180px; */
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     padding: 6px 8px;
     font-size: 1em;
@@ -197,11 +210,11 @@ p.source {
 }
 
 input[type="checkbox"]:checked.openLegend ~ #legend-contents {
-    transform: translateY(-160px);
+    transform: translateY(-180px);
 }
 
 input[type="checkbox"]:checked.openLegend ~ label {
-    transform: translateY(-160px);
+    transform: translateY(-180px);
 }
 
 input[type=checkbox].openLegend {

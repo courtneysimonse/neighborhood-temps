@@ -40,8 +40,12 @@ class LegendControl {
     legendDiv.classList = 'legend';
     legendDiv.innerHTML = `<div>
       <img src="./icons/production/alidade-smooth/star-11.svg">
+      <span style="background:#6E8C03"></span>
       </div>
-      <div>9 to 9 sites<div>`;
+      <div><p>9 to 9 sites<p>
+      <p><input type="checkbox" class="layers-checkbox" data-layer="tree-plan-circles" checked /> Tree Plan Priority Areas<p>
+      </div>
+    `;
 
     const scaleDiv = document.createElement('div');
     scaleDiv.classList = 'scale';
@@ -53,10 +57,12 @@ class LegendControl {
     }
 
     content += '</ul>';
+
     scaleDiv.innerHTML = content;
 
     const legendTitle = document.createElement('h3');
     legendTitle.innerText = 'Social Progress Index';
+
 
     containerDiv.appendChild(legendTitle);
     // containerDiv.appendChild(uiDiv);

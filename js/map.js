@@ -164,6 +164,7 @@ map.on("load", function () {
       // popup.remove();
   });
 
+  // filter sites by spi selection
   const layerCheckboxes = document.querySelectorAll('.layers-checkbox[data-layer="parks-spi"]');
   layerCheckboxes.forEach(box => {
     box.addEventListener('change', e => {
@@ -191,6 +192,19 @@ map.on("load", function () {
       map.setFilter('parks-spi', filter)
 
     })
+  })
+
+  // show/hide tree plan areas
+  const treeCheckbox = document.querySelector('[data-layer="tree-plan-circles"]');
+  treeCheckbox.addEventListener('change', e => {
+    let visibility;
+    if (e.target.checked) {
+      visibility = 'visible';
+    } else {
+      visibility = 'none';
+    }
+
+    map.setLayoutProperty('tree-plan-circles', 'visibility', visibility);
   })
 
 })
