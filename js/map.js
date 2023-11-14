@@ -164,7 +164,34 @@ map.on("load", function () {
       // popup.remove();
   });
 
-  
+  const layerCheckboxes = document.querySelectorAll('.layers-checkbox[data-layer="parks-spi"]');
+  layerCheckboxes.forEach(box => {
+    box.addEventListener('change', e => {
+      let limits = [];
+      layerCheckboxes.forEach(i => {
+        if (i.checked) {
+          limits.push(['all', [
+            '>=',
+            ['get', 'Social Progress Index'],
+            ['to-number', i.dataset.low]
+          ],
+          [
+            '<=',
+            ['get', 'Social Progress Index'],
+            ['to-number', i.dataset.high]
+          ]]
+          )
+        }
+      })
+
+      let filter = [
+        'any', ...limits
+      ]
+
+      map.setFilter('parks-spi', filter)
+
+    })
+  })
 
 })
 

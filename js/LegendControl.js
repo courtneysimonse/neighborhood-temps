@@ -48,7 +48,7 @@ class LegendControl {
     let content = '<ul>';
 
     for (let i = 0; i < this.breaks.length - 1; i++) {
-        const classRange = `<li><span style="background:${this.colors[i]}"></span> ${this.breaks[i].toLocaleString()}&ndash;${this.breaks[i + 1].toLocaleString()}</li>`;
+        const classRange = `<li><input type="checkbox" class="layers-checkbox" data-layer="parks-spi" data-low=${this.breaks[i]} data-high=${this.breaks[i + 1]} checked /><span style="background:${this.colors[i]}"></span> ${this.breaks[i].toLocaleString()}&ndash;${this.breaks[i + 1].toLocaleString()}</li>`;
         content += classRange;
     }
 
