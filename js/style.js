@@ -36,6 +36,10 @@ var style = {
         'type': 'geojson',
         'data': '../data/sites_spi.geojson'
       },
+      'tree-plan': {
+        'type': 'geojson',
+        'data': '../data/areas.geojson'
+      }
     },
     'layers': [
       {
@@ -3216,6 +3220,15 @@ var style = {
       //     //   ]
       //   }
       // },
+      {
+        'id': 'tree-plan-circles',
+        'type': 'fill',
+        'source': 'tree-plan',
+        'paint': {
+          'fill-color': '#6E8C03',
+          'fill-opacity': .5
+        }
+      },
       {
         'id': 'trails',
         'type': 'line',
