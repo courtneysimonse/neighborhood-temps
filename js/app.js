@@ -1,363 +1,455 @@
-
-// Philly map options
-var options = {
-  zoomSnap: .5,
-  center: [40, -75.1],
-  zoom: 11.5,
-  minZoom: 2,
-  zoomControl: false,
-  // attributionControl: false
-}
-
-// create map
-var map = L.map('mapid', options);
-
-console.log(map.getBounds())
-
-// request tiles and add to map
-// https://leaflet-extras.github.io/leaflet-providers/preview/
-var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Stadia
-// var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
-// 	maxZoom: 20,
-// 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-// });
-//
-// var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-// 	maxZoom: 20,
-// 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-// });
-//
-// var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-// 	maxZoom: 20,
-// 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-// });
-
-// change zoom control position
-L.control.zoom({
-  position: 'topright'
-}).addTo(map);
-
-L.control.locate({
-  setView: 'once',
-  locateOptions: {maxZoom: 15},
-  position: 'topright'
-}).addTo(map);
-
-// create search button
-
-// add "random" button
-const buttonTemplate = `<div class="leaflet-search"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path></svg></div><div class="auto-search-wrapper max-height"><input type="text" id="searchInput" autocomplete="off"  aria-describedby="instruction" aria-label="Search ..." /><div id="instruction" class="hidden">When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.</div></div>`;
-
-// create custom button
-const customControl = L.Control.extend({
-  // button position
-  options: {
-    position: "topright",
-    className: "leaflet-autocomplete",
-  },
-
-  // method
-  onAdd: function () {
-    return this._initialLayout();
-  },
-
-  _initialLayout: function () {
-    // create button
-    const container = L.DomUtil.create(
-      "div",
-      "leaflet-bar " + this.options.className
-    );
-
-    L.DomEvent.disableClickPropagation(container);
-
-    container.innerHTML = buttonTemplate;
-
-    return container;
-  },
-});
-
-// adding new button to map controll
-map.addControl(new customControl());
-
-// input element
-const root = document.getElementById("searchInput");
-
-function addClassToParent() {
-  const searchBtn = document.querySelector(".leaflet-search");
-  searchBtn.addEventListener("click", (e) => {
-    // toggle class
-    e.target
-      .closest(".leaflet-autocomplete")
-      .classList.toggle("active-autocomplete");
-
-    // add placeholder
-    root.placeholder = "Search ...";
-
-    // focus on input
-    root.focus();
-
-    // click on clear button
-    clickOnClearButton();
-  });
-}
-
-// function click on clear button
-function clickOnClearButton() {
-  document.querySelector(".auto-clear").click();
-}
-
-addClassToParent();
-
-// function clear input
-map.on("click", () => {
-  document
-    .querySelector(".leaflet-autocomplete")
-    .classList.remove("active-autocomplete");
-
-  clickOnClearButton();
-});
-
-// autocomplete section
-// more config find in https://github.com/tomik23/autocomplete
-// --------------------------------------------------------------
-
-new Autocomplete("searchInput", {
-  delay: 1000,
-  selectFirst: true,
-  howManyCharacters: 2,
-
-  onSearch: function ({ currentValue }) {
-    const api = `https://nominatim.openstreetmap.org/search?bounded=1&viewbox=-74,41,-76,39&format=geojson&limit=5&q=${encodeURI(
-      currentValue
-    )}`;
-    console.log(api);
-
-    /**
-     * Promise
-     */
-    return new Promise((resolve) => {
-      fetch(api)
-        .then((response) => response.json())
-        .then((data) => {
-          resolve(data.features);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
-  },
-
-  onResults: ({ currentValue, matches, template }) => {
-    const regex = new RegExp(currentValue, "i");
-    // checking if we have results if we don't
-    // take data from the noResults method
-    return matches === 0
-      ? template
-      : matches
-          .map((element) => {
-            return `
-              <li role="option">
-                <p>${element.properties.display_name.replace(", United States","")
-                  .replace(/,\s[^,]*County,/,",").replace(
-                  regex,
-                  (str) => `<b>${str}</b>`
-                )}</p>
-              </li> `;
-          })
-          .join("");
-  },
-
-  onSubmit: ({ object }) => {
-    const { display_name } = object.properties;
-    const cord = object.geometry.coordinates;
-
-    map.setView([cord[1], cord[0]], 15);
-  },
-
-  // the method presents no results
-  noResults: ({ currentValue, template }) =>
-    template(`<li>No results found: "${currentValue}"</li>`),
-});
-
 var minTemp = 80;
 
 // example breaks for legend
 var breaks = [];
-for (var i = 0; i < 6; i++) {
-  breaks[i] = minTemp + 5*i;
+var tempDiff = [];
+for (var i = 0; i < 8; i++) {
+  tempDiff[i] = -10 + 3.2*i;
+  breaks[i] = minTemp + 3.2*i;
 }
-console.log(breaks);
+// console.log(tempDiff);
+// console.log(breaks);
 
-var tempDiffs = [];
-neighborhoods.features.forEach((x, i) => {
-  tempDiffs.push(x.properties.AvgTempDiff_F);
-});
-console.log(Math.min(...tempDiffs));
-console.log(Math.max(...tempDiffs));
+colors = [
+  "#08519c",
+  "#4292c6",
+  "#9ecae1",
+  "#ffffbf",
+  "#fc9272",
+  "#ef3b2c",
+  "#67000d",
+]
 
-var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
-drawLegend(breaks, colorize);
+// style.sources['neighborhoods'] = {
+//       'type': 'geojson',
+//       'data': "./data/neighborhoods.json",
+//       'promoteId': 'GEOID10'
+//     }
+//
+// style.layers.push({
+//       'id': 'neighborhoods-fill',
+//       'type': 'fill',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'fill-opacity': .6,
+//         'fill-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ]
+//       }
+//     },
+//     {
+//       'id': 'neighborhoods-outline',
+//       'type': 'line',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'line-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ],
+//         'line-width': 2
+//       },
+//       'layout': {
+//
+//       }
+//     },
+//     {
+//       'id': 'neighborhoods-label',
+//       'type': 'symbol',
+//       'source': 'neighborhoods',
+//       'paint': {
+//         'text-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+//           colors[6]
+//         ],
+//         'text-halo-width': 1,
+//         'text-halo-color': ['case',
+//           // min difference -13.99034496
+//           // max difference 7.83785996
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
+//           ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
+//           "#fff"
+//         ],
+//         'text-halo-blur': 2
+//       },
+//       'layout': {
+//         'text-font': ['Noto Sans Regular'],
+//         'text-field': ['number-format',
+//           ['+', ['get','AvgTempDiff_F'], minTemp+14],
+//           { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+//         ],
+//         'text-size': [
+//           'interpolate',
+//           ['linear'],
+//           ['zoom'],
+//           10, 12,
+//           13, 16,
+//           15, 36
+//         ],
+//         'text-padding': 5
+//       }
+//     });
 
-var neighborhoodsLayer = L.geoJSON();
-
-// setup slider
-var slider = document.getElementById('slider');
-
-noUiSlider.create(slider, {
-// Create two timestamps to define a range.
-    range: {
-        min: 75,
-        max: 95
+var style = {
+  'version': 8,
+  'sources': {
+    'raster-tiles': {
+      'type': 'raster',
+      'tiles': [
+        // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+        // 'https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
+        'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png'
+        // 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png'
+      ],
+      'tileSize': 256,
+      'attribution':
+        `<a href="https://www.stadiamaps.com/">&copy; Stadia Maps</a>
+        <a href="https://openmaptiles.org/">&copy; OpenMapTiles</a>
+        <a href="https://www.openstreetmap.org/about/">&copy; OpenStreetMap contributors</a>.`
     },
-
-// Steps of one degree
-    step: 1,
-
-// handle starting positions.
-    start: [minTemp],
-
-    tooltips: [true],
-
-    pips: {
-      mode: 'positions',
-      values: [0, 25, 50, 75, 100],
-      density: 4
+    'neighborhoods': {
+      'type': 'geojson',
+      'data': "./data/neighborhoods.json",
+      'promoteId': 'GEOID10'
+    }
+  },
+  'layers': [
+    {
+      'id': 'simple-tiles',
+      'type': 'raster',
+      'source': 'raster-tiles',
+      'minzoom': 0,
+      'maxzoom': 19
     },
-
-// No decimals
-    format: {
-      to: function (value) {
-        return Math.floor(Number(value));
+    {
+      'id': 'neighborhoods-fill',
+      'type': 'fill',
+      'source': 'neighborhoods',
+      'paint': {
+        'fill-opacity': .6,
+        'fill-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
+        ]
+      }
+    },
+    {
+      'id': 'neighborhoods-outline',
+      'type': 'line',
+      'source': 'neighborhoods',
+      'paint': {
+        'line-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
+        ],
+        'line-width': 2
       },
-      from: function (value) {
-        return Math.floor(Number(value));
+      'layout': {
+
+      }
+    },
+    {
+      'id': 'neighborhoods-label',
+      'type': 'symbol',
+      'source': 'neighborhoods',
+      'paint': {
+        'text-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[0]], colors[0],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], colors[1],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], colors[2],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[3]], colors[3],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], colors[4],
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[5]], colors[5],
+          colors[6]
+        ],
+        'text-halo-width': 1,
+        'text-halo-color': ['case',
+          // min difference -13.99034496
+          // max difference 7.83785996
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[1]], "#fff",
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[2]], "#111",
+          ['<', ['get', 'AvgTempDiff_F'], tempDiff[4]], "#111",
+          "#fff"
+        ],
+        'text-halo-blur': 2
+      },
+      'layout': {
+        'text-font': ['Lato Extra Bold','Open Sans Extra Bold'],
+        'text-field': ['number-format',
+          ['+', ['get','AvgTempDiff_F'], minTemp+14],
+          { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+        ],
+        'text-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          10, 12,
+          13, 16,
+          15, 36
+        ],
+        'text-padding': 5
       }
     }
-});
-
-
-// update slider
-slider.noUiSlider.on('update', function (value) {
-  // console.log(value);
-  minTemp = +value;
-  updateMap(+value);
-});
-
-
-
-drawMap();
-
-
-// DRAW MAP FUNCTION
-function drawMap() {
-
-  neighborhoodsLayer.addData(neighborhoods).addTo(map);
-
-  neighborhoodsLayer.setStyle(style);
-
-  map.fitBounds(neighborhoodsLayer.getBounds());
-
-  // map.on('zoomend', function () {
-  //   console.log(map.getZoom());
-  //   if (map.getZoom() < 14) {
-  //     neighborhoodsLayer.eachLayer(function (layer) {
-  //       layer.closeTooltip();
-  //       layer.getTooltip().options.permanent = false;
-  //       layer.getTooltip().options.sticky = true;
-  //       layer.getTooltip().options.direction = 'auto';
-  //       layer.getTooltip().options.className = '';
-  //     });
-  //   } else {
-  //     neighborhoodsLayer.eachLayer(function (layer) {
-  //       // console.log(layer.getTooltip());
-  //       layer.closeTooltip();
-  //       layer.getTooltip().options.permanent = true;
-  //       layer.getTooltip().options.sticky = false;
-  //       layer.getTooltip().options.direction = 'center';
-  //       layer.getTooltip().options.className = 'polyLabel';
-  //       layer.openTooltip();
-  //     });
-  //   }
-  // });
-
-}   //end drawMap()
-
-function drawLegend(breaks, colorize) {
-
-  var legendControl = L.control({
-    position: 'bottomright'
-  });
-
-  legendControl.onAdd = function(map) {
-
-    var legend = L.DomUtil.create('div', 'legend');
-    return legend;
-
-  };
-
-  legendControl.addTo(map);
-
-  var legend = document.querySelector('.legend');
-  var legendHTML = "<h3>Legend</h3><ul>";
-
-  for (var i = 0; i < breaks.length - 1; i++) {
-
-    var color = colorize(breaks[i], breaks);
-
-    var classRange = '<li><span style="background:' + color + '"></span> ' +
-        breaks[i].toLocaleString() + ' &mdash; ' +
-        breaks[i + 1].toLocaleString() + '</li>'
-    legendHTML += classRange;
-
-  }
-
-  legendHTML += '</ul><p>(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)</p>';
-  legend.innerHTML = legendHTML;
-
-} // end drawLegend()
-
-function updateMap(temp) {
-
-  for (var i = 0; i < 6; i++) {
-    breaks[i] = temp + 5*i;
-  }
-  var colorize = chroma.scale(chroma.brewer.YlOrRd).classes(breaks).mode('lab');
-
-  neighborhoodsLayer.setStyle(style);
-
-  updateLegend(breaks, colorize);
-
+  ],
+  "glyphs": "/fonts/{fontstack}/{range}.pbf"
 }
 
-function style (feature) {
-  // console.log(minTemp+feature.properties['AvgTempDiff_F']+13.99);
-  let color = colorize(minTemp+feature.properties['AvgTempDiff_F']+13.99, breaks);
-  return {
-    opacity: 1,
-    weight: 1,
-    color: color,
-    fillColor: color,
-    fillOpacity: .6,
-  };
-}  // end style()
+// Philly map options
+var options = {
+  container: 'mapid',
+  // style: "https://tiles.stadiamaps.com/styles/alidade_smooth.json",
+  style: style,
+  center: [-75.1, 40],
+  zoom: 10,
+  minZoom: 2,
+}
 
-function updateLegend(breaks, colorize) {
+// create map
+var map = new maplibregl.Map(options);
+
+
+
+// add geocoder for address search
+var geocoder_api = {
+  forwardGeocode: async (config) => {
+    const features = [];
+    try {
+      let request =
+        'https://nominatim.openstreetmap.org/search?q=' +
+        config.query +
+        '&bounded=1&viewbox=-74,41,-76,39&format=geojson';
+      const response = await fetch(request);
+      const geojson = await response.json();
+      for (let feature of geojson.features) {
+        let center = [
+          feature.bbox[0] +
+          (feature.bbox[2] - feature.bbox[0]) / 2,
+          feature.bbox[1] +
+          (feature.bbox[3] - feature.bbox[1]) / 2
+        ];
+        let point = {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: center
+          },
+          place_name: feature.properties.display_name.replace(", United States","").replace(/,\s[^,]*County,/,","),
+          properties: feature.properties,
+          text: feature.properties.display_name.replace(", United States","").replace(/,\s[^,]*County,/,","),
+          place_type: ['place'],
+          center: center
+        };
+        features.push(point);
+      }
+    } catch (e) {
+      console.error(`Failed to forwardGeocode with error: ${e}`);
+    }
+
+    return {
+    features: features
+    };
+  }
+};
+map.addControl(
+  new MaplibreGeocoder(geocoder_api, {
+    maplibregl: maplibregl,
+    bbox: [-74,41,-76,39],
+    marker: false,
+    showResultMarkers: false,
+    placeholder: "Search Address"
+  })
+);
+
+// Navigation control
+var nav = new maplibregl.NavigationControl({showCompass: false});
+map.addControl(nav, 'top-right');
+
+// Add geolocate control to the map.
+map.addControl(
+  new maplibregl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+      trackUserLocation: false
+    })
+);
+
+// setup legend
+class legendControl {
+    onAdd(map) {
+      this._map = map;
+      this._container = document.createElement('div');
+      this._container.className = 'maplibregl-ctrl legend-ctrl';
+      this._container.id = 'legend-ctrl'
+
+      this._container.insertAdjacentHTML("afterbegin",`<input type="checkbox" class="openLegend" id="openLegend" checked>
+			  <label for="openLegend" class="legendIconToggle">
+			    <div class="spinner diagonal part-1"></div>
+			    <div class="spinner horizontal"></div>
+			    <div class="spinner diagonal part-2"></div>
+			  </label>`)
+
+      const containerDiv = document.createElement('div');
+      containerDiv.id = "legend-contents";
+
+      const uiDiv = document.createElement('div');
+      uiDiv.classList = "ui-controls";
+
+      const slider = document.createElement('div');
+      slider.id = "slider";
+      uiDiv.appendChild(slider);
+
+      noUiSlider.create(slider, {
+      // Create two timestamps to define a range.
+          range: {
+              min: 75,
+              max: 95
+          },
+
+          orientation: 'vertical',
+          direction: 'rtl',
+          connect: 'lower',
+
+      // Steps of one degree
+          step: 1,
+
+      // handle starting positions.
+          start: [minTemp],
+
+          tooltips: [true],
+
+          // pips: {
+          //   mode: 'positions',
+          //   values: [0, 25, 50, 75, 100],
+          //   density: 4
+          // },
+
+      // No decimals
+          format: {
+            to: function (value) {
+              return Math.floor(Number(value));
+            },
+            from: function (value) {
+              return Math.floor(Number(value));
+            }
+          }
+      });
+
+      const legendDiv = document.createElement('div');
+      legendDiv.classList = "legend"
+      let content = `<ul>`;
+
+      for (var i = 0; i < breaks.length - 1; i++) {
+
+        var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
+            breaks[i].toLocaleString() + '&ndash;' +
+            breaks[i + 1].toLocaleString() + '</li>'
+        content += classRange;
+
+      }
+
+      content += '</ul>';
+      legendDiv.innerHTML = content;
+
+      const legendTitle = document.createElement('h3');
+      legendTitle.innerText = "High Temperature";
+      containerDiv.appendChild(legendTitle);
+      const sliderDesc = document.createElement('p');
+      sliderDesc.innerText = "Set the high temperature for the coolest neighborhood:";
+      containerDiv.appendChild(sliderDesc);
+
+      containerDiv.appendChild(uiDiv)
+      containerDiv.appendChild(legendDiv)
+
+      const sourceP = document.createElement('p');
+      sourceP.innerHTML = `(Data from the <a href="https://phl.maps.arcgis.com/apps/webappviewer/index.html?id=9ef74cdc0c83455c9df031c868083efd" target="_blank">Philadelphia Heat Vulnerability Index</a>)`
+      containerDiv.appendChild(sourceP)
+
+      this._container.appendChild(containerDiv)
+      return this._container;
+    }
+    onRemove() {
+      this._container.parentNode.removeChild(this._container);
+      this._map = undefined;
+    }
+}
+
+map.addControl(new legendControl(), 'bottom-left');
+
+map.on("load", function () {
+  var slider = document.getElementById('slider')
+
+  // update slider
+  slider.noUiSlider.on('update', function (value) {
+
+    // console.log(value);
+    minTemp = +value;
+
+    updateLegend(+value);
+  });
+
+  slider.noUiSlider.on('set', function (value) {
+    map.setLayoutProperty('neighborhoods-label', 'text-field',
+    ['number-format',
+      ['+', ['get','AvgTempDiff_F'], +value+14],
+      { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
+    ])
+
+
+  });
+
+})
+
+function updateLegend(value) {
+  for (var i = 0; i < 8; i++) {
+    breaks[i] = value + 3.2*i;
+  }
   var legendul = document.querySelector(".legend ul");
-  // console.log(legendUl);
   let legendList = "";
 
   for (var i = 0; i < breaks.length - 1; i++) {
 
-    var color = colorize(breaks[i], breaks);
-
-    var classRange = '<li><span style="background:' + color + ';"></span> ' +
-        breaks[i].toLocaleString() + ' &mdash; ' +
-        breaks[i + 1].toLocaleString() + '&deg;F</li>';
+    var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
+        breaks[i].toLocaleString() + '&ndash;' +
+        breaks[i + 1].toLocaleString() + '</li>'
     legendList += classRange;
 
   }

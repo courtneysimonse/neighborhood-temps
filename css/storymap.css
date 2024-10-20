@@ -1,0 +1,334 @@
+#features {
+    font-family: sans-serif;
+    overflow: auto;
+    background-color: #fafafa;
+    width: 40%;
+    margin-left: 60%;
+}
+section {
+    padding:  25px 50px;
+    line-height: 25px;
+    border-bottom: 1px solid #ddd;
+    /*opacity: 0.25;*/
+    font-size: 13px;
+    min-height: 75vh;
+}
+section.active {
+    opacity: 1;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 400px;
+}
+
+.intro, .closing {
+  opacity: 1;
+  background-color: whitesmoke;
+  position: inherit;
+  z-index: 1000;
+}
+
+.wrapper {
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+.scroll-map {
+  position: relative;
+  display: inline-block;
+  /* overflow: hidden;
+  height: 100vh; */
+}
+
+#mapid {
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  width: 60%;
+  height: 100vh;
+  display: inherit;
+  float: left;
+}
+
+.marker {
+  /* background-color: black; */
+  color: darkgreen;
+  border-radius: 10%;
+  padding: 0px 10px;
+  opacity: 70%;
+  max-width: 75px;
+  cursor: pointer;
+}
+
+.marker > h4 {
+  margin: 0;
+  padding 0;
+}
+
+.infographic {
+  width: 100%;
+}
+
+#features.full-screen {
+  width: 100%;
+  margin-left: 0%;
+}
+
+#legend-contents {
+    position: absolute;
+    display: block;
+    user-select: none;
+    top: 0;
+    left: 0;
+    transform: translateY(50px);
+    transition: transform 250ms ease-in-out;
+    height: 230px;
+    width: 150px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    padding: 6px 8px;
+    font-size: 1em;
+    background: #d9dad9;
+    color: #001323;
+    border-radius: 5px;
+}
+
+#legend-contents.temps {
+  height: 230px;
+}
+
+#legend-contents.canopy {
+  height: 180px;
+}
+
+input[type="checkbox"]:checked ~ label {
+    transform: translateY(-210px);
+}
+
+input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
+}
+input[type=checkbox]:checked ~ .legendIconToggle > .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    opacity: 0;
+}
+input[type=checkbox]:checked ~ .legendIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(135deg);
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .legendIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: -9px;
+}
+
+input[type="checkbox"]:checked ~ #legend-contents.temps {
+    transform: translateY(-210px);
+}
+
+input[type="checkbox"]:checked ~ #legend-contents.canopy {
+    transform: translateY(-160px);
+}
+
+input[type="checkbox"]:checked ~ label.canopy {
+    transform: translateY(-160px);
+}
+
+@media screen and (width < 500px) {
+  .legend-ctrl {
+    display: none;
+  }
+  #mapid {
+    width: 100%;
+    height: 50vh;
+    float: none;
+  }
+  #features {
+    width: 100%;
+    float: right;
+  }
+  section {
+    min-height: 30vh;
+  }
+}
+
+.legend-ctrl {
+  /* box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1); */
+  padding: 6px 8px;
+  font-size: 1em;
+  background: #d9dad9;
+  color: #001323;
+  border-radius: 5px;
+  width: 18px;
+  margin: 0;
+  height: 18px;
+  position: absolute;
+  bottom: 0;
+}
+
+
+.ui-controls {
+    width: 10px;
+    padding: 0px 15px 4px 15px;
+    margin-top: 5px;
+    /* background: #d9dad9; */
+    color: #001323;
+    float: left;
+}
+
+.legend-ctrl p {
+    font-size: .75em;
+    line-height: 1em;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.legend {
+  width: 155px;
+}
+
+.ui-controls::after, .legend::after {
+  clear: both;
+}
+
+.legend-ctrl h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 1em;
+    color: #001323;
+    margin: 0;
+    padding-bottom: 7px;
+    padding-left: 20px;
+}
+
+.legend h3 span {
+    font-size: 1.3em;
+    margin: 0 20px 0 0;
+}
+
+.legend ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 12px 4px 0;
+}
+
+.legend li {
+    height: 22px;
+}
+
+.legend span {
+    width: 30px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+    opacity: 0.6;
+}
+
+.legend p {
+  font-size: .9em;
+  font-weight: bold;
+  line-height: 1em;
+  color: #001323;
+}
+
+
+.legend label {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+
+#slider {
+  height: 150px;
+  width: 10px;
+}
+
+.noUi-value {
+  color: #001323;
+  padding-top: 2px;
+}
+
+.noUi-handle {
+    box-shadow: none;
+}
+
+.noUi-connect {
+    background: #67000d;
+}
+
+.noUi-vertical .noUi-handle {
+  height: 18px;
+  width: 18px;
+  right: -5px;
+  border-radius: 9px;
+}
+
+/* Hide markers on slider handles */
+.noUi-handle::before,
+.noUi-handle::after {
+    display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.mapboxgl-ctrl-geocoder--result-address.maplibregl-ctrl-geocoder--result-address {
+  white-space: normal;
+}
+
+.mapboxgl-ctrl-geocoder--result-icon.maplibre-ctrl-geocoder--result-icon {
+  display: none;
+}
+
+.legendIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    z-index: 500;
+    height: 100%;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    top: 0px;
+    left: 0px;
+    height: 18px;
+    width: 18px;
+}
+.spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #000;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+}
+.diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}

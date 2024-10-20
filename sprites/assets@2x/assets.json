@@ -1,0 +1,67 @@
+[
+  {
+    "id": "baseball",
+    "fileName": "baseball.png",
+    "scale": 2
+  },
+  {
+    "id": "basketball",
+    "fileName": "basketball.png",
+    "scale": 2
+  },
+  {
+    "id": "harbor",
+    "fileName": "harbor.png",
+    "scale": 2
+  },
+  {
+    "id": "picnic-site",
+    "fileName": "picnic-site.png",
+    "scale": 2
+  },
+  {
+    "id": "playground-orig",
+    "fileName": "playground-orig.png",
+    "scale": 2
+  },
+  {
+    "id": "school",
+    "fileName": "school.png",
+    "scale": 2
+  },
+  {
+    "id": "soccer",
+    "fileName": "soccer.png",
+    "scale": 2
+  },
+  {
+    "id": "swimming",
+    "fileName": "swimming.png",
+    "scale": 2
+  },
+  {
+    "id": "tennis",
+    "fileName": "tennis.png",
+    "scale": 2
+  },
+  {
+    "id": "water",
+    "fileName": "water.png",
+    "scale": 2
+  },
+  {
+    "id": "garden",
+    "fileName": "garden.png",
+    "scale": 2
+  },
+  {
+    "id": "playground-swings",
+    "fileName": "playground-swings.png",
+    "scale": 2
+  },
+  {
+    "id": "playground",
+    "fileName": "playground.png",
+    "scale": 2
+  }
+]

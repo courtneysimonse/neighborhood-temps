@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <link rel="stylesheet" type="text/css" href="https://static1.squarespace.com/static/versioned-site-css/601da71133789301b0532cc3/56/5c5a519771c10ba3470d8101/601da71133789301b0532cdd/1299/site.css"/>
+
+    <script src='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css' rel='stylesheet' />
+
+
+    <!-- noUiSlider -->
+    <link rel="stylesheet" href="./vendor/noUiSlider/nouislider.min.css">
+    <script src="./vendor/noUiSlider/nouislider.min.js" charset="utf-8"></script>
+
+    <!-- <link  rel='stylesheet' href='/css/styles.css' /> -->
+    <link rel="stylesheet" href="/css/storymap.css" />
+
+    <title>Demo</title>
+  </head>
+  <body>
+    <!-- <div style="height: 100px;width: 100%"></div> -->
+    <div class="wrapper" id="storymap-wrapper">
+      <div class="intro" id="intro">
+        <img src="/images/storymap-intro.jpg" alt="" class="infographic">
+        <img src="/images/parks-stats.png" alt="" class="infographic">
+        <img src="/images/spending-comp.png" alt="" class="infographic">
+      </div>
+      <div class="scroll-map" id="scroll-map">
+        <div id="mapid"></div>
+        <div id='features'>
+            <!-- <section id='program-staff' class="active">
+                <h3>Program Staff Map by Site</h3>
+                <p>paragraph</p>
+            </section> -->
+            <section id='temperature-map' class="active">
+                <img src="/images/Temperature+square.png" alt="" class="infographic">
+            </section>
+            <section id='priority-canopy'>
+                <h3>Priority canopy neighborhoods</h3>
+                <p>The Philly Tree Plan identifies seven areas of priority to support equity in canopy growth and management. Canopy growth in these areas will have the most significant impact on public health, wellbeing, and quality of life. Planning for canopy growth must happen in collaboration with the communities that live in these areas to reduce the potential for burden and increase benefit.</p>
+            </section>
+            <section id='west'>
+                <h3>West Priority</h3>
+                <p>
+                  33,500 new trees needed to reach 30% canopy
+                </p>
+                <p>
+                  This area is characterized by two-story row homes with small front and rear yards. The commercial corridors and most residential streets are 2-4 lanes with only a few one way streets and alleys. Many existing trees are over mature and near the end of their life. Cobbs Creek Park is a significant asset to this community, providing access to a large contiguous forest.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal, strategies must be identified for new tree planting along the streets, in residential yards, and to replace aging or dying trees. Over the past decade, street trees have experienced the greatest percentage of loss with a 15% decline from 2008-2018.
+                </p>
+                <img src="/images/west-canopy.jpg" alt="" class="infographic">
+            </section>
+            <section id='southwest'>
+                <h3>Southwest Priority</h3>
+                <p>
+                  This area is characterized by 2-3 story row homes, commercial corridors with surface parking, and large industrial areas. There are no parks or recreation centers within the study area although there are some nearby.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting along the streets, in residential yards, and in collaboration with landlords and other commercial or industrial land owners. Opportunities for green corridors that connect the neighborhood to Cobbs Creek Park, Bartram’s Garden or other green spaces should be considered.
+                </p>
+                <img src="/images/southwest-canopy.jpg" alt="" class="infographic">
+            </section>
+            <section id='south'>
+                <h3>South Priority</h3>
+                <!-- <p>
+                  This area is characterized by 1-2 story homes with front stoops and small rear yards or alleys. Buildings are densely built along narrow streets with narrow sidewalks. It is adjacent to areas of air pollution including highways and industry. This area has the lowest total canopy cover in the city at only 5.5% and very high development pressure.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting along the streets, in residential yards, and in collaboration with landlords and other commercial or industrial land owners. There are also opportunities to increase canopy in collaboration with Philadelphia Housing Authority and within existing Parks.
+                </p> -->
+            </section>
+            <section id='north'>
+                <h3>North Priority</h3>
+                <!-- <p>
+                  This area encompasses many different neighborhoods. It is characterized by row houses and areas of high vacancy creating a burden canopy in vacant lots. There are several large natural areas within proximity including Hunting Park and Fairmount Park, but opportunities for access to parks within the area are limited.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting along the streets, in residential yards, and in collaboration with landlords and other commercial or industrial land owners. Given the quantity of schools, opportunities to collaborate with schoolyard greening efforts should also be considered.
+                </p> -->
+                <img src="/images/north-canopy.jpg" alt="" class="infographic">
+            </section>
+            <section id='kensington-harrowgate'>
+                <h3>Kensington / Harrowgate Priority</h3>
+                <!-- <p>
+                  This area is characterized by 1-2 story homes with front stoops and small rear yards or alleys. Residential streets are narrow while many commercial corridors are much wider. There is a high volume of industrial areas and vacancy.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting along the streets, in residential yards, and in collaboration with landlords and other commercial or industrial land owners. This area has been experiencing extreme pressure from the opioid crisis which needs to be considered when developing strategies.
+                </p> -->
+                <img src="/images/kens-harr-canopy.jpg" alt="" class="infographic">
+            </section>
+            <section id='northwest'>
+                <h3>Northwest Priority</h3>
+                <!-- <p>
+                  This area is characterized by two story row homes with small front yards and ample rear yards with drivable alleys. The streets are wide with some narrow sidewalks.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting along the streets and in residential yards.
+                </p> -->
+                <img src="/images/northwest-canopy.jpg" alt="" class="infographic">
+            </section>
+            <section id='northeast'>
+                <h3>Northeast Priority</h3>
+                <!-- <p>
+                  This area is characterized by 2 story homes with moderate front yards and paved back alleys with rear parking. The residential streets are wide with narrow sidewalks while the commercial corridors have very wide sidewalks and surface parking lots.
+                </p>
+                <p>
+                  To achieve the 30% canopy goal strategies must be identified for new tree planting in residential yards, commercial streets, and in collaboration with landlords and other commercial or industrial land owners.
+                </p> -->
+                <img src="/images/northeast-canopy.jpg" alt="" class="infographic">
+            </section>
+            <!-- <section id='operations'>
+                <h3>Operations Map by District</h3>
+                <p>paragraph</p>
+            </section> -->
+        </div>
+      </div>
+
+      <div class="closing" id="closing">
+        <img src="/images/burden-asset.png" alt="" class="infographic">
+        <img src="/images/investment-list.png" alt="" class="infographic">
+        <img src="/images/priorities.png" alt="" class="infographic">
+      </div>
+
+    </div>
+
+
+    <!-- Load the `maplibre-gl-geocoder` plugin. -->
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.4.2/dist/maplibre-gl-geocoder.css"
+      type="text/css"
+    />
+
+    <!-- <script src="vendor/mapbox-gl-arcgis-featureserver/tilebelt.js" charset="utf-8"></script>
+    <script src="vendor/mapbox-gl-arcgis-featureserver/arcgis-pbf.min.js" charset="utf-8"></script>
+    <script src="vendor/mapbox-gl-arcgis-featureserver/main.js" charset="utf-8"></script> -->
+
+    <!-- <script src="js/alidade_smooth.js" charset="utf-8"></script> -->
+    <script src="js/storymap-demo.js"></script>
+  </body>
+</html>
