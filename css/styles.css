@@ -234,11 +234,11 @@ h1 {
 }
 
 input[type="checkbox"]:checked ~ #legend-contents {
-    transform: translateY(-210px);
+    transform: translateY(-225px);
 }
 
 input[type="checkbox"]:checked ~ label {
-    transform: translateY(-210px);
+    transform: translateY(-225px);
 }
 
 input[type=checkbox] {

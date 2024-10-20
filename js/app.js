@@ -375,18 +375,18 @@ class legendControl {
 
       const legendDiv = document.createElement('div');
       legendDiv.classList = "legend"
-      let content = `<ul>`;
+      let content = '';
 
       for (var i = 0; i < breaks.length - 1; i++) {
 
         var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
             breaks[i].toLocaleString() + '&ndash;' +
             breaks[i + 1].toLocaleString() + '</li>'
-        content += classRange;
+        content = classRange + content;
 
       }
 
-      content += '</ul>';
+      content = '<ul>'+content+'<ul>';
       legendDiv.innerHTML = content;
 
       const legendTitle = document.createElement('h3');
@@ -450,7 +450,7 @@ function updateLegend(value) {
     var classRange = '<li><span style="background:' + colors[i] + '"></span> ' +
         breaks[i].toLocaleString() + '&ndash;' +
         breaks[i + 1].toLocaleString() + '</li>'
-    legendList += classRange;
+    legendList = classRange + legendList;
 
   }
 
